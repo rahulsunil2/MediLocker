@@ -31,6 +31,7 @@ ALLOWED_HOSTS=['134.209.158.239', '127.0.0.1','medilocker.ddns.net']
 # Application definition
 
 INSTALLED_APPS = [
+    'MediLockerApp.apps.MedilockerappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
