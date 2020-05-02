@@ -23,4 +23,6 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name="social_app/index.html")), # <--
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')), # <--
+    path('api/', include('api.urls', namespace='api')),
+    path('api-token-auth/', views.obtain_auth_token, name='api-token-auth'),
 ]
