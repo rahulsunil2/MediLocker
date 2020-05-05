@@ -16,7 +16,7 @@
         <p class="sign" align="center">{{ user.username }} Logged in</p>
         <a class="button" href="#">Personal Details</a> 
         <a class="button" href="#">My Profile</a>
-        <a class="logout-button" href="#">Log out</a>
+        <a class="logout-button" href="accounts/logout/">Log out</a>
       {% else %}
         <p class="sign" align="center">Sign in</p>
         <a class="submit" href="{% provider_login_url 'google' %}">Sign In with Google</a> 
