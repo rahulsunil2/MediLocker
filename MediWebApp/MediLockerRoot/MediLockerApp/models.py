@@ -9,7 +9,7 @@ class PersonalRecord(models.Model):
         ('O', 'Others')
     ]
 
-    username         = models.ForeignKey(User, models.CASCADE)
+    username         = models.OneToOneField(User, models.CASCADE)
     sex              = models.CharField(max_length=5, choices=sex_choices)
     phone            = models.CharField(max_length=10)
     relative_name    = models.CharField(max_length=25)
@@ -33,7 +33,7 @@ class MedicalRecord(models.Model):
         ('AB-', 'AB-ve'),
     ]
 
-    username         = models.ForeignKey(User, models.CASCADE)
+    username         = models.OneToOneField(User, models.CASCADE)
     blood_grp        = models.CharField(max_length=3, choices=blood_grp_choices)
     height           = models.PositiveIntegerField()
     weight           = models.PositiveIntegerField()
