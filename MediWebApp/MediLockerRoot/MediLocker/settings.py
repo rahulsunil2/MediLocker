@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'rest_framework', # <-- REST
     'rest_framework.authtoken', # <-- REST
     'django.contrib.sites',   # <-- Social Auth
-    'social_app',   # <-- Social Auth
+    # 'MediLockerApp',   # <-- Social Auth
     'allauth',   # <-- Social Auth
     'allauth.account',   # <-- Social Auth
     'allauth.socialaccount',   # <-- Social Auth

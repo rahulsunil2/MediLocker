@@ -21,7 +21,7 @@ from rest_framework.authtoken import views as rest_views
 
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name="social_app/index.html")), # <--
+    path('', TemplateView.as_view(template_name="MediLockerApp/index.html")), # <--
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')), # <--
     path('api/', include('MediLockerApp.urls', namespace='MediLockerApp')),
