@@ -30,8 +30,7 @@ ALLOWED_HOSTS=['134.209.158.239', '127.0.0.1', 'medilocker.ddns.net']
 
 # Application definition
 
-INSTALLED_APPS = [
-    'MediLockerApp',  # <-- MediLocker App
+INSTALLED_APPS = [                    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,13 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'rest_framework', # <-- REST
-    'rest_framework.authtoken', # <-- REST
-    'django.contrib.sites',   # <-- Social Auth
-    # 'MediLockerApp',   # <-- Social Auth
-    'allauth',   # <-- Social Auth
-    'allauth.account',   # <-- Social Auth
-    'allauth.socialaccount',   # <-- Social Auth
+    'MediLockerApp',                            # <-- MediLocker App
+    'rest_framework',                           # <-- REST
+    'rest_framework.authtoken',                 # <-- REST
+    'django.contrib.sites',                     # <-- Social Auth
+    'allauth',                                  # <-- Social Auth
+    'allauth.account',                          # <-- Social Auth
+    'allauth.socialaccount',                    # <-- Social Auth
     'allauth.socialaccount.providers.google',   # <-- Social Auth
 ]
 
@@ -115,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -134,13 +133,17 @@ STATICFILES_DIRS = [
 ]
 
 AUTHENTICATION_BACKENDS = (
- 'django.contrib.auth.backends.ModelBackend',
- 'allauth.account.auth_backends.AuthenticationBackend',
- )
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
-LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_ON_GET = True                              # --> Change to POST before publishing the site.
+ACCOUNT_FORMS = {
+    'signup': 'MediLockerApp.forms.CustomSignupForm',
+}
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
