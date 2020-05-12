@@ -10,8 +10,6 @@ import 'package:med_report/splash.dart';
 import 'bloc_login/login/bloc/login_page.dart';
 import 'home/dashboard.dart';
 
-
-
 class SimpleBlocDelegate extends BlocDelegate {
   @override
   void onEvent(Bloc bloc, Object event) {
@@ -22,7 +20,7 @@ class SimpleBlocDelegate extends BlocDelegate {
   @override
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
-    print (transition);
+    print(transition);
   }
 
   @override
@@ -35,16 +33,13 @@ void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
   final userRepository = UserRepository();
 
-  runApp(
-    BlocProvider<AuthenticationBloc>(
-      create: (context) {
-        return AuthenticationBloc(
-          userRepository: userRepository
-        )..add(AppStarted());
-      },
-      child: App(userRepository: userRepository),
-    )
-  );
+  runApp(BlocProvider<AuthenticationBloc>(
+    create: (context) {
+      return AuthenticationBloc(userRepository: userRepository)
+        ..add(AppStarted());
+    },
+    child: App(userRepository: userRepository),
+  ));
 }
 
 class App extends StatelessWidget {
@@ -53,13 +48,14 @@ class App extends StatelessWidget {
   App({Key key, @required this.userRepository}) : super(key: key);
 
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.red,
         brightness: Brightness.dark,
       ),
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        // ignore: missing_return
         builder: (context, state) {
           if (state is AuthenticationUnintialized) {
             return SplashScreen();
@@ -68,7 +64,9 @@ class App extends StatelessWidget {
             return Home();
           }
           if (state is AuthenticationUnauthenticated) {
-            return LoginPage(userRepository: userRepository,);
+            return LoginPage(
+              userRepository: userRepository,
+            );
           }
           if (state is AuthenticationLoading) {
             return LoadingIndicator();

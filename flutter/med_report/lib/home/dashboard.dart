@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:med_report/bloc_login/bloc/authentication_bloc.dart';
+import 'package:med_report/bloc_login/login/bloc/global.dart';
 import 'package:med_report/reports/imagecap.dart';
-
 
 class Home extends StatefulWidget {
   @override
@@ -10,8 +10,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-    
-  @override 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
@@ -20,64 +19,65 @@ class _HomeState extends State<Home> {
       ),
       backgroundColor: Colors.green[50],
       drawer: new Drawer(
-        child: ListView(
-          children: <Widget>[
-            UserAccountsDrawerHeader(
-              accountName: new Text("user", style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),),
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: AssetImage('assets/user.jpg'),
-              ),
-              accountEmail: null,
+          child: ListView(
+        children: <Widget>[
+          UserAccountsDrawerHeader(
+            accountName: new Text(
+              Name.currentUsername,
+              style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
             ),
-            ListTile(
-              title: Text('Welcome'),
+            currentAccountPicture: CircleAvatar(
+              backgroundImage: AssetImage('assets/user.jpg'),
             ),
-            ListTile(
-              leading: Icon(Icons.vpn_key),
-              title: Text('Change Password'),
-            ),
-            ListTile(
-              leading: IconButton(
+            accountEmail: null,
+          ),
+          ListTile(
+            title: Text('Welcome'),
+          ),
+          ListTile(
+            leading: Icon(Icons.vpn_key),
+            title: Text('Change Password'),
+          ),
+          ListTile(
+            leading: IconButton(
                 icon: Icon(Icons.exit_to_app),
                 onPressed: () {
-                  BlocProvider.of<AuthenticationBloc>(context)
-                    .add(LoggedOut());
-                }
-              ),
-              title: Text('Log Out'),
-                                 
-            ),
-          ],)
-      ),
+                  BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
+                }),
+            title: Text('Log Out'),
+          ),
+        ],
+      )),
       body: Container(
-        padding:  EdgeInsets.all(10.0),
+        padding: EdgeInsets.all(10.0),
         child: GridView.count(
           crossAxisCount: 2,
           children: <Widget>[
             Menu(
               title: 'Profile',
               sym: Icons.person_pin,
-              colour: Colors.blueGrey, 
+              colour: Colors.blueGrey,
               action: 1,
             ),
             Menu(
               title: 'Info',
               sym: Icons.info_outline,
-              colour: Colors.blue, 
+              colour: Colors.blue,
               action: 2,
             ),
             Menu(
               title: 'Medical Reports',
               sym: Icons.library_books,
-              colour: Colors.teal, 
+              colour: Colors.teal,
               action: 3,
             ),
           ],
         ),
       ),
     );
-  } 
+  }
 }
+
 class Menu extends StatelessWidget {
   Menu({this.title, this.sym, this.colour, this.action});
   final String title;
@@ -85,11 +85,10 @@ class Menu extends StatelessWidget {
   final MaterialColor colour;
   final int action;
 
-  @override 
+  @override
   Widget build(BuildContext context) {
-
     print(action);
-    
+
     return Card(
       margin: EdgeInsets.all(8.0),
       child: InkWell(
@@ -97,17 +96,19 @@ class Menu extends StatelessWidget {
         splashColor: Colors.green,
         child: Center(
           child: Column(
-            mainAxisSize: MainAxisSize.min, 
+            mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               IconButton(
                 icon: Icon(sym),
                 iconSize: 70.0,
-                color: colour, 
+                color: colour,
                 onPressed: () {
-                  if(action==3){
+                  if (action == 3) {
                     print("Moved");
-                    Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ImageCapture()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ImageCapture()));
                   }
                 },
               ),

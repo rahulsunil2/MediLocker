@@ -19,7 +19,7 @@ class _LoginFormState extends State<LoginForm> {
         username: _usernameController.text,
         password: _passwordController.text,
       ));
-      Name(uname:_usernameController.text);
+      Name.currentUsername = _usernameController.text;
     }
 
     return BlocListener<LoginBloc, LoginState>(
