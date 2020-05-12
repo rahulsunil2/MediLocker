@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:med_report/bloc_login/bloc/authentication_bloc.dart';
+import 'package:med_report/reports/imagecap.dart';
+
 
 class Home extends StatefulWidget {
   @override
@@ -8,6 +10,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+    
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,18 +56,21 @@ class _HomeState extends State<Home> {
           children: <Widget>[
             Menu(
               title: 'Profile',
-              icon: Icons.person_pin,
+              sym: Icons.person_pin,
               colour: Colors.blueGrey, 
+              action: 1,
             ),
             Menu(
               title: 'Info',
-              icon: Icons.info_outline,
+              sym: Icons.info_outline,
               colour: Colors.blue, 
+              action: 2,
             ),
             Menu(
               title: 'Medical Reports',
-              icon: Icons.library_books,
+              sym: Icons.library_books,
               colour: Colors.teal, 
+              action: 3,
             ),
           ],
         ),
@@ -73,13 +79,17 @@ class _HomeState extends State<Home> {
   } 
 }
 class Menu extends StatelessWidget {
-  Menu({this.title, this.icon, this.colour});
+  Menu({this.title, this.sym, this.colour, this.action});
   final String title;
-  final IconData icon;
+  final IconData sym;
   final MaterialColor colour;
+  final int action;
 
   @override 
   Widget build(BuildContext context) {
+
+    print(action);
+    
     return Card(
       margin: EdgeInsets.all(8.0),
       child: InkWell(
@@ -89,10 +99,17 @@ class Menu extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min, 
             children: <Widget>[
-              Icon(
-                icon, 
-                size: 70.0,
-                color: colour,
+              IconButton(
+                icon: Icon(sym),
+                iconSize: 70.0,
+                color: colour, 
+                onPressed: () {
+                  if(action==3){
+                    print("Moved");
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ImageCapture()));
+                  }
+                },
               ),
               Text(title, style: new TextStyle(fontSize: 17.0))
             ],

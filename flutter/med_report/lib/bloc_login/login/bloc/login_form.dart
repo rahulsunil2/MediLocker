@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'global.dart';
 import 'login_bloc.dart';
 
 class LoginForm extends StatefulWidget {
@@ -18,6 +19,7 @@ class _LoginFormState extends State<LoginForm> {
         username: _usernameController.text,
         password: _passwordController.text,
       ));
+      Name(uname:_usernameController.text);
     }
 
     return BlocListener<LoginBloc, LoginState>(
@@ -67,7 +69,7 @@ class _LoginFormState extends State<LoginForm> {
                           ),
                           shape: StadiumBorder(
                             side: BorderSide(
-                              color: Colors.black,
+                              color: Colors.white60,
                               width: 2,
                             ),
                           ),
