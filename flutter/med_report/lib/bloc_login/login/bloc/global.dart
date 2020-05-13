@@ -1,3 +1,3 @@
 class Name {
-  static String currentUsername;
+  static String currentUsername = 'mediLocker';
 }
