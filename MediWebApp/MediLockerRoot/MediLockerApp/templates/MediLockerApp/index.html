@@ -14,8 +14,7 @@
     <div class="main">
       {% if user.is_authenticated %}
         <p class="sign" align="center">{{ user.username }} Logged in</p>
-        <a class="button" href="#">Personal Details</a> 
-        <a class="button" href="#">My Profile</a>
+        <a class="button" href="personal">My Personal Details</a> 
         <a class="logout-button" href="accounts/logout/">Log out</a>
       {% else %}
         <p class="sign" align="center">Sign in</p>
