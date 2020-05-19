@@ -1,93 +1,73 @@
 Lab Logo
 
- 
+“ ston:                                                                 elas srsLag
+Specimen IB:                                                                                                    Acct:                                  Phone:                                 Rte: 00
+Controt ID:
 
-Specimen ID: Acct it: Phone: Rte: 00
-Cantrot ID:
+Ce                             a
 
- 
+~Patient information
+| Patient Details            | ‘Specimen Details            | Physician Details
 
-nas
-
- 
-
-   
-
-Patient information
-
- 
-
- 
-
- 
-
- 
-
-Patient Details Specimen Details
-
-os: it Date collected: 12/20/2013 3)
-
-Agety/m/di: 031/02/14 Dateentered: 12/20/2013 Referring:
-
-Gender: M SSN: Date reported: 12/24/2013 to:
-
-Patient ID: AP:
+boB:     it                Date collected: 12/20/2013) +     Ordesing:¢ =~
+Agety/m/di: 031/02/14        Dateentered: 12/20/2013       Referring:
+Gender: M     SSN:                Date reported: 12/24/2013              to:
+Patient ID:                            APL co
 Genera! Comments & Additionat Information
 Clinical Info:
-Altemate Control Number: Alternate Patient ID: Not Provided
-Total Volume: Not Provided Fasting: No
-
-â€˜Ordered Items.
-
- 
-
-RPR#CUGC NAA+HBsAgtHCVAbHH...; Venipuncture
-Bo Soa Ea er) Era OMS
-RPR+Ct/GC NAA+HBSAg+HCVAB+H. ..
-HBsAg Screen Negative Negative oi
-Hep C Virus Ab <0.1 s/co ratio 0.0 - 0.9 o1
-Negative: < 0.8
+Alternate Control Number:                                                     Alternate Patient ID: Not Provided
+Total Volume: Not Provided                                                     Fasting: No
+‘Ordered Items
+RPR+CUGC NAA+HBSAgtHCVAbHH...; Venipuncture
+RPR+Ct/GC NAACHBSAg+BCVAbHH. ..
+HBsAg Screen              Negative                     Negative          oi
+Hep C Virus Ab               <0.1         s/co ratio    0.0 - 0.9         o1
+Negative:    < 0.8
 Indeterminate 0.8 - 0.9
-Positive: > 0.9
-
+Positive:     > 0.9
 In order to reduce the incidence of a false positive
 result, the CDC recommends that all s/co ratios
 between 1.0 and 10.9 be confirmed by a more specific
-supplemental or PCR testing, LabCorp offers HCV Ab
-w/Reflex to Verification test #144065.
+supplemental or PCR testing. LabCorp offers HCV Ab
+w/Reflex ro Verification test #144065.
 
-RPR Non Reactive Non Reactive ou
-HIV 1/0/2 Abs-1CMA o1
-HIV 1/0/2 Abs-Index Value <1.00 <1.00 o1
+RPR                   Non Reactive                     Non Reactive         on
+
+HIV 1/0/2 Abs-1CMA                                                     1
+
+HIV 1/0/2 Abs-Index Value      <1.00                       <1.00           o1
+
 Index Value: Specimen reactivity relative to the negative cutoff.
-HIV 1/0/2 Abs, Qual Non Reactive Non Reactive o1
-Chlamydia trachomatis, NAA Negative Negative au
-Neisseria gonorrhoeae, NAA Negative Negative an
-Please note: a1
+
+HIV 1/0/2 Abs, Qual     Non Reactive                   Non Reactive        o1
+
+Chlamydia trachomatis, NAA Negative                 Negative        au
+
+Neisseria gonorrhoeae, NAA Negative                 Negative        an
+
+Please note:                                                                a1
 
 Acceptable specimens for this test are male urethral swab,
 endocervical swab and liquid based pap specimens, vaginal swabs in
 APTIMA transports and first void urine. See online Directory of
 Services for test number for rectal and pharyngeal specimens.
 
-HSV 1 IgG, Type Spec Â«0.91 index 0.00 - 0,90 02
-Negative <0.91
-Equivocal 0.91 - 1.09
-Positive >1.09
+HSV 1 IgG, Type Spec         <0.91           index     0.00 - 0,90        02
 
+Negative       <0.91
+
+Equivocal 0.91 - 1.09
+
+Positive       >1.09
 Note: Negative indicates no antibodies detected to
-HSV-L. Equivocal may suggest early infection. If
+HSV-1. Equivocal may suggest early infection. If
 clinically appropriate, retest at later date. Positive
 indicates antibodies detected to HSV-1; coinfection
 with HSV-2 cannot be excluded without type specific
-
- 
-
 testing.
 
-HSV 2 IgG, Type Spec <0.91 index 0.00 - 0.90 02
-NT
-Date issued! = FINAL REPORT Page 1 of2
+HSV 2 IgG, Type Spec         <0.91           index     0.00 - 0.90        02
+Datelsued:                      FINAL REPORT                               Page 1 of 2
+‘This document contains private and confidential heath information protected by state and federal fav.
 
-â€˜This document contains private and confidential heaith information protected by state and federal law.
-If you have received this document in error, please call
+AF you have ceceived this document in error, please call

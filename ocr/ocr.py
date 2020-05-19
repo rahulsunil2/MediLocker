@@ -5,6 +5,8 @@
 from PIL import Image 
 import pytesseract as pt 
 import os 
+import csv
+import io
 # So, that was a bit magical, and really required a fine reading of the docs to figure out
 # that the number "1" is a string parameter to the convert function actually does the binarization.
 # But you actually have all of the skills you need to write this functionality yourself.
@@ -26,7 +28,16 @@ def binarize(image_to_transform, threshold):
 			else:
 				output_image.putpixel( (x,y), 255 )
 	return output_image
-	
+
+
+def write_to_csv(text_to_save,path_to_output):
+	text_as_file = io.StringIO(text_to_save)
+	with text_as_file as incoming, open(path_to_output, 'w') as fout:
+		outter=csv.writer(fout)
+		for line in incoming:
+			outter.writerow(line.split("    "))
+
+
 def main(): 
 	# path for the folder for getting the raw images (change path accordingly )
 	path ="images"
@@ -34,7 +45,6 @@ def main():
 
 	# path for the folder for getting the output 
 	tempPath ="text"
-
 	# iterating the images inside the folder 
 	for imageName in os.listdir(path): 
 			
@@ -42,7 +52,7 @@ def main():
 		img = Image.open(inputPath) 
 
 		# applying ocr using pytesseract for python 
-		text = pt.image_to_string(binarize(img, 176),config="-oem 3 --psm 6") 
+		text = pt.image_to_string(binarize(img, 176),config="--oem 3 --psm 6 -c preserve_interword_spaces=1") 
 
 		# for removing the .jpg from the imagePath 
 		imagePath = imagePath[0:-4] 
@@ -52,9 +62,11 @@ def main():
 		#print(text) 
 
 		# saving the text for every image in a separate .txt file 
-		file1 = open(fullTempPath, "w") 
+		file1 = open(fullTempPath, "w")
+		
 		file1.write(text) 
 		file1.close() 
+		write_to_csv(text,os.path.join(tempPath, imageName+".csv"))
 
 if __name__ == '__main__': 
 	main() 
