@@ -4,7 +4,11 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAdminUser
 from django.contrib.auth.models import User
-
+import google.cloud
+import firebase_admin
+from firebase_admin import credentials, firestore, initialize_app
+from django.shortcuts import render
+from django.contrib.auth.models import User
 
 class UserRecordView(APIView):
     """
@@ -34,3 +38,34 @@ class UserRecordView(APIView):
             },
             status=status.HTTP_400_BAD_REQUEST
         )
+
+def userDetails(request):
+    if not firebase_admin._apps:
+        cred = credentials.Certificate("MediLockerApp/credentials/medilocker-thingqbator-firebase-adminsdk-pw7jt-6dd0f5bb45.json")
+        app = initialize_app(cred)
+    store = firestore.client()
+    username = request.user.get_username()
+    details = store.collection(u'usersDetails').document(username)
+    doc = details.get()
+    if doc.exists:
+        user_details = doc.to_dict()
+    else:
+        user_details = {
+            'username'       : username, 
+            'phone'          : 'Not Defined', 
+            'sex'            : 'Not defined', 
+            'relative_name'  : 'Not defined',
+            'relative_phone' : 'Not defined',
+            'dob'            : 'Not defined',
+            'blood_grp'      : 'Not defined',
+            'height'         : 'Not defined',
+            'weight'         : 'Not defined',
+            'bpi'            : 'Not defined',
+            'cholestrol'     : 'Not defined',
+            'blood_sugar'    : 'Not defined',
+            'blood_count'    : 'Not defined',
+            }
+
+    print(user_details)
+
+    return render(request, 'MediLockerApp/personal.html', user_details)
