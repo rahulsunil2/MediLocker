@@ -1,53 +1,76 @@
 Sample results. Actual results may vary.
 
-SPECIMEN INFORMATION                                                ORDERING PHYSICIAN
-SPECIMEN:                     DOB:
+SPECIMEN INFORMATION
+
+PATIENT INFORMATION
+
+ 
+
+REPORT STATUS:
+
+ 
+
+PINAL
+
+ 
+
+ 
+
+ORDERING PHYSICIAN
+
+ 
+
+ 
+
+SPECIMEN: DOB:
 
 AGE:
-REQUISITION:                                                CLIENT INFORMATION
+REQUISITION: CLIENT INFORMATION
 
 GENDER :
-LAB REF NO:                FASTING:                  aE ACCESA
-COLLECTED:                 Clinical Info:            an.    ‘    5    5
+LAB REF NO: FASTING: aE ACCE
+COLLECTED: Clinical Info: an. â€˜ 5
 
 Order Today
+
 RECEIVED:
-REPORTED:                                                                                                                                                               www.accesalabs.com/general
-Test Name                 Result           Flag       Reference Range      Lab
+REPORTED: www.accesalabs.com/general
+Test Name Result Flag Reference Range Lab
 CBC (INCLUDES DIFF/PLT)
-WHITE BLOOD CELL COUNT           3.9                            3.8-10.8 Thousand/uL      BE
-RED BLOOD CELL COUNT             5.24                            4,20-5.80 Million/uL      BE
-HEMOGLOBIN                     16.6                           13.2-17.1 g/dl           BE
-HEMATOCRIT                    49.7                         38.5-50.0 %            BE
-Nev                         94.9                         80.0-100.0 £1           BE
-MCE                           31.8                           27.0-33.0 pg            BE
-MCHC                          33.5                           32.0-36.0 g/dL           BE
-RDW                         12.3                         11,0-15.0 %            BE
-PLATELET COUNT                   176                             140-400 Thousand/uL       BE
-MPV                         11.0                         7.$-11.5 £1            BE
-ABSOLUTE NEUTROPHILS              1911                            1500-7800 cells/uL        BE
-ABSOLUTE BAND NEUTROPHILS         DNR                           0-750 cells/uL           BE
-ABSOLUTE METAMYELOCYTES           DNR                             0 cells/uL               BE
-ABSOLUTE MYELOCYTES              DNR                             0 cells/uL               BE
-ABSOLUTE PROMYELOCYTES           DNR                            0 cells/uL              BE
-ABSOLUTE LYMPHOCYTES              1552                            850-3900 cells/uL         BE
-ABSOLUTE MONOCYTES               359                             200-950 cells/uL         BE
-ABSOLUTE EOSINOPHILS             55                              15-500 cells/uL          BE
-ABSOLUTE BASOPHILS               23                             0-200 cells/uL           BE
-ABSOLUTE BLASTS                 DNR                            0 cells/uL              BE
-ABSOLUTE NUCLEATED RBC           DNR                             0 cells/uL              BE
-NEUTROPHILS                                                 49.0                                                                   %                                                  BE
-BAND NEUTROPHILS                  DNR                               %                       BE
-METAMYELOCYTES                  DNR                             %                     BE
-MYELOCYTES                     DNR                             %                     BE
-PROMYELOCYTES                   DNR                             %                     BE
-LYMPHOCYTES                                                 39.8                                                                   %                                                  BE
-REACTIVE LYMPHOCYTES             DNR                            0-10 &                  BE
-MONOCYTES                      9.2                             %                     BE
-EOSINOPHILS                                                 1.4                                                                     %                                                  BE
-BASOPEILS                      0.6                             %                     BE
-BLASTS                         DNR                             %                     BE
-NUCLEATED RBC                   DNR                             0 /100 wac              BE
-COMMENT(S)                     DNR                                                  BE
+WHITE BLOOD CELL COUNT 3.9 3.8-10.8 Thousand/uL BE
+RED BLOOD CELL COUNT 5.24 4,20-5.80 Million/uL BE
+HEMOGLOBIN 16.6 13.2-17.1 g/dl BE
+HEMATOCRIT 49.7 38.5-50.0 % BE
+Nev 94.9 80.0-100.0 Â£1 BE
+MCE 31.8 27.0-33.0 pg BE
+MCHC 33.5 32.0-36.0 g/dL BE
+RDW 12.3 11,0-15.0 % BE
+PLATELET COUNT 176 140-400 Thousand/uL BE
+MPV 11.0 7.$-11.5 Â£1 BE
+ABSOLUTE NEUTROPHILS 1911 1500-7800 cells/uL BE
+ABSOLUTE BAND NEUTROPHILS DNR 0-750 cells/uL BE
+ABSOLUTE METAMYELOCYTES DNR 0 cells/uL BE
+ABSOLUTE MYELOCYTES DNR 0 cells/uL BE
+ABSOLUTE PROMYELOCYTES DNR 0 cells/uL BE
+ABSOLUTE LYMPHOCYTES 1552 850-3900 cells/uL BE
+ABSOLUTE MONOCYTES 359 200-950 cells/uL BE
+ABSOLUTE EOSINOPHILS 55 15-500 cells/uL BE
+ABSOLUTE BASOPHILS 23 0-200 cells/uL BE
+ABSOLUTE BLASTS DNR 0 cells/uL BE
+ABSOLUTE NUCLEATED RBC DNR 0 cells/uL BE
+NEUTROPHILS 49.0 % BE
+BAND NEUTROPHILS DNR % BE
+METAMYELOCYTES DNR % BE
+MYELOCYTES DNR % BE
+PROMYELOCYTES DNR % BE
+LYMPHOCYTES 39.8 % BE
+REACTIVE LYMPHOCYTES DNR 0-10 & BE
+MONOCYTES 9.2 % BE
+EOSINOPHILS 1.4 % BE
+BASOPEILS 0.6 % BE
+BLASTS DNR % BE
+NUCLEATED RBC DNR 0 /100 wac BE
+COMMENT(S) DNR BE
 Performing Laboratory Information:
-1of1
+
+lof 1
