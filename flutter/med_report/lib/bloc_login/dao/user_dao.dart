@@ -10,6 +10,14 @@ class UserDao {
     var result = db.insert(userTable, user.toDatabaseJson());
     return result;
   }
+  Future<int> saveUser(User user) async {
+    final db = await dbProvider.database;
+    print(user.username);
+    int result = await db.insert("User", user.toDatabaseJson());
+    List<Map> list = await db.rawQuery('SELECT * FROM User');
+    print(list);
+    return result;
+  }
 
   Future<int> deleteUser(int id) async {
     final db = await dbProvider.database;

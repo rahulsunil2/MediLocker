@@ -40,8 +40,10 @@ class _UploaderState extends State<Uploader> {
 
             return Column(
               children: [
-                if (_uploadTask.isComplete) Text('Uploaded Successfully'),
-
+                if (_uploadTask.isComplete) 
+                  Text('Uploaded Successfully'),
+                  IconButton(icon: Icon(Icons.arrow_right), onPressed: () {  },),
+                
                 if (_uploadTask.isPaused)
                   FlatButton(
                     child: Icon(Icons.play_arrow),

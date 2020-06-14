@@ -85,13 +85,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.0+8"
+  firebase_image:
+    dependency: "direct main"
+    description:
+      name: firebase_image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.4"
   firebase_storage:
     dependency: "direct dev"
     description:
       name: firebase_storage
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.4"
+    version: "3.0.6"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -111,6 +118,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.7.5"
+  flutter_mobile_vision:
+    dependency: "direct main"
+    description:
+      name: flutter_mobile_vision
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.4+1"
   flutter_test:
     dependency: "direct dev"
     description: flutter

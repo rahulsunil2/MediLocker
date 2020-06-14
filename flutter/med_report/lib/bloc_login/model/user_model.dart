@@ -4,7 +4,7 @@ class User {
   String token;
 
   User(
-      {this.id,
+    {this.id,
       this.username,
       this.token});
 
