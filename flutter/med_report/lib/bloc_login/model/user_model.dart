@@ -4,7 +4,7 @@ class User {
   String token;
 
   User(
-      {this.id,
+    {this.id,
       this.username,
       this.token});
 
@@ -19,4 +19,6 @@ class User {
         "username": this.username,
         "token": this.token
       };
+
+  
 }
