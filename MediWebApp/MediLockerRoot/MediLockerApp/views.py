@@ -10,6 +10,15 @@ from firebase_admin import credentials, firestore, initialize_app
 from django.shortcuts import render
 from django.contrib.auth.models import User
 
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class UserCreateAPIView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (AllowAny,)
+
 class UserRecordView(APIView):
     """
     API View to create or get a list of all the registered
