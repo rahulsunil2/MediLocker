@@ -25,7 +25,7 @@ SECRET_KEY = '6^4_0dak2a*wx3=41_fysneh@d6q64&eg*d43(@hlumlyjqb+1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['medilocker.ddns.net', '134.209.158.239']
 
 
 # Application definition
