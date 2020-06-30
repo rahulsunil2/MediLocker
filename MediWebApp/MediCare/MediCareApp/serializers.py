@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.models import User
+from .models import MedicalImageFile
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -30,3 +31,15 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'password', 'first_name', 'last_name')
+
+
+class UserMedicalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username')
+
+
+class MedicalImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MedicalImageFile
+        fields = ('file', 'description', 'uploaded_at')
