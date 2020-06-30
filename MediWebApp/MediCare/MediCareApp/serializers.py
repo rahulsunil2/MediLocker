@@ -40,6 +40,8 @@ class UserMedicalSerializer(serializers.ModelSerializer):
 
 
 class MedicalImageSerializer(serializers.ModelSerializer):
+    # user = UserMedicalSerializer()
+
     class Meta:
         model = MedicalImageFile
         fields = ('file', 'description', 'uploaded_at')

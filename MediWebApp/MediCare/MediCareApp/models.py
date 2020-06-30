@@ -7,5 +7,5 @@ from django.contrib.auth.models import User
 class MedicalImageFile(models.Model):
     file = models.FileField(blank=False, null=False)
     description = models.CharField(max_length=255)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
     uploaded_at = models.DateTimeField(auto_now_add=True)
