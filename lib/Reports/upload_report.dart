@@ -62,20 +62,22 @@ class _AddReportState extends State<AddReport> {
     File newFile = await file;
     Directory pathDir = await getApplicationDocumentsDirectory();
     final String path = pathDir.path;
+    String picName = '${Name.currentUser}_${DateTime.now()}.png';
 
     if (newFile != null) {
-      final File newImage = await newFile.copy('$path/pic.png');
+      final File newImage = await newFile.copy('$path/$picName');
 
       final taskId = await uploader.enqueue(
           url:
               "http://134.209.158.239:8000/users/medicalrecord/", //required: url to upload to
           files: [
-            FileItem(filename: "pic.png", savedDir: '$path', fieldname: "file")
+            FileItem(filename: picName, savedDir: '$path', fieldname: "file")
           ], // required: list of files that you want to upload
           method: UploadMethod.POST, // HTTP method  (POST or PUT or PATCH)
           headers: {"Content-Type": "multipart/form-data"},
           data: {
-            "description": "file"
+            "description": "file",
+            "user": Name.currentUser
           }, // any data you want to send in upload request
           showNotification:
               false, // send local notification (android only) for upload status
