@@ -33,15 +33,8 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'email', 'password', 'first_name', 'last_name')
 
 
-class UserMedicalSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('username')
-
-
 class MedicalImageSerializer(serializers.ModelSerializer):
-    # user = UserMedicalSerializer()
 
     class Meta:
         model = MedicalImageFile
-        fields = ('file', 'description', 'uploaded_at')
+        fields = ('file', 'description', 'uploaded_at', 'user')
