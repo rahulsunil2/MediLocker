@@ -42,6 +42,14 @@ class _HomeState extends State<Home> {
                 onPressed: () {
            }), 
             title: Text('Profile', style: TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.bold) ),
+            onTap: (){
+              Navigator.push(
+                context, 
+                MaterialPageRoute(
+                  builder: (context) => SetProfile()
+                ),
+                );
+            },
           ),
           SizedBox(height: 30),
           ListTile(
