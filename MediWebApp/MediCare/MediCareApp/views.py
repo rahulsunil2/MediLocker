@@ -1,5 +1,5 @@
 from rest_framework.views import APIView
-from .serializers import UserSerializer
+from .serializers import UserSerializer, UserProfileSerializer
 from rest_framework.authtoken.models import Token
 
 from rest_framework.parsers import MultiPartParser, FormParser
@@ -23,6 +23,14 @@ class UserCreate(APIView):
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+class UserProfileCreate(APIView):
+    def post(self, request, format='json'):
+        serializer = UserProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class MyFileView(APIView):
     parser_classes = (MultiPartParser, FormParser)

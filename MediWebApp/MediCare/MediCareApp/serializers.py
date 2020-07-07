@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.models import User
-from .models import MedicalImageFile
+from .models import MedicalImageFile, UserProfile
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -31,6 +31,25 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'password', 'first_name', 'last_name')
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    user = serializers.CharField(max_length=10)
+    phone = serializers.IntegerField()
+    dob = serializers.DateField()
+    address = serializers.CharField()
+    allergy = serializers.CharField()
+    gender = serializers.CharField(max_length=6)
+    blood_grp = serializers.CharField(max_length=3)
+    height = serializers.IntegerField()
+    weight = serializers.IntegerField()
+
+    def create(self, validated_data):
+        return UserProfile.objects.create(**validated_data)
+
+    class Meta:
+        model = UserProfile
+        fields = '__all__'
 
 
 class MedicalImageSerializer(serializers.ModelSerializer):
