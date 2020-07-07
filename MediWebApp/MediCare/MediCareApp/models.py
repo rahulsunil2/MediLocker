@@ -24,4 +24,4 @@ class UserProfile(models.Model):
     weight = models.IntegerField(blank=True)
 
     def __str__(self):
-        return user.username + "Profile"
+        return user + "Profile"
