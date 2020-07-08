@@ -44,7 +44,8 @@ Medicallist=myNames
 
 a_file.close()
 result_dict={}
-p=r'^[-+]?[0-9]*\.[0-9]+-[-+]?[0-9]*\.[0-9]+$'
+
+p=r'^[-+]?[0-9]*\.?[0-9]+-[-+]?[0-9]*\.?[0-9]+$'
 for imageName in os.listdir(path):
         inputPath = os.path.join(path, imageName)
         img = Image.open(inputPath)
@@ -58,12 +59,13 @@ for imageName in os.listdir(path):
                         if re.match(pattern, text[i]):
                                 if re.match(p, text[i]):
                                         pass
+                                elif(text[i]=="£1"or text[i]=="/100"):
+                                        pass
                                 elif(any(map(str.isdigit, text[i]))):
                                         print(float(text[i]))
-                                        result_dict.update({" ".join(text[:i]):text[i]})
+                                        #result_dict.update({" ".join(text[:i]):text[i]})
                                 elif(text[i]=="DNR"):
-                                        pass
-                                        #print("DNR")
+                                        print("DNR")
                                 
                        
                                                 
@@ -72,10 +74,10 @@ for imageName in os.listdir(path):
         # for removing the .jpg from the imagePath
         imagePath = imagePath[0:-4]
         #print(json.dumps(result_dict, indent = 4))
-        #print(imagePath)
+        print(imagePath)
         fullTempPath = os.path.join(tempPath, imageName+".txt")
         file1 = open(fullTempPath, "w")
-        file1.write(text)
+        #file1.write(text)
         file1.close() 
 
 
