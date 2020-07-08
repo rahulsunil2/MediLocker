@@ -6,6 +6,10 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import MedicalImageSerializer
+from django.contrib.auth.models import User
+from .models import UserProfile
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -24,13 +28,32 @@ class UserCreate(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class UserProfileCreate(APIView):
-    def post(self, request, format='json'):
-        serializer = UserProfileSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# class UserProfileCreate(APIView):
+#     def post(self, request, format='json'):
+#         serializer = UserProfileSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@csrf_exempt
+def UserProfileCreate(request):
+    if request.method == 'POST':
+        user = UserProfile(
+            user=User.objects.get(username=request.POST['user']),
+            phone=request.POST['phone'],
+            dob=request.POST['dob'],
+            address=request.POST['address'],
+            allergy=request.POST['allergy'],
+            gender=request.POST['gender'],
+            blood_grp=request.POST['blood_grp'],
+            height=request.POST['height'],
+            weight=request.POST['weight']
+        )
+        user.save()
+        return HttpResponse('<h1>Accepted</h1>')
+
 
 class MyFileView(APIView):
     parser_classes = (MultiPartParser, FormParser)
