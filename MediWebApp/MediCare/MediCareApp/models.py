@@ -13,7 +13,7 @@ class MedicalImageFile(models.Model):
 
 
 class UserProfile(models.Model):
-    user = models.CharField(max_length=25)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     phone = models.IntegerField(blank=True)
     dob = models.DateField(blank=True)
     address = models.TextField(blank=True)
@@ -24,4 +24,4 @@ class UserProfile(models.Model):
     weight = models.IntegerField(blank=True)
 
     def __str__(self):
-        return self.user + "'s Profile"
+        return self.user.first_name + "'s Profile"

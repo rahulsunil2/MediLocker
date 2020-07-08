@@ -33,8 +33,13 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'email', 'password', 'first_name', 'last_name')
 
 
+class UserGetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+
+
 class UserProfileSerializer(serializers.ModelSerializer):
-    user = serializers.CharField(max_length=10)
+    # user = UserGetSerializer(read_only=True)
     phone = serializers.IntegerField()
     dob = serializers.DateField()
     address = serializers.CharField()
@@ -43,6 +48,14 @@ class UserProfileSerializer(serializers.ModelSerializer):
     blood_grp = serializers.CharField(max_length=3)
     height = serializers.IntegerField()
     weight = serializers.IntegerField()
+
+    user = serializers.RelatedField(
+        queryset=User.objects.all(), write_only=True)
+
+    def to_internal_value(self, data):
+        self.fields['user'] = serializers.PrimaryKeyRelatedField(
+            queryset=User.objects.all())
+        return super(UserProfileSerializer, self).to_internal_value(data)
 
     def create(self, validated_data):
         return UserProfile.objects.create(**validated_data)
