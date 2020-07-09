@@ -1,7 +1,6 @@
 
 
 import re
-import cv2
 import pytesseract 
 from PIL import Image
 import numpy as np
@@ -18,20 +17,17 @@ def binarize(image_to_transform, threshold):
 			else:
 				output_image.putpixel( (x,y), 255 )
 	return output_image
-
-start1 = time.process_time()
-start = time.process_time()
-path='diabtes'
-a_file = open("list", "r")
-myNames = []
-myNames = [line.strip() for line in a_file]
-a_file.close()
-Medicallist=myNames
-
-for imageName in os.listdir(path):
-	print(imageName)
-	inputPath = os.path.join(path, imageName)
-	im =binarize(Image.open(inputPath), 196) 
+def OCRdetector(inputpath)
+	start1 = time.process_time()
+	start = time.process_time()
+	path='diabtes'
+	a_file = open("list", "r")
+	myNames = []
+	myNames = [line.strip() for line in a_file]
+	a_file.close()
+	Medicallist=myNames
+	print(inputPath)
+	im = binarize(Image.open(inputPath), 196) 
 	img = np.array(im)
 	lines = re.split('\n',pytesseract.image_to_string(im))
 	print(time.process_time() - start)
@@ -53,12 +49,9 @@ for imageName in os.listdir(path):
 						break
 					elif(line[j]=="o1" or line[j]=="OL" ):
 						pass
-
 					elif(line[j]=="DNR"):
 						result_dict.update({" ".join(line[:j]):line[j]})
 						break
-					
-	print(json.dumps(result_dict, indent = 4))
-	cv2.waitKey(0)
-	cv2.destroyAllWindows()
-print(time.process_time() - start1)
+						
+		print(json.dumps(result_dict, indent = 4))
+	print(time.process_time() - start1)
