@@ -7,7 +7,7 @@ class MedicalImageFile(models.Model):
     id = models.BigAutoField(primary_key=True)
     file = models.FileField(blank=False, null=False)
     description = models.CharField(max_length=255)
-    user = models.ForeignKey(User, max_length=25)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     extraction_status = models.CharField(max_length=10)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
