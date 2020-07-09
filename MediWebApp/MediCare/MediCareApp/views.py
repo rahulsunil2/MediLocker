@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import MedicalImageSerializer
 from django.contrib.auth.models import User
-from .models import UserProfile
+from .models import UserProfile, MedicalImageFile
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 
@@ -55,13 +55,25 @@ def UserProfileCreate(request):
         return HttpResponse('<h1>Accepted</h1>')
 
 
-class MyFileView(APIView):
-    parser_classes = (MultiPartParser, FormParser)
+@csrf_exempt
+def MyFileView(request):
+    if request.method == "POST":
+        med = MedicalImageFile(
+            file=request.FILES['file'],
+            description=request.POST['description'],
+            user=User.objects.get(username=request.POST['user'])
+        )
+        med.save()
+        return HttpResponse('<h1>Accepted</h1>')
 
-    def post(self, request, *args, **kwargs):
-        file_serializer = MedicalImageSerializer(data=request.data)
-        if file_serializer.is_valid():
-            file_serializer.save()
-            return Response(file_serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# class MyFileView(APIView):
+#     parser_classes = (MultiPartParser, FormParser)
+#
+#     def post(self, request, *args, **kwargs):
+#         print(request.data)
+#         file_serializer = MedicalImageSerializer(data=request.data)
+#         if file_serializer.is_valid():
+#             file_serializer.save()
+#             return Response(file_serializer.data, status=status.HTTP_201_CREATED)
+#         else:
+#             return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

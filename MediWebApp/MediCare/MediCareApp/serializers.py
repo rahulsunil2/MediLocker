@@ -66,6 +66,10 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 
 class MedicalImageSerializer(serializers.ModelSerializer):
+    user = serializers.CharField(max_length=25)
+    description = serializers.CharField(max_length=25)
+    uploaded_at = serializers.DateField()
+    file = serializers.FileField()
 
     class Meta:
         model = MedicalImageFile
