@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 from .models import UserProfile, MedicalImageFile
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
-from detect import OCRextract
+from .detect import OCRextract
 
 # Create your views here.
 
@@ -63,8 +63,10 @@ def MyFileView(request):
             description=request.POST['description'],
             user=User.objects.get(username=request.POST['user'])
         )
-        print(OCRextract(request.FILES['file']))
         med.save()
+        print(OCRextract(str(request.FILES['file'])))
+        # print(OCRextract(med.file))
+        
         return HttpResponse('<h1>Accepted</h1>')
 
 # class MyFileView(APIView):

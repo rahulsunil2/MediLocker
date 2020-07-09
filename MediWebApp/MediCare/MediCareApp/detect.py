@@ -9,6 +9,8 @@ import time
 import os
 from os import path
 
+
+
 def binarize(image_to_transform, threshold):
 	output_image=image_to_transform.convert("L")
 	for x in range(output_image.width):
@@ -18,15 +20,15 @@ def binarize(image_to_transform, threshold):
 			else:
 				output_image.putpixel( (x,y), 255 )
 	return output_image
-def OCRextractor(inputPath):
+def OCRextract(inputPath):
 	start1 = time.process_time()
 	start = time.process_time()
 	basepath = path.dirname(__file__)
 	inputPath = path.abspath(path.join(basepath, "..", "media", inputPath))
-	a_file = open("list", "r")
-	myNames = []
-	myNames = [line.strip() for line in a_file]
-	a_file.close()
+	# a_file = open("MediCareApp/list", "r")
+	# myNames = []
+	myNames = ["BLOOD", "HEMOGLOBIN","HEMATOCRIT","MC","CV","RDW","ABSOLUTE","PLATELET","MPV","NEUTROPHILS","BAND","METAMYELOCYTES","MYELOCYTES","PROMYELOCYTES","LYMPHOCYTES","REACTIVE","MONOCYTES","EOSINOPHILS","BASOPHILS","BLASTS","NUCLEATED"]
+	# a_file.close()
 	Medicallist=myNames
 	print(inputPath)
 	im = binarize(Image.open(inputPath), 196) 
@@ -54,5 +56,5 @@ def OCRextractor(inputPath):
 						result_dict.update({" ".join(line[:j]):line[j]})
 						break
 						
-		print(json.dumps(result_dict, indent = 4))
 	print(time.process_time() - start1)
+	return result_dict
