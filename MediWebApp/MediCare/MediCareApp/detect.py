@@ -27,7 +27,8 @@ def OCRextract(inputPath):
 	inputPath = path.abspath(path.join(basepath, "..", "media", inputPath))
 	# a_file = open("MediCareApp/list", "r")
 	# myNames = []
-	myNames = ["BLOOD", "HEMOGLOBIN","HEMATOCRIT","MC","CV","RDW","ABSOLUTE","PLATELET","MPV","NEUTROPHILS","BAND","METAMYELOCYTES","MYELOCYTES","PROMYELOCYTES","LYMPHOCYTES","REACTIVE","MONOCYTES","EOSINOPHILS","BASOPHILS","BLASTS","NUCLEATED"]
+	# myNames = ["BLOOD", "HEMOGLOBIN","HEMATOCRIT","MC","CV","RDW","ABSOLUTE","PLATELET","MPV","NEUTROPHILS","BAND","METAMYELOCYTES","MYELOCYTES","PROMYELOCYTES","LYMPHOCYTES","REACTIVE","MONOCYTES","EOSINOPHILS","BASOPHILS","BLASTS","NUCLEATED"]
+	myNames = ["GLUCOSE"]
 	# a_file.close()
 	Medicallist=myNames
 	print(inputPath)

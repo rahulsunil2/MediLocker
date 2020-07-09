@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import MedicalImageSerializer
 from django.contrib.auth.models import User
-from .models import UserProfile, MedicalImageFile
+from .models import UserProfile, MedicalImageFile, UserMedicalData
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from .detect import OCRextract
@@ -26,15 +26,6 @@ class UserCreate(APIView):
                 json['token'] = token.key
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-# class UserProfileCreate(APIView):
-#     def post(self, request, format='json'):
-#         serializer = UserProfileSerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @csrf_exempt
@@ -58,25 +49,23 @@ def UserProfileCreate(request):
 @csrf_exempt
 def MyFileView(request):
     if request.method == "POST":
+        user = User.objects.get(username=request.POST['user'])
         med = MedicalImageFile(
             file=request.FILES['file'],
             description=request.POST['description'],
-            user=User.objects.get(username=request.POST['user'])
+            user=user,
+            extraction_status="NotDone"
         )
         med.save()
-        print(OCRextract(str(request.FILES['file'])))
-        # print(OCRextract(med.file))
+        data = OCRextract(str(med.file))
+        userData = UserMedicalData(
+            user=user,
+            original_file=med,
+            extracted_data=data
+        )
+        med.extraction_status="Done"
+        med.save()
+        userData.save()
+
         
         return HttpResponse('<h1>Accepted</h1>')
-
-# class MyFileView(APIView):
-#     parser_classes = (MultiPartParser, FormParser)
-#
-#     def post(self, request, *args, **kwargs):
-#         print(request.data)
-#         file_serializer = MedicalImageSerializer(data=request.data)
-#         if file_serializer.is_valid():
-#             file_serializer.save()
-#             return Response(file_serializer.data, status=status.HTTP_201_CREATED)
-#         else:
-#             return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
