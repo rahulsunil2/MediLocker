@@ -29,7 +29,7 @@ def binarize(image_to_transform, threshold):
 	
 
 	# path for the folder for getting the raw images (change path accordingly )
-path ="images"
+path ="diabtes"
 imagePath=" "
 
 	# path for the folder for getting the output 
@@ -45,7 +45,8 @@ Medicallist=myNames
 a_file.close()
 result_dict={}
 
-p=r'^[-+]?[0-9]*\.?[0-9]+-[-+]?[0-9]*\.?[0-9]+$'
+p=r'(^[-+]?[0-9]*\.?[0-9]+-[-+]?[0-9]*\.?[0-9]+$)|(^[<>])'
+q=r''
 for imageName in os.listdir(path):
         inputPath = os.path.join(path, imageName)
         img = Image.open(inputPath)
@@ -66,7 +67,6 @@ for imageName in os.listdir(path):
                                         #result_dict.update({" ".join(text[:i]):text[i]})
                                 elif(text[i]=="DNR"):
                                         print("DNR")
-                                
                        
                                                 
                                 
