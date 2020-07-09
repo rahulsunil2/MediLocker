@@ -1,0 +1,6 @@
+{
+    "CREATININE, RANDOM URINE": "132",
+    "MICROALBUMIN/CREATININE RATIO,": "5",
+    "GLUCOSE": "140",
+    "HEMOGLOBIN Alc": "6.8"
+}
