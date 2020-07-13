@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:med_report/bloc_login/bloc/login_bloc.dart';
-import 'package:med_report/login/name.dart';
+import 'package:med_report/global.dart';
 
 
 class LoginForm extends StatefulWidget {
@@ -22,7 +22,7 @@ class _LoginFormState extends State<LoginForm> {
         username: _usernameController.text,
         password: _passwordController.text,
       ));
-      Name.currentUser = _usernameController.text;
+      Common.currentUser = _usernameController.text;
     }
 
     return BlocListener<LoginBloc, LoginState>(

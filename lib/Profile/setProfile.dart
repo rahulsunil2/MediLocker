@@ -1,7 +1,8 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:med_report/bloc_login/bloc/authentication_bloc.dart';
-import 'package:med_report/login/name.dart';
+import 'package:med_report/Home/dashboard.dart';
+import '../global.dart';
 
 class SetProfile extends StatefulWidget {
   @override
@@ -14,12 +15,35 @@ Color hexToColor(String code) {
 
 class MySetProfile extends State<SetProfile> {
   double screenHeight;
-  var scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final _nameController = TextEditingController();
+  final _contactController = TextEditingController();
+  final _dobController = TextEditingController();
+  final _ageController = TextEditingController();
+  final _heightController = TextEditingController();
+  final _weightController = TextEditingController();
+  final _addressController = TextEditingController();
+  final _allergyController = TextEditingController();
+
+  Future<String> details(String url, {Map body}) async {
+  return http.post(url, body: body).then((http.Response response) {
+    print("Response Status: ${response.statusCode}");
+    print("Response Body: ${response.body}");
+    
+    final int statusCode = response.statusCode;
+
+    if (statusCode < 200 || statusCode > 400 || json == null) {
+      throw new Exception("Error while fetching data");
+    }
+    return (json.decode(response.body));
+  });
+}
+
   @override
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-        key: scaffoldKey,
+      
         backgroundColor: Colors.lightBlue[50],
         body: Container(
             padding: const EdgeInsets.all(20.0),
@@ -42,7 +66,7 @@ class MySetProfile extends State<SetProfile> {
                   radius: 50,
                 ),
                 new Padding(padding: EdgeInsets.only(top: 20.0)),
-                new TextFormField(
+                TextFormField(
                   decoration: new InputDecoration(
                     labelText: "Full Name",
                     fillColor: Colors.white,
@@ -51,6 +75,7 @@ class MySetProfile extends State<SetProfile> {
                       borderSide: new BorderSide(),
                     ),
                   ),
+                  controller: _nameController,
                   validator: (val) {
                     if (val.length == 0) {
                       return "Name can not be empty";
@@ -63,8 +88,8 @@ class MySetProfile extends State<SetProfile> {
                     fontFamily: "Poppins",
                   ),
                 ),
-                new Padding(padding: EdgeInsets.only(top: 20.0)),
-                new TextFormField(
+                Padding(padding: EdgeInsets.only(top: 20.0)),
+                TextFormField(
                   decoration: new InputDecoration(
                     labelText: "Contact Number",
                     fillColor: Colors.white,
@@ -73,10 +98,14 @@ class MySetProfile extends State<SetProfile> {
                       borderSide: new BorderSide(),
                     ),
                    ),
+                   controller: _contactController,
                   validator: (val) {
                     if (val.length == 0) {
                       return "Contact number cannot be empty";
-                    } else {
+                    } else if (val.length != 10){
+                      return "Invalid Contact number";
+                    }
+                    else {
                       return null;
                     }
                   },
@@ -85,20 +114,22 @@ class MySetProfile extends State<SetProfile> {
                     fontFamily: "Poppins",
                   ),
                 ),
-                new Padding(padding: EdgeInsets.only(top: 20.0)),
+                Padding(padding: EdgeInsets.only(top: 20.0)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    new Flexible(
-                      child: new TextFormField(
-                        decoration: new InputDecoration(
-                          labelText: "Date of Birth",
+                    Flexible(
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: "Date of Birth " ,
+                          hintText: "yyyy-mm-dd",
                           fillColor: Colors.white,
-                          border: new OutlineInputBorder(
-                            borderRadius: new BorderRadius.circular(25.0),
-                            borderSide: new BorderSide(),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                            borderSide: BorderSide(),
                           ),
                         ),
+                        controller: _dobController,
                         validator: (val) {
                           if (val.length == 0) {
                             return "DOB cannot be empty";
@@ -112,17 +143,18 @@ class MySetProfile extends State<SetProfile> {
                         ),
                       ),
                     ),
-                    new Padding(padding: EdgeInsets.only(left: 10.0)),
-                    new Flexible(
-                      child: new TextFormField(
-                        decoration: new InputDecoration(
+                    Padding(padding: EdgeInsets.only(left: 10.0)),
+                    Flexible(
+                      child: TextFormField(
+                        decoration: InputDecoration(
                           labelText: "Age",
                           fillColor: Colors.white,
-                          border: new OutlineInputBorder(
-                            borderRadius: new BorderRadius.circular(25.0),
-                            borderSide: new BorderSide(),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                            borderSide: BorderSide(),
                           ),
                         ),
+                        controller: _ageController,
                         validator: (val) {
                           if (val.length == 0) {
                             return "Age cannot be empty";
@@ -138,7 +170,7 @@ class MySetProfile extends State<SetProfile> {
                     ),
                   ],
                 ),
-                new Padding(padding: EdgeInsets.only(top: 20.0)),
+                Padding(padding: EdgeInsets.only(top: 20.0)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -196,6 +228,7 @@ class MySetProfile extends State<SetProfile> {
                             return null;
                           }
                         },
+                        controller: _heightController,
                         keyboardType: TextInputType.number,
                         style: new TextStyle(
                           fontFamily: "Poppins",
@@ -220,6 +253,7 @@ class MySetProfile extends State<SetProfile> {
                             return null;
                           }
                         },
+                        controller: _weightController,
                         keyboardType: TextInputType.number,
                         style: new TextStyle(
                           fontFamily: "Poppins",
@@ -245,6 +279,7 @@ class MySetProfile extends State<SetProfile> {
                             return null;
                           }
                         },
+                        controller: _addressController,
                         keyboardType: TextInputType.multiline,
                         maxLines: 3,
                         style: new TextStyle(
@@ -261,6 +296,7 @@ class MySetProfile extends State<SetProfile> {
                             borderSide: new BorderSide(),
                           ),
                         ),
+                        controller: _allergyController,
                         keyboardType: TextInputType.multiline,
                         maxLines: 3,
                         style: new TextStyle(
@@ -275,8 +311,36 @@ class MySetProfile extends State<SetProfile> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18),
                     side: BorderSide(color: Colors.black)),
+                onPressed: () async {
+                  Map data = {
+                    'user'    :  Common.currentUser,
+                    //'name'    :  _nameController.text,
+                    'phone'   :  _contactController.text,
+                    'dob'     :  _dobController.text,
+                    'address' :  _addressController.text,
+                    'allergy' :  _allergyController.text,
+                    'gender'  :  Common.gender,
+                    'blood_grp':  Common.blood,
+                    'height'  :  _heightController.text,
+                    'weight'  :  _weightController.text                    
+                  };
+                  //String body = json.encode(data);
+                  print(data);
+                  String url = Common.baseURL +  'users/api_userprofile';
+                  await details(url, body: data);
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Home()));
+                },
+              ),
+              Padding(padding: EdgeInsets.only(top: 20.0)),
+                
+                RaisedButton(
+                child: Text('Submit'),
+                color: Colors.blue[100],
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18),
+                    side: BorderSide(color: Colors.black)),
                 onPressed: () {
-                  // save data 
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Home()));
                 },
               ),
                 ])),
@@ -299,12 +363,13 @@ class _DropDownButtonGenderState extends State<DropDownButtonGender> {
   Widget build(BuildContext context) {
     return DropdownButton<String>(
       value: dropdownValue,
-      icon: Icon(Icons.arrow_downward),
-      iconSize: 24,
+      icon: Icon(Icons.arrow_drop_down),
+      iconSize: 18,
       elevation: 16,
       onChanged: (String newValue) {
         setState(() {
           dropdownValue = newValue;
+          Common.gender = dropdownValue;
         });
       },
       items: <String>['Male', 'Female', 'Others']
@@ -333,12 +398,13 @@ class _DropDownButtonBlgState extends State<DropDownButtonBlg> {
   Widget build(BuildContext context) {
     return DropdownButton<String>(
       value: dropdownValue,
-      icon: Icon(Icons.arrow_downward),
-      iconSize: 24,
+      icon: Icon(Icons.arrow_drop_down),
+      iconSize: 18,
       elevation: 16,
       onChanged: (String newValue) {
         setState(() {
           dropdownValue = newValue;
+          Common.blood = dropdownValue;
         });
       },
       items: <String>['A+','A-','B+','B-','AB+','AB-','O+','O-']

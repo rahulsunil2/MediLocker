@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:med_report/Reports/upload_report.dart';
+import 'package:med_report/Profile/setProfile.dart';
+import 'package:med_report/Reports/upload.dart';
 import 'package:med_report/bloc_login/bloc/authentication_bloc.dart';
-import 'package:med_report/login/name.dart';
+import 'package:med_report/global.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -28,7 +29,7 @@ class _HomeState extends State<Home> {
               color: Colors.blue,
             ),
             accountName: new Text(
-              Name.currentUser,
+              Common.currentUser,
               style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
             ),
             currentAccountPicture: CircleAvatar(
@@ -138,7 +139,7 @@ class _HomeState extends State<Home> {
             ),
           ),
           Text(
-            Name.currentUser,
+            Common.currentUser,
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 40,

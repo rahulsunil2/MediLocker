@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_uploader/flutter_uploader.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:med_report/login/name.dart';
+import 'package:med_report/global.dart';
 import 'package:path_provider/path_provider.dart';
 
 class AddReport extends StatefulWidget {
@@ -15,8 +15,7 @@ class AddReport extends StatefulWidget {
 class _AddReportState extends State<AddReport> {
   double screenHeight;
 
-  static final String uploadEndPoint =
-      'http://127.0.0.1:8000/users/medicalrecord/';
+  static final String uploadEndPoint = Common.baseURL + 'users/medicalrecord/';
   Future<File> file;
   String status = '';
   String base64Image;
@@ -37,14 +36,12 @@ class _AddReportState extends State<AddReport> {
     });
   }
 
-  // Future<String> uploadImage(filename, url) async {
-  //   var request = http.MultipartRequest('POST', Uri.parse(url));
-  //   request.files.add(await http.MultipartFile.fromPath('picture', filename));
-  //   var res = await request.send();
-  //   return res.reasonPhrase;
-  // }
-  String state = "";
+  // Remove image
+  void _clear() {
+    setState(() => file = null);
+  }
 
+ 
   startUpload() {
     setStatus('Uploading Image...');
     if (null == file) {
@@ -52,7 +49,7 @@ class _AddReportState extends State<AddReport> {
       return;
     }
     //String fileName = tmpFile.path.split('/').last;
-    String fileName = '${Name.currentUser}/${DateTime.now()}.png';
+    String fileName = '${Common.currentUser}/${DateTime.now()}.png';
     upload();
   }
 
@@ -62,7 +59,7 @@ class _AddReportState extends State<AddReport> {
     File newFile = await file;
     Directory pathDir = await getApplicationDocumentsDirectory();
     final String path = pathDir.path;
-    String picName = '${Name.currentUser}_${DateTime.now()}.png';
+    String picName = '${Common.currentUser}_${DateTime.now()}.png';
 
     if (newFile != null) {
       final File newImage = await newFile.copy('$path/$picName');
@@ -77,41 +74,12 @@ class _AddReportState extends State<AddReport> {
           headers: {"Content-Type": "multipart/form-data"},
           data: {
             "description": "file",
-            "user": Name.currentUser
+            "user": Common.currentUser
           }, // any data you want to send in upload request
           showNotification:
-              false, // send local notification (android only) for upload status
+              true, // send local notification (android only) for upload status
           tag: "upload 1"); // unique tag for upload task
     }
-  }
-
-  Widget showImage() {
-    return FutureBuilder<File>(
-      future: file,
-      builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done &&
-            null != snapshot.data) {
-          tmpFile = snapshot.data;
-          base64Image = base64Encode(snapshot.data.readAsBytesSync());
-          return Container(
-            child: Image.file(
-              snapshot.data,
-              fit: BoxFit.fill,
-            ),
-          );
-        } else if (null != snapshot.error) {
-          return const Text(
-            'Error Picking Image',
-            textAlign: TextAlign.center,
-          );
-        } else {
-          return const Text(
-            'No Image Selected',
-            textAlign: TextAlign.center,
-          );
-        }
-      },
-    );
   }
 
   @override
@@ -134,6 +102,14 @@ class _AddReportState extends State<AddReport> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: Row(
+        children: <Widget>[
+          FlatButton(
+            child: Icon(Icons.refresh),
+            onPressed: _clear,
+          ),
+        ],
       ),
     );
   }
@@ -167,7 +143,7 @@ class _AddReportState extends State<AddReport> {
                   color: Colors.white),
             ),
             Text(
-              Name.currentUser,
+              Common.currentUser,
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 40,
@@ -212,6 +188,38 @@ class _AddReportState extends State<AddReport> {
         ));
   }
 
+  Widget showImage() {
+    return FutureBuilder<File>(
+      future: file,
+      builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
+        if (snapshot.connectionState == ConnectionState.done &&
+            null != snapshot.data) {
+          tmpFile = snapshot.data;
+          base64Image = base64Encode(snapshot.data.readAsBytesSync());
+          return Container(
+            //height: 200.0,
+            //width: 150.0,
+            child: Image.file(
+              snapshot.data,
+              fit: BoxFit.scaleDown,
+            ),
+          );
+        } else if (null != snapshot.error) {
+          return const Text(
+            'Error Picking Image',
+            textAlign: TextAlign.center,
+          );
+        } else {
+          return const Text(
+            'No Image Selected',
+            textAlign: TextAlign.center,
+          );
+        }
+      },
+    );
+  }
+
+
   Widget selectLoc(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: screenHeight / 2 + 100),
@@ -220,8 +228,8 @@ class _AddReportState extends State<AddReport> {
           alignment: Alignment.center,
           child: RaisedButton(
             child: Text(
-              'Upload Report',
-              style: TextStyle(fontSize: 16.0, fontFamily: 'Monsteratt'),
+              'Select Report',
+              style: TextStyle(fontSize: 16.0, fontFamily: 'Monsteratt', color: Colors.white),
             ),
             color: Colors.indigo,
             onPressed: () {
@@ -235,7 +243,7 @@ class _AddReportState extends State<AddReport> {
                         children: <Widget>[
                           FlatButton(
                               onPressed: () => _chooseImage(ImageSource.camera),
-                              child: Text(' Take Photo')),
+                              child: Text('Take Photo')),
                           FlatButton(
                               onPressed: () =>
                                   _chooseImage(ImageSource.gallery),
@@ -253,17 +261,9 @@ class _AddReportState extends State<AddReport> {
   Widget uploadOp(BuildContext context) {
     return Padding(
         padding:
-            EdgeInsets.only(top: screenHeight / 2 - 75, left: 50, right: 50),
+            EdgeInsets.only(top: screenHeight / 2 - 50, left: 120, right: 50),
         child: OutlineButton(
           onPressed: startUpload(),
-          // onPressed: async {
-          //   //var file = await ImagePicker.pickImage(source: ImageSource.gallery);
-          //   var res = await uploadImage(file.path, widget.url);
-          //   setState(() {
-          //     state = res;
-          //     print(res);
-          //   });
-          // },
           child: Text(
             'Upload Image',
           ),

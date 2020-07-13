@@ -142,7 +142,7 @@ class _RegisterFormState extends State<RegisterForm> {
                         email: _emailController.text,
                         password: _passwordController.text
                       );
-                      NewUser p = await createPost(BASE_URL,body: newPost.toMap());
+                      NewUser p = await createPost(BASE_URL, body: newPost.toMap());
                       print(p.username);
                       Navigator.push(
                         context,

@@ -5,8 +5,7 @@ import 'package:med_report/Database/user_repository.dart';
 import 'package:med_report/bloc_login/bloc/authentication_bloc.dart';
 import 'package:med_report/login/login_page.dart';
 import 'package:med_report/splash.dart';
-
-import 'Home/dashboard.dart';
+import 'package:med_report/Home/home.dart';
 import 'common/loading_indicator.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {
@@ -19,7 +18,7 @@ class SimpleBlocDelegate extends BlocDelegate {
   @override
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
-    print(transition);
+    print (transition);
   }
 
   @override
@@ -32,13 +31,16 @@ void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
   final userRepository = UserRepository();
 
-  runApp(BlocProvider<AuthenticationBloc>(
-    create: (context) {
-      return AuthenticationBloc(userRepository: userRepository)
-        ..add(AppStarted());
-    },
-    child: App(userRepository: userRepository),
-  ));
+  runApp(
+    BlocProvider<AuthenticationBloc>(
+      create: (context) {
+        return AuthenticationBloc(
+          userRepository: userRepository
+        )..add(AppStarted());
+      },
+      child: App(userRepository: userRepository),
+    )
+  );
 }
 
 class App extends StatelessWidget {
@@ -57,7 +59,6 @@ class App extends StatelessWidget {
           }
           if (state is AuthenticationAuthenticated) {
             print('go to ur Home');
-
             return Home();
           }
           if (state is AuthenticationUnauthenticated) {
