@@ -16,6 +16,7 @@ class _AddReportState extends State<AddReport> {
   double screenHeight;
   final recNameController = TextEditingController();
   Future<File> file;
+  //File file;
   String status = '';
   String errMessage = 'Error Uploading Image';
 
@@ -25,6 +26,15 @@ class _AddReportState extends State<AddReport> {
     });
     setStatus('');
   }
+  // Future _chooseImage(ImageSource source) async{
+    
+  //     var f = await ImagePicker.pickImage(source: source);
+  //   setState(() {
+  //       file = f;
+  //     });
+    
+  //   setStatus('');
+  // }
 
   setStatus(String message) {
     setState(() {
@@ -38,15 +48,15 @@ class _AddReportState extends State<AddReport> {
     setState(() => file = null);
   }
 
-  startUpload() {
-    setStatus('Uploading Image...');
-    if (null == file) {
-      setStatus('null tmpFile');
-      return;
-    }
+  // startUpload() {
+  //   setStatus('Uploading Image...');
+  //   if (null == file) {
+  //     setStatus('null tmpFile');
+  //     return;
+  //   }
     
-    upload();
-  }
+  //   upload();
+  // }
 
   upload() async {
     final uploader = FlutterUploader();
@@ -73,7 +83,7 @@ class _AddReportState extends State<AddReport> {
           }, // any data you want to send in upload request
           showNotification:
               true, // send local notification (android only) for upload status
-          tag: "upload 1"); // unique tag for upload task
+          tag: recNameController.text); // unique tag for upload task
     }
   }
 
@@ -252,7 +262,6 @@ class _AddReportState extends State<AddReport> {
                   ),
                   new Padding(padding: EdgeInsets.only(top: 20.0)),
                   selectLoc(context),
-                  
                   new Padding(padding: EdgeInsets.only(top: 20.0)),
                   showImage(),
                   new Padding(padding: EdgeInsets.only(top: 20.0)),
@@ -335,7 +344,16 @@ class _AddReportState extends State<AddReport> {
     return Padding(
         padding: EdgeInsets.only(left: 50, right: 50),
         child: RaisedButton(
-          onPressed: startUpload(),
+          onPressed: (){
+            setStatus('Uploading Image...');
+    if (null == file) {
+      setStatus('null tmpFile');
+      return;
+    }
+    
+    upload();
+          },
+          //startUpload(),
           child: Text(
             ' Upload ',
             style: TextStyle(fontSize: 16.0, fontFamily: 'Monsteratt'),
