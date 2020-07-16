@@ -31,6 +31,7 @@ dependencies:
   path_provider: ^1.6.5
   flutter_uploader: ^1.2.0
   rflutter_alert: ^1.0.2
+  shared_preferences: ^0.5.8
 
 
   # The following adds the Cupertino Icons font to your application.
