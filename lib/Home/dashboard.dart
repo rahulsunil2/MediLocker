@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:med_report/Profile/setProfile.dart';
+import 'package:med_report/Profile/profileui.dart';
+//import 'package:med_report/Profile/setProfile.dart';
 import 'package:med_report/Reports/upload.dart';
 import 'package:med_report/bloc_login/bloc/authentication_bloc.dart';
 import 'package:med_report/global.dart';
@@ -26,11 +27,15 @@ class _HomeState extends State<Home> {
         children: <Widget>[
           UserAccountsDrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.blue,
+              gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [Colors.blue[500], Colors.indigo[500]]),
+              //color: Colors.blue,
             ),
             accountName: new Text(
               Common.currentUser,
-              style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
+              style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0),
             ),
             currentAccountPicture: CircleAvatar(
               backgroundImage: AssetImage('images/user.jpg'),
@@ -59,6 +64,14 @@ class _HomeState extends State<Home> {
                 onPressed: () {
            }), 
             title: Text('Notification', style: TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.bold) ),
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ProfilePage()
+                ),
+              );
+            },
           ),
           SizedBox(height: 30),
           ListTile(
@@ -95,7 +108,7 @@ class _HomeState extends State<Home> {
             options(context),
             Positioned(
               left: 10,
-              top: 40,
+              top: 60,
               child: IconButton(
                 icon: Icon(Icons.menu, color: Colors.white, size: 30.0,),
                 onPressed: () => scaffoldKey.currentState.openDrawer(),
@@ -114,7 +127,7 @@ class _HomeState extends State<Home> {
         gradient: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
-          colors: [Colors.blue[900], Colors.indigo]),
+          colors: [Colors.blue[500], Colors.indigo[500]]),
         borderRadius: BorderRadius.circular(30)
       ),
       
@@ -124,14 +137,14 @@ class _HomeState extends State<Home> {
   Widget general(BuildContext context) {
     return Container(
         margin: EdgeInsets.only(top: screenHeight / 4 - 50),
-        padding: EdgeInsets.only(left: 15, right: 15),
+        padding: EdgeInsets.only(left: 20, right: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.center,
           textDirection: TextDirection.ltr,
           children: <Widget>[
           Text(
-            ' Hi',
+            'Hi',
             style: TextStyle(
               fontWeight: FontWeight.normal,
               fontSize: 30,
@@ -154,13 +167,13 @@ class _HomeState extends State<Home> {
 
   Widget milestone(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: (screenHeight / 5) + 110),
+      margin: EdgeInsets.only(top: (screenHeight / 4) + 110),
       padding: EdgeInsets.only(left: 10, right: 10),
       child: Card(
         child: ListTile(
           trailing: Image.network(
           "https://image.flaticon.com/icons/png/512/163/163813.png"),
-          title: Text('Congratulations!'),
+          title: Text('Congratulations !',style: TextStyle(fontWeight: FontWeight.bold),),
           contentPadding:
             EdgeInsets.symmetric(horizontal: 25, vertical: 20),
             subtitle: Text('You completed 10000 steps today'),
@@ -173,17 +186,17 @@ class _HomeState extends State<Home> {
 
   Widget options(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(top: screenHeight / 2 + 80 ),
+        margin: EdgeInsets.only(top: screenHeight / 2 + 80 ,left: 10),
         padding: EdgeInsets.all(10.0),
         child: Column(
           children: <Widget>[
             Align(
               alignment: Alignment.centerLeft,
             child: Text(
-              "What do you need?", 
+              "What do you need ?",
               style: TextStyle(
                 fontSize: 24, 
-                color: Colors.blue, 
+                color: Colors.indigo[500],
                 fontWeight: FontWeight.bold, )),),
             GridView.count(
               shrinkWrap: true,
@@ -212,14 +225,14 @@ class Menu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       
-      elevation: 6.0,
-      margin: EdgeInsets.all(8.0),
+      elevation: 7.0,
+      margin: EdgeInsets.all(5.0),
       shape: RoundedRectangleBorder(
-        side: BorderSide(color: Colors.blueAccent, style: BorderStyle.solid, width:1.5),
-        borderRadius: BorderRadius.circular(10),
+        //side: BorderSide(color: Colors.blueAccent),
+        borderRadius: BorderRadius.circular(100),
       ),
       child: RaisedButton(
-        color: Colors.blue[900],
+        color: Colors.blueAccent,
         child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -228,7 +241,7 @@ class Menu extends StatelessWidget {
           Align(
             alignment: Alignment.topCenter,
             child:Text(
-              title, style: TextStyle(fontSize: 10, fontFamily: 'Monsteratt', fontWeight: FontWeight.bold, color: Colors.white),
+              title, style: TextStyle(fontSize: 12.5, fontFamily: 'Monsteratt', fontWeight: FontWeight.bold, color: Colors.white),
             )
           ),
         ]
