@@ -179,13 +179,14 @@ class _AddReportState extends State<AddReport> {
             alignment: Alignment.center,
             child: Text("Categories ",
                 style: TextStyle(
-                  fontSize: 24,
-                  color: Colors.blue,
+                  fontFamily: 'Poppins' ,
+                  fontSize: 30,
+                  color: Colors.indigoAccent,
                   fontWeight: FontWeight.bold,
                 )),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 8.0),
+            padding: const EdgeInsets.only(top: 12.0),
             child: GridView.count(
                 shrinkWrap: true,
                 crossAxisCount: 3,
@@ -374,11 +375,11 @@ class Menu extends StatelessWidget {
         margin: EdgeInsets.all(8.0),
         shape: RoundedRectangleBorder(
           side: BorderSide(
-              color: Colors.blueAccent, style: BorderStyle.solid, width: 1.5),
+              color: Colors.blueAccent, width: 4),
           borderRadius: BorderRadius.circular(10),
         ),
         child: RaisedButton(
-          color: Colors.blue[900],
+          color: Colors.blueAccent,
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -389,7 +390,7 @@ class Menu extends StatelessWidget {
                     child: Text(
                       title,
                       style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 17,
                           fontFamily: 'Monsteratt',
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
