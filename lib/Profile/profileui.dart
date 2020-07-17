@@ -29,7 +29,7 @@ class _ProfilePageState extends State<ProfilePage> {
               children: <Widget>[
                 new Container(
                   height: 900.0,
-                  color: Colors.blueAccent[100],
+                  color: Colors.lightBlue[50],
                   child: new Column(
                     children: <Widget>[
 
@@ -71,7 +71,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ]),
                       ),
                       new Container(
-                        color: Colors.blueAccent[100],
+                        color: Colors.lightBlue[50],
                         child: Padding(
                           padding: EdgeInsets.only(bottom: 25.0),
                           child: new Column(
