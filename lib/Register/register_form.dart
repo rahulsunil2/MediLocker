@@ -44,9 +44,10 @@ class _RegisterFormState extends State<RegisterForm> {
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
     return Container(
-      margin: EdgeInsets.only(top: screenHeight / 3 -100),
+      margin: EdgeInsets.only(top: screenHeight / 4 - 70),
       padding: EdgeInsets.only(left: 10, right: 10),
       color: Colors.white,
+     
       alignment: Alignment.topCenter,
       child: Form(
         child: Padding(
@@ -55,73 +56,69 @@ class _RegisterFormState extends State<RegisterForm> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("Username", 
-                style: TextStyle(color: Color(0xff3B5EE6),fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 10),),
+         /*     Text("Username",
+                style: TextStyle(color: Color(0xff3B5EE6),fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 10),),*/
               TextFormField(
                 decoration: InputDecoration(
                 fillColor: Colors.grey[300],
                 filled: true,
-                labelText: 'username', prefixIcon: Icon(Icons.person, color: Color(0xff3B5EE6)),
+                labelText: 'Username', prefixIcon: Icon(Icons.person, color: Color(0xff3B5EE6)),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(25.0)))),
                 controller: _usernameController,
              ),
               SizedBox(height: 10),
-              Text("First Name", 
-                style: TextStyle(color: Color(0xff3B5EE6),fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 10),),
+            //  Text("First Name", style: TextStyle(color: Color(0xff3B5EE6),fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 10),),
               TextFormField(
                 decoration: InputDecoration(
                   fillColor: Colors.grey[300],
                   filled: true,
-                  labelText: 'first name', prefixIcon: Icon(Icons.person, color: Color(0xff3B5EE6)),
+                  labelText: 'First Name', prefixIcon: Icon(Icons.person, color: Color(0xff3B5EE6)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(25.0)))),
                 controller: _fnameController,
               ),
               SizedBox(height: 10),
-              Text("Last Name", 
-                style: TextStyle(color: Color(0xff3B5EE6),fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 10),),
+             // Text("Last Name", style: TextStyle(color: Color(0xff3B5EE6),fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 10),),
               TextFormField(
                 decoration: InputDecoration(
                   fillColor: Colors.grey[300],
                   filled: true,
-                  labelText: 'last name', prefixIcon: Icon(Icons.person, color: Color(0xff3B5EE6)),
+                  labelText: 'Last Name', prefixIcon: Icon(Icons.person, color: Color(0xff3B5EE6)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(25.0)))),
                 controller: _lnameController,
               ),
-              Text("Email id", 
-                style: TextStyle(color: Color(0xff3B5EE6),fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 10),),
+              SizedBox(height: 10),
+             // Text("Email id", style: TextStyle(color: Color(0xff3B5EE6),fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 10),),
               TextFormField(
                 decoration: InputDecoration(
                   fillColor: Colors.grey[300],
                   filled: true,
-                  labelText: 'email', prefixIcon: Icon(Icons.person, color: Color(0xff3B5EE6)),
+                  labelText: 'Email id', prefixIcon: Icon(Icons.person, color: Color(0xff3B5EE6)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(25.0)))),
                 controller: _emailController,
               ),
               SizedBox(height: 10),
-              Text("Password", 
-                style: TextStyle(color: Color(0xff3B5EE6),fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 10),),
+             // Text("Password", style: TextStyle(color: Color(0xff3B5EE6),fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 10),),
               TextFormField(
                 decoration: InputDecoration(
                 fillColor: Colors.grey[300],
                 filled: true,
-                labelText: 'password', prefixIcon: Icon(Icons.security, color: Color(0xff3B5EE6)),
+                labelText: 'Password', prefixIcon: Icon(Icons.security, color: Color(0xff3B5EE6)),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(25.0)))),
                 controller: _passwordController,
                 obscureText: true,
               ),
               SizedBox(height: 10),
-              Text("Confirm Password", 
-                style: TextStyle(color: Color(0xff3B5EE6),fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 10),),
+             // Text("Confirm Password", style: TextStyle(color: Color(0xff3B5EE6),fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 10),),
               TextFormField(
                 decoration: InputDecoration(
                 fillColor: Colors.grey[300],
                 filled: true,
-                labelText: 'password', prefixIcon: Icon(Icons.security, color: Color(0xff3B5EE6)),
+                labelText: 'Confirm Password', prefixIcon: Icon(Icons.security, color: Color(0xff3B5EE6)),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(25.0)))),
                 obscureText: true,

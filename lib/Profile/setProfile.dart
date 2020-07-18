@@ -357,7 +357,7 @@ int id = await helper.insert(word);
                           'address': _addressController.text,
                           'allergy': _allergyController.text,
                           'gender': Common.gender,
-                          'blood_grp': Common.blood,
+                          'blood_grp': Common.blood_grp,
                           'height': _heightController.text,
                           'weight': _weightController.text
                         };
@@ -443,7 +443,7 @@ class _DropDownButtonBlgState extends State<DropDownButtonBlg> {
       onChanged: (String newValue) {
         setState(() {
           dropdownValue = newValue;
-          Common.blood = dropdownValue;
+          Common.blood_grp = dropdownValue;
         });
       },
       items: <String>['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']

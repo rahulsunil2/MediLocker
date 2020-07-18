@@ -13,7 +13,7 @@ final String _dob = 'NIL';
 final String _address = 'NIL';
 final String _allergy = 'NIL';
 final String _gender = Common.gender;
-final String _blood_grp = Common.blood;
+final String _blood_grp = Common.blood_grp;
 final String _height = 'NIL';
 final String _weight = 'NIL';
 

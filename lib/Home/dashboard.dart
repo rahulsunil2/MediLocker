@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:med_report/Profile/profileui.dart';
+import 'package:med_report/Reports/report_main.dart';
 //import 'package:med_report/Profile/setProfile.dart';
 import 'package:med_report/Reports/upload.dart';
 import 'package:med_report/bloc_login/bloc/authentication_bloc.dart';
@@ -250,7 +251,9 @@ class Menu extends StatelessWidget {
           if(action == 3){
             Navigator.push(context,
             MaterialPageRoute(
-              builder: (context) => AddReport()));
+              builder: (context) => Options()
+              //AddReport()
+            ));
           }
         },
       )
