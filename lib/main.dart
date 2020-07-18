@@ -32,6 +32,7 @@ void main() {
   final userRepository = UserRepository();
 
   runApp(
+
     BlocProvider<AuthenticationBloc>(
       create: (context) {
         return AuthenticationBloc(
@@ -51,6 +52,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         // ignore: missing_return
         builder: (context, state) {
