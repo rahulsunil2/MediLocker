@@ -9,7 +9,7 @@ import 'package:med_report/login/login_form.dart';
 
 class Login extends StatelessWidget {
   final UserRepository userRepository;
-  
+
   Login({Key key, @required this.userRepository})
       : assert(userRepository != null),
         super(key: key);
@@ -18,7 +18,7 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       
-      backgroundColor: Color(0xff3B5EE6),
+      backgroundColor: Colors.white,
       body: BlocProvider(
         create: (context) {
           return LoginBloc(
@@ -30,10 +30,13 @@ class Login extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               upperHalf(context),
-              pageTitle(context),
               Padding(
-                padding: const EdgeInsets.all(30.0),
+                padding: const EdgeInsets.all(10.0),
                 child: LoginForm(),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top:550.0),
+                child: pageTitle(context),
               ),
             ]
           ),
@@ -46,24 +49,25 @@ class Login extends StatelessWidget {
           Navigator.push(context,
             MaterialPageRoute(builder: (context) => Home())
         );},
-        child: Text("SKIP LOGGING IN"),textColor: Colors.white,),
+        child: Text("SKIP LOGGING IN"),textColor: Colors.black,),
     );
   }
 
   Widget upperHalf(BuildContext context) {
     return Container(
       height: 200,
-      color: Color(0xff3B5EE6),
+      color: Colors.white,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            'MEDICARE',
+            'WELCOME',
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.black,
+              fontStyle: FontStyle.italic,
               fontWeight: FontWeight.bold,
-              fontSize: 20.0
+              fontSize: 40.0
             ),
           )
         ],
@@ -80,23 +84,12 @@ class Login extends StatelessWidget {
         children: <Widget>[
           FlatButton(
             onPressed: (){
-              Navigator.push(null,
-                MaterialPageRoute(
-                  builder: (context) => Login(userRepository: null,)));
-            },
-            child: Text("LOGIN", style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 14),),
-          ),
-          Text(" | ", style: TextStyle(
-            color: Colors.grey[700], fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 14),),
-          FlatButton(
-            onPressed: (){
               //Get.to(Register());
               Navigator.push(context,
                 MaterialPageRoute(
                   builder: (context) => Register()));
             },
-            child: Text("REGISTER", style: TextStyle(
+            child: Text("GET INSTANT ACCESS", style: TextStyle(
               color: Colors.grey[700], fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 14),),
           )
         ],

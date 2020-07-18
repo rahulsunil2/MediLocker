@@ -37,7 +37,7 @@ class _LoginFormState extends State<LoginForm> {
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
           return Container(
-            margin: EdgeInsets.only(top: screenHeight / 3 -50),
+            margin: EdgeInsets.only(top: screenHeight / 6 -10),
             padding: EdgeInsets.only(left: 10, right: 10),
             color: Colors.white,
             alignment: Alignment.topCenter,
@@ -48,25 +48,36 @@ class _LoginFormState extends State<LoginForm> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text("Your Username", 
-                      style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 10),),
+                    Center(
+                      child: Container(
+                        height: 300,
+                        width: 300,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage("images/undraw_Login_v483.png"),
+                          ),
+                        ),
+                      ),
+                    ),
+                   // Text("Your Username",
+                   //   style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 10),),
                     TextFormField(
                       decoration: InputDecoration(
                         fillColor: Colors.grey[300],
                         filled: true,
-                        labelText: 'username', prefixIcon: Icon(Icons.person, color: Colors.blue,),
+                        labelText: 'Your Username', prefixIcon: Icon(Icons.person, color: Colors.blue,),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(25.0)))),
                       controller: _usernameController,
                     ),
                     SizedBox(height: 25),
-                    Text("Password", 
-                      style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 10),),
+                   // Text("Password",
+                  //    style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 10),),
                     TextFormField(
                       decoration: InputDecoration(
                         fillColor: Colors.grey[300],
                         filled: true,
-                        labelText: 'password', prefixIcon: Icon(Icons.security, color: Colors.blue),
+                        labelText: 'Password', prefixIcon: Icon(Icons.security, color: Colors.blue),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(25.0)))),
                       controller: _passwordController,
