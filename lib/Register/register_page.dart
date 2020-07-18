@@ -9,17 +9,18 @@ class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff3B5EE6),
+      backgroundColor: Colors.white,
       
         body: SingleChildScrollView(
           child: Stack(
             children: <Widget>[
               upperHalf(context),
-              pageTitle(context),
+
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: RegisterForm(),
               ),
+             // pageTitle(context),
             ]
           ),
         ),
@@ -28,26 +29,27 @@ class Register extends StatelessWidget {
       bottomNavigationBar: FlatButton(
         onPressed: (){
           Navigator.push(context,
-            MaterialPageRoute(builder: (context) => Home())
+            MaterialPageRoute(builder: (context) => Login(userRepository: userRepository,))
         );},
-        child: Text("SKIP LOGGING IN"),textColor: Colors.white,),
+        child: Text("GO BACK TO LOGIN"),textColor: Colors.black,),
     );
   }
 
   Widget upperHalf(BuildContext context) {
     return Container(
-      height: 100,
-      color: Color(0xff3B5EE6),
+      height: 200,
+      color: Colors.white,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            'MEDICARE',
+            'JOIN US',
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.black,
+              fontStyle: FontStyle.italic,
               fontWeight: FontWeight.bold,
-              fontSize: 20.0
+              fontSize: 30.0
             ),
           )
         ],
@@ -80,7 +82,7 @@ class Register extends StatelessWidget {
                   builder: (context) => Register()));
             },
             child: Text("REGISTER", style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 14),),
+              color: Colors.black, fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 14),),
           )
         ],
       ), 
