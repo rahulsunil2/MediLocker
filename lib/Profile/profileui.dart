@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:med_report/Profile/setProfile.dart';
 import 'package:med_report/global.dart';
 
-
 class ProfilePage extends StatefulWidget {
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -14,7 +13,6 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.indigo,
-
         title: Text('PROFILE',
             style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -32,10 +30,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   color: Colors.lightBlue[50],
                   child: new Column(
                     children: <Widget>[
-
                       Padding(
                         padding: EdgeInsets.only(top: 40.0),
-                        child: new Stack(fit: StackFit.loose, children: <Widget>[
+                        child:
+                            new Stack(fit: StackFit.loose, children: <Widget>[
                           new Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -46,8 +44,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   decoration: new BoxDecoration(
                                     shape: BoxShape.circle,
                                     image: new DecorationImage(
-                                      image:
-                                          new ExactAssetImage('images/user.jpg'),
+                                      image: new ExactAssetImage(
+                                          'images/user.jpg'),
                                       fit: BoxFit.cover,
                                     ),
                                   )),
@@ -87,24 +85,26 @@ class _ProfilePageState extends State<ProfilePage> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
                                     new Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         new Text(
                                           'Personal Information',
                                           style: TextStyle(
-                                              fontSize: 25.0,color: Colors.black,
+                                              fontSize: 25.0,
+                                              color: Colors.black,
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ],
                                     ),
-                                new Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[
-                                      _getEditIcon(),
-                                    ],
-                                ),
+                                    new Column(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: <Widget>[
+                                        _getEditIcon(),
+                                      ],
+                                    ),
                                   ],
                                 ),
                               ),
@@ -115,14 +115,15 @@ class _ProfilePageState extends State<ProfilePage> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
                                     new Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         new Text(
                                           'Name',
                                           style: TextStyle(
-                                              fontSize: 15.0,
-                                              ),
+                                            fontSize: 15.0,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -130,17 +131,18 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 5.0),
-                                child: new Row(
-                                  mainAxisSize: MainAxisSize.max,
+                                  padding: EdgeInsets.only(
+                                      left: 25.0, right: 25.0, top: 5.0),
+                                  child: new Row(
+                                    mainAxisSize: MainAxisSize.max,
                                     children: <Widget>[
                                       new Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
                                           new Text(
-                                            Common.currentUser,
+                                            CurrentUser.currentUser,
                                             style: TextStyle(
                                                 fontSize: 20.0,
                                                 fontWeight: FontWeight.bold),
@@ -148,8 +150,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         ],
                                       ),
                                     ],
-                                )
-                              ),
+                                  )),
                               Padding(
                                 padding: EdgeInsets.only(
                                     left: 25.0, right: 25.0, top: 25.0),
@@ -157,7 +158,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
                                     new Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         new Text(
@@ -178,11 +180,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: <Widget>[
                                       new Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
                                           new Text(
-                                            Common.phone,
+                                            CurrentUser.phone,
                                             style: TextStyle(
                                                 fontSize: 20.0,
                                                 fontWeight: FontWeight.bold),
@@ -190,8 +193,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         ],
                                       ),
                                     ],
-                                  )
-                              ),
+                                  )),
                               Padding(
                                 padding: EdgeInsets.only(
                                     left: 25.0, right: 25.0, top: 25.0),
@@ -199,7 +201,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
                                     new Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         new Text(
@@ -220,11 +223,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: <Widget>[
                                       new Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
                                           new Text(
-                                            Common.dob,
+                                            CurrentUser.dob,
                                             style: TextStyle(
                                                 fontSize: 20.0,
                                                 fontWeight: FontWeight.bold),
@@ -232,8 +236,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         ],
                                       ),
                                     ],
-                                  )
-                              ),
+                                  )),
                               Padding(
                                 padding: EdgeInsets.only(
                                     left: 25.0, right: 25.0, top: 25.0),
@@ -241,7 +244,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
                                     new Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         new Text(
@@ -262,11 +266,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: <Widget>[
                                       new Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
                                           new Text(
-                                            Common.blood_grp,
+                                            CurrentUser.blood_grp,
                                             style: TextStyle(
                                                 fontSize: 20.0,
                                                 fontWeight: FontWeight.bold),
@@ -274,8 +279,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         ],
                                       ),
                                     ],
-                                  )
-                              ),
+                                  )),
                               Padding(
                                 padding: EdgeInsets.only(
                                     left: 25.0, right: 25.0, top: 25.0),
@@ -283,7 +287,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
                                     new Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         new Text(
@@ -304,11 +309,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: <Widget>[
                                       new Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
                                           new Text(
-                                            Common.height,
+                                            CurrentUser.height,
                                             style: TextStyle(
                                                 fontSize: 20.0,
                                                 fontWeight: FontWeight.bold),
@@ -316,8 +322,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         ],
                                       ),
                                     ],
-                                  )
-                              ),
+                                  )),
                               Padding(
                                 padding: EdgeInsets.only(
                                     left: 25.0, right: 25.0, top: 25.0),
@@ -325,7 +330,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
                                     new Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         new Text(
@@ -346,11 +352,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: <Widget>[
                                       new Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
                                           new Text(
-                                            Common.weight,
+                                            CurrentUser.weight,
                                             style: TextStyle(
                                                 fontSize: 20.0,
                                                 fontWeight: FontWeight.bold),
@@ -358,9 +365,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         ],
                                       ),
                                     ],
-                                  )
-                              ),
-
+                                  )),
                               Padding(
                                 padding: EdgeInsets.only(
                                     left: 25.0, right: 25.0, top: 25.0),
@@ -368,7 +373,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
                                     new Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         new Text(
@@ -389,11 +395,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: <Widget>[
                                       new Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
                                           new Text(
-                                            Common.address,
+                                            CurrentUser.address,
                                             style: TextStyle(
                                                 fontSize: 20.0,
                                                 fontWeight: FontWeight.bold),
@@ -401,8 +408,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         ],
                                       ),
                                     ],
-                                  )
-                              ),
+                                  )),
                               Padding(
                                 padding: EdgeInsets.only(
                                     left: 25.0, right: 25.0, top: 25.0),
@@ -410,7 +416,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
                                     new Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         new Text(
@@ -431,11 +438,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: <Widget>[
                                       new Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
                                           new Text(
-                                            Common.allergy,
+                                            CurrentUser.allergy,
                                             style: TextStyle(
                                                 fontSize: 20.0,
                                                 fontWeight: FontWeight.bold),
@@ -443,10 +451,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         ],
                                       ),
                                     ],
-                                  )
-                              ),
-
-
+                                  )),
                             ],
                           ),
                         ),
@@ -473,12 +478,10 @@ class _ProfilePageState extends State<ProfilePage> {
           size: 22.0,
         ),
       ),
-      onTap: (){
+      onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
-              builder: (context) => SetProfile()
-          ),
+          MaterialPageRoute(builder: (context) => SetProfile()),
         );
       },
     );

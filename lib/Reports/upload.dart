@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_uploader/flutter_uploader.dart';
 import 'package:image_picker/image_picker.dart';
@@ -29,7 +30,6 @@ class _AddReportState extends State<AddReport> {
     });
     setStatus('');
   }
-  
 
   setStatus(String message) {
     setState(() {
@@ -43,22 +43,20 @@ class _AddReportState extends State<AddReport> {
     setState(() => file = null);
   }
 
-  
-
   upload() async {
     final uploader = FlutterUploader();
 
     File newFile = await file;
     Directory pathDir = await getApplicationDocumentsDirectory();
     final String path = pathDir.path;
-    String picName = '${Common.currentUser}_${DateTime.now()}.png';
+    String picName = '${CurrentUser.currentUser}_${DateTime.now()}.png';
 
     if (newFile != null) {
       final File newImage = await newFile.copy('$path/$picName');
       print('yes not null');
       final taskId = await uploader.enqueue(
-          url:
-              Common.baseURL+"users/medicalrecord/", //required: url to upload to
+          url: Common.baseURL +
+              "users/medicalrecord/", //required: url to upload to
           files: [
             FileItem(filename: picName, savedDir: '$path', fieldname: "file")
           ], // required: list of files that you want to upload
@@ -66,7 +64,7 @@ class _AddReportState extends State<AddReport> {
           headers: {"Content-Type": "multipart/form-data"},
           data: {
             "description": "${Report.type} : ${Report.category}",
-            "user": Common.currentUser
+            "user": CurrentUser.currentUser
           }, // any data you want to send in upload request
           showNotification:
               true, // send local notification (android only) for upload status
@@ -74,81 +72,85 @@ class _AddReportState extends State<AddReport> {
     }
   }
 
-
   Widget showImage() {
     return FutureBuilder<File>(
-        future: file,
-        builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
-          if (snapshot.connectionState == ConnectionState.done &&
-              null != snapshot.data) {
-            return Container(
-                child: Column(
-                  children: <Widget>[
-                    uploadOp(context),
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: FlatButton(
-                        child: Icon(Icons.delete, color: Colors.red,),
-                        onPressed: _clear,
-                      ),
+      future: file,
+      builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
+        if (snapshot.connectionState == ConnectionState.done &&
+            null != snapshot.data) {
+          return Container(
+            child: Column(
+              children: <Widget>[
+                uploadOp(context),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: FlatButton(
+                    child: Icon(
+                      Icons.delete,
+                      color: Colors.red,
                     ),
-                    Container(
-                      height: 350, width: 250,
-                      child: Image.file(
-                      snapshot.data,
-                      //fit: BoxFit.fill,
-                    ),),
-                  ],
-                ),
-              
-            );
-          } else if (null != snapshot.error) {
-            return const Text(
-              'Error Picking Image',
-              textAlign: TextAlign.center,
-            );
-          } else {
-            return Align(
-              alignment: Alignment.center,
-                        child: Column(
-                children: <Widget>[
-                  SizedBox(height:10),
-                  Text(
-                    'No Record Selected',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Montserrat'),
+                    onPressed: _clear,
                   ),
-                  SizedBox(height: 30),
-                  Container(
-                      height : 350,
-                      child: Image.asset('images/waiting.png', fit: BoxFit.cover,)
-                    ),
-                  
-                ],),
-            );
-            }
-        },
-      );
+                ),
+                Container(
+                  height: 350,
+                  width: 250,
+                  child: Image.file(
+                    snapshot.data,
+                    //fit: BoxFit.fill,
+                  ),
+                ),
+              ],
+            ),
+          );
+        } else if (null != snapshot.error) {
+          return const Text(
+            'Error Picking Image',
+            textAlign: TextAlign.center,
+          );
+        } else {
+          return Align(
+            alignment: Alignment.center,
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 10),
+                Text(
+                  'No Record Selected',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Montserrat'),
+                ),
+                SizedBox(height: 30),
+                Container(
+                    height: 350,
+                    child: Image.asset(
+                      'images/waiting.png',
+                      fit: BoxFit.cover,
+                    )),
+              ],
+            ),
+          );
+        }
+      },
+    );
   }
 
+  Map<int, String> data = {0: 'Report', 1: 'Prescription', 2: "X-Ray/MRI"};
 
-  Map<int, String> data = {0:'Report', 1: 'Prescription', 2: "X-Ray/MRI"};
-
- 
-  void _presentDatePicker(StateSetter setState){
+  void _presentDatePicker(StateSetter setState) {
     showDatePicker(
-      context: context, 
-      initialDate: DateTime.now(), 
-      firstDate: DateTime(2019), 
-      lastDate: DateTime.now()
-    ).then((pickedDate) {
-      if(pickedDate == null) {
-        return ;
-      }
-      else {
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2019),
+            lastDate: DateTime.now())
+        .then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      } else {
         setState(() {
           _selectedDate = pickedDate;
         });
-        
       }
     });
     print(_selectedDate);
@@ -156,38 +158,35 @@ class _AddReportState extends State<AddReport> {
 
   int _selectedCat = 0;
   Map<int, String> category = {
-    0 : 'Diabetes',
-    1 : 'Thyroid',
-    2 : 'X-Ray/ \nMRI',
-    3 : 'Heart \nDisease',
-    4 : 'Urinary\n Disease',
-    5 : 'Others'
+    0: 'Diabetes',
+    1: 'Thyroid',
+    2: 'X-Ray/ \nMRI',
+    3: 'Heart \nDisease',
+    4: 'Urinary\n Disease',
+    5: 'Others'
   };
 
- List<Widget> selectCategory(StateSetter setState) {
+  List<Widget> selectCategory(StateSetter setState) {
     List<Widget> list = List<Widget>();
 
-    for(int i = 0; i < 6; i++) {
-      list.add( 
-        Padding(
+    for (int i = 0; i < 6; i++) {
+      list.add(Padding(
           padding: EdgeInsets.all(0.0),
-        child: Row(
-        children: <Widget>[
-          Radio(
-            value: i, 
-            groupValue: _selectedCat, 
-            onChanged: (value){
-              setState((){
-                _selectedCat = value;
-                Report.category = category[i];
-                print(Report.category);
-              });
-            }
-          ),
-          Text(category[i]),
-      
-        ],
-      )));
+          child: Row(
+            children: <Widget>[
+              Radio(
+                  value: i,
+                  groupValue: _selectedCat,
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedCat = value;
+                      Report.category = category[i];
+                      print(Report.category);
+                    });
+                  }),
+              Text(category[i]),
+            ],
+          )));
     }
 
     return list;
@@ -198,112 +197,109 @@ class _AddReportState extends State<AddReport> {
       context: ctx,
       builder: (BuildContext context) {
         return StatefulBuilder(
-        builder: (BuildContext context, StateSetter state) {
-        return GestureDetector(
-          onTap: () {},
-          child: Card(
-            elevation: 10,
-            child: Container(
-              child: Column(
-                children: <Widget>[
-                  SizedBox(height: 10),
-                  Text( 'Type', style: TextStyle(fontWeight: FontWeight.bold),),
-                  Row(children: <Widget>[
-                    
-                    Radio(
-                      value: 0,
-                      groupValue: _radioValue,
-                      onChanged: (value){
-                        state((){
-                          _radioValue = value;
-                          Report.type = data[value];
-                          print(Report.type);
-                        });
-                      }
+            builder: (BuildContext context, StateSetter state) {
+          return GestureDetector(
+            onTap: () {},
+            child: Card(
+                elevation: 10,
+                child: Container(
+                    child: Column(
+                  children: <Widget>[
+                    SizedBox(height: 10),
+                    Text(
+                      'Type',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Radio(
+                            value: 0,
+                            groupValue: _radioValue,
+                            onChanged: (value) {
+                              state(() {
+                                _radioValue = value;
+                                Report.type = data[value];
+                                print(Report.type);
+                              });
+                            }),
+                        Text('Report'),
+                        Radio(
+                            value: 1,
+                            groupValue: _radioValue,
+                            onChanged: (value) {
+                              state(() {
+                                _radioValue = value;
+                                Report.type = data[value];
+                                print(Report.type);
+                              });
+                            }),
+                        Text('Prescription'),
+                        Radio(
+                            value: 2,
+                            groupValue: _radioValue,
+                            onChanged: (value) {
+                              state(() {
+                                _radioValue = value;
+                                Report.type = data[value];
+                                print(Report.type);
+                              });
+                            }),
+                        Text('X-Ray/MRI'),
+                      ],
                     ),
                     Text(
-                      'Report'
+                      'Category',
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                     Radio(
-                      value: 1,
-                      groupValue: _radioValue,
-                      onChanged: (value){
-                        state((){
-                          _radioValue = value;
-                          Report.type = data[value];
-                          print(Report.type);
-                        });
-                      }
+                    Flexible(
+                        child: GridView.count(
+                            crossAxisCount: 3,
+                            mainAxisSpacing: 1,
+                            crossAxisSpacing: 1,
+                            shrinkWrap: true,
+                            padding: EdgeInsets.only(top: 0.0),
+                            children: selectCategory(state))),
+                    Container(
+                      height: 70,
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                              child: Text(_selectedDate == null
+                                  ? 'No Date Chosen'
+                                  : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}')),
+                          FlatButton(
+                            textColor: Theme.of(context).primaryColor,
+                            child: Text(
+                              'Choose Date',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            onPressed: () => _presentDatePicker(state),
+                          )
+                        ],
+                      ),
                     ),
-                    Text(
-                      'Prescription'
-                    ),
-                     Radio(
-                      value: 2,
-                      groupValue: _radioValue,
-                      onChanged: (value){
-                        state((){
-                          _radioValue = value;
-                          Report.type = data[value];
-                          print(Report.type);
-                        });
-                      }
-                    ),
-                    Text(
-                      'X-Ray/MRI'
-                    ),
-                  ],),
-            Text( 'Category', style: TextStyle(fontWeight: FontWeight.bold),),
-            Flexible(
-              child: GridView.count(
-              crossAxisCount: 3,
-              mainAxisSpacing: 1,
-              crossAxisSpacing: 1,
-              shrinkWrap: true,
-              padding: EdgeInsets.only(top: 0.0),
-              children: selectCategory(state))),
-            Container(
-              height: 70,
-              child: Row(children: <Widget>[
-                Expanded(
-                  child: Text(
-                    _selectedDate == null 
-                    ? 'No Date Chosen' 
-                    : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}'
-                )),
-                FlatButton(
-                  textColor: Theme.of(context).primaryColor,
-                  child: Text(
-                    'Choose Date',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  onPressed: () =>_presentDatePicker(state),
-                )
-              ],),
-            ),
-            RaisedButton(
-              child: Text('Add '),
-              color: Theme.of(context).primaryColor,
-              textColor: Theme.of(context).textTheme.button.color,
-              onPressed:() => _onAlertButtonsPressed(context)
-            )
-          ],
-        ))),
-          behavior: HitTestBehavior.opaque,
-        );
-      });},
+                    RaisedButton(
+                        child: Text('Add '),
+                        color: Theme.of(context).primaryColor,
+                        textColor: Theme.of(context).textTheme.button.color,
+                        onPressed: () => _onAlertButtonsPressed(context))
+                  ],
+                ))),
+            behavior: HitTestBehavior.opaque,
+          );
+        });
+      },
     );
-
   }
 
   String dropdownValue = 'Click Me';
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Column(children: <Widget>[
-          showImage()
-        ],),
-      
+        child: Column(
+          children: <Widget>[showImage()],
+        ),
+
         // padding: const EdgeInsets.all(20.0),
         // color: Colors.lightBlue[50],
         // child: new SingleChildScrollView(
@@ -380,19 +376,21 @@ class _AddReportState extends State<AddReport> {
         // ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.camera_alt),
-        onPressed: () => addReport(context)
-        
-      ),
+          child: Icon(Icons.camera_alt), onPressed: () => addReport(context)),
     );
   }
 
-  
   _onAlertButtonsPressed(context) {
-    if(Report.category == null || Report.type ==null || _selectedDate ==null ){
-      SnackBar(content: Text('Fill all details',), backgroundColor: Colors.red);
-     return ;
-  }
+    if (Report.category == null ||
+        Report.type == null ||
+        _selectedDate == null) {
+      SnackBar(
+          content: Text(
+            'Fill all details',
+          ),
+          backgroundColor: Colors.red);
+      return;
+    }
     Alert(
       context: context,
       type: AlertType.info,
@@ -451,11 +449,11 @@ class _AddReportState extends State<AddReport> {
 
   Widget uploadOp(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.only(left: 50, right: 50, top:10),
+        padding: EdgeInsets.only(left: 50, right: 50, top: 10),
         child: RaisedButton(
           color: Colors.blue,
           elevation: 10,
-          onPressed: (){
+          onPressed: () {
             setStatus('Uploading Image...');
             if (null == file) {
               setStatus('null tmpFile');
@@ -471,8 +469,6 @@ class _AddReportState extends State<AddReport> {
         ));
   }
 }
-
-
 
 // class DropDownButtonBlg extends StatefulWidget {
 //   DropDownButtonBlg({Key key}) : super(key: key);

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:med_report/bloc_login/bloc/login_bloc.dart';
 import 'package:med_report/global.dart';
 
-
 class LoginForm extends StatefulWidget {
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -22,7 +21,7 @@ class _LoginFormState extends State<LoginForm> {
         username: _usernameController.text,
         password: _passwordController.text,
       ));
-      Common.currentUser = _usernameController.text;
+      CurrentUser.currentUser = _usernameController.text;
     }
 
     return BlocListener<LoginBloc, LoginState>(
@@ -37,7 +36,7 @@ class _LoginFormState extends State<LoginForm> {
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
           return Container(
-            margin: EdgeInsets.only(top: screenHeight / 6 -10),
+            margin: EdgeInsets.only(top: screenHeight / 6 - 10),
             padding: EdgeInsets.only(left: 10, right: 10),
             color: Colors.white,
             alignment: Alignment.topCenter,
@@ -59,27 +58,34 @@ class _LoginFormState extends State<LoginForm> {
                         ),
                       ),
                     ),
-                   // Text("Your Username",
-                   //   style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 10),),
+                    // Text("Your Username",
+                    //   style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 10),),
                     TextFormField(
                       decoration: InputDecoration(
-                        fillColor: Colors.grey[300],
-                        filled: true,
-                        labelText: 'Your Username', prefixIcon: Icon(Icons.person, color: Colors.blue,),
+                          fillColor: Colors.grey[300],
+                          filled: true,
+                          labelText: 'Your Username',
+                          prefixIcon: Icon(
+                            Icons.person,
+                            color: Colors.blue,
+                          ),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25.0)))),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(25.0)))),
                       controller: _usernameController,
                     ),
                     SizedBox(height: 25),
-                   // Text("Password",
-                  //    style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 10),),
+                    // Text("Password",
+                    //    style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 10),),
                     TextFormField(
                       decoration: InputDecoration(
-                        fillColor: Colors.grey[300],
-                        filled: true,
-                        labelText: 'Password', prefixIcon: Icon(Icons.security, color: Colors.blue),
+                          fillColor: Colors.grey[300],
+                          filled: true,
+                          labelText: 'Password',
+                          prefixIcon: Icon(Icons.security, color: Colors.blue),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25.0)))),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(25.0)))),
                       controller: _passwordController,
                       obscureText: true,
                     ),
@@ -95,10 +101,8 @@ class _LoginFormState extends State<LoginForm> {
                               : null,
                           child: Text(
                             'LOG IN',
-                            style: TextStyle(
-                              fontSize: 18.0,
-                              color: Colors.white
-                            ),
+                            style:
+                                TextStyle(fontSize: 18.0, color: Colors.white),
                           ),
                           shape: StadiumBorder(
                             side: BorderSide(

@@ -1,10 +1,8 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:med_report/Home/dashboard.dart';
 import 'package:med_report/Profile/save.dart';
+
 import '../global.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SetProfile extends StatefulWidget {
   @override
@@ -14,6 +12,8 @@ class SetProfile extends StatefulWidget {
 Color hexToColor(String code) {
   return new Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
 }
+
+String _gender, _bloodGrp;
 
 class MySetProfile extends State<SetProfile> {
   double screenHeight;
@@ -27,55 +27,18 @@ class MySetProfile extends State<SetProfile> {
   final _addressController = TextEditingController();
   final _allergyController = TextEditingController();
 
-  Future<String> details(String url, {Map body}) async {
-    return http.post(url, body: body).then((http.Response response) {
-      print("Response Status: ${response.statusCode}");
-      print("Response Body: ${response.body}");
-
-      final int statusCode = response.statusCode;
-
-      if (statusCode < 200 || statusCode > 400 || json == null) {
-        throw new Exception("Error while fetching data");
-      }
-      return (json.decode(response.body));
-    });
-  }
-
-
-  _save( Map data ) async {
-
-   Word word = Word();
-   word.user = data['user'];
-   word.phone = data['phone'];
-   word.dob = data['dob'];
-   word.address = data['address'];
-   word.allergy = data['allergy'];
-   word.gender = data['gender'];
-   word.blood_grp = data['blood_grp'];
-   word.height = data['height'];
-   word.weight = data['weight'];
-
-
-  DatabaseHelper helper = DatabaseHelper.instance;
-int id = await helper.insert(word);
-   print('inserted row: $id');
-
-//    // update
-//    //
-//    //Word word = Word();
-//    //word.id = 1;
-//    //word.word = 'goodbye';
-//    //word.frequency = 594;
-//    //final helper = DatabaseHelper.instance;
-//    //int count = await helper.update(word);
-//    //print('updated $count row(s)');
-//
-    // delete
-    //
-    //final helper = DatabaseHelper.instance;
-    //int id = 1;
-    //int count = await helper.deleteWord(id);
-    //print('deleted $count row(s)');
+  _save(Map data) async {
+    data['user'] = CurrentUser.user;
+    CurrentUser.phone = data['phone'];
+    CurrentUser.dob = data['dob'];
+    CurrentUser.address = data['address'];
+    CurrentUser.allergy = data['allergy'];
+    CurrentUser.gender = data['gender'];
+    CurrentUser.blood_grp = data['blood_grp'];
+    CurrentUser.height = data['height'];
+    CurrentUser.weight = data['weight'];
+    String url = Common.baseURL + 'users/api_userprofile';
+    await uploadToDb(url, body: data);
   }
 
   @override
@@ -350,22 +313,19 @@ int id = await helper.insert(word);
                           side: BorderSide(color: Colors.black)),
                       onPressed: () async {
                         Map data = {
-                          'user': Common.currentUser,
+                          'user': CurrentUser.currentUser,
                           //'name'    :  _nameController.text,
                           'phone': _contactController.text,
                           'dob': _dobController.text,
                           'address': _addressController.text,
                           'allergy': _allergyController.text,
-                          'gender': Common.gender,
-                          'blood_grp': Common.blood_grp,
+                          'gender': _gender,
+                          'blood_grp': _bloodGrp,
                           'height': _heightController.text,
                           'weight': _weightController.text
                         };
-                        //String body = json.encode(data);
                         print(data);
                         _save(data);
-                        String url = Common.baseURL + 'users/api_userprofile';
-                        await details(url, body: data);
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) => Home()));
                       },
@@ -409,7 +369,7 @@ class _DropDownButtonGenderState extends State<DropDownButtonGender> {
       onChanged: (String newValue) {
         setState(() {
           dropdownValue = newValue;
-          Common.gender = dropdownValue;
+          _gender = dropdownValue;
         });
       },
       items: <String>['Male', 'Female', 'Others']
@@ -443,7 +403,7 @@ class _DropDownButtonBlgState extends State<DropDownButtonBlg> {
       onChanged: (String newValue) {
         setState(() {
           dropdownValue = newValue;
-          Common.blood_grp = dropdownValue;
+          _bloodGrp = dropdownValue;
         });
       },
       items: <String>['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
