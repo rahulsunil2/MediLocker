@@ -48,8 +48,7 @@ class Options extends StatelessWidget {
         body: TabBarView(
           children: [
             Category(),
-            Center(child: Text("Page 2")),
-            //Center(child: Text("Page 3")),
+            DateTimeChart.withSampleData(),
             AddReport()
             //selectLoc(context),
             //form(context),
