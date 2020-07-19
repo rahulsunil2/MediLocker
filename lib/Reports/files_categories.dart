@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:med_report/Reports/reports_list.dart';
 
 class Category extends StatelessWidget {
   @override
@@ -31,7 +32,9 @@ class Category extends StatelessWidget {
                   Menu(title: "Others ", action: 6),
                 ]),
           ),
-        ]));
+        ]
+      )
+    );
   }
 }
 class Menu extends StatelessWidget {
@@ -68,8 +71,13 @@ class Menu extends StatelessWidget {
                     )),
               ]),
           onPressed: () {
-            
-          },
-        ));
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => FilesList(title)
+            )
+          );
+        },
+      )
+    );
   }
 }

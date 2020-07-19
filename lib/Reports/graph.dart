@@ -23,132 +23,143 @@ class DateTimeChart extends StatelessWidget {
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(20.0),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-            Color.fromRGBO(116, 116, 191, 1.0),
-            Color.fromRGBO(52, 138, 199, 1.0)
-          ]),
-         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Card(
-            child: Container(
-              height: 550,
-              width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.all(20.0),
-              child: new Column(
-                children: [
-                  new Padding(padding: EdgeInsets.only(top: 20.0)),
-                  Text(
-              "Glucose Level",
-              style: new TextStyle(
-                        fontFamily: "Poppins",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
-                      ),
-            ),    
-            new Padding(padding: EdgeInsets.only(bottom: 20.0)),
-                  new Flexible(
-                    child: new TextFormField(
-                      decoration: new InputDecoration(
-                        labelText: "Date",
-                        fillColor: Colors.white,
-                        border: new OutlineInputBorder(
-                          borderRadius: new BorderRadius.circular(25.0),
-                          borderSide: new BorderSide(),
+      body: SingleChildScrollView(
+              child: Container(
+          padding: const EdgeInsets.all(20.0),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+              Color.fromRGBO(116, 116, 191, 1.0),
+              Color.fromRGBO(52, 138, 199, 1.0)
+            ]),
+           ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Card(
+              child: Container(
+                height: 550,
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.all(20.0),
+                child: new Column(
+                  children: [
+                    new Padding(padding: EdgeInsets.only(top: 20.0)),
+                    Text(
+                "DIABETES",
+                style: new TextStyle(
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
                         ),
-                      ),
-                      validator: (val) {
-                        if (val.length == 0) {
-                          return "Date";
-                        } else {
-                          return null;
-                        }
-                      },
-                      keyboardType: TextInputType.datetime,
-                      style: new TextStyle(
-                        fontFamily: "Poppins",
+              ),    
+                    Text(
+                "Glucose Level",
+                style: new TextStyle(
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25,
+                        ),
+              ),
+              
+              new Padding(padding: EdgeInsets.only(bottom: 20.0)),
+                    new Flexible(
+                      child: new TextFormField(
+                        decoration: new InputDecoration(
+                          labelText: "Date",
+                          fillColor: Colors.white,
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(25.0),
+                            borderSide: new BorderSide(),
+                          ),
+                        ),
+                        validator: (val) {
+                          if (val.length == 0) {
+                            return "Date";
+                          } else {
+                            return null;
+                          }
+                        },
+                        keyboardType: TextInputType.datetime,
+                        style: new TextStyle(
+                          fontFamily: "Poppins",
+                        ),
                       ),
                     ),
-                  ),
-                  new Padding(padding: EdgeInsets.only(bottom: 20.0)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      new Flexible(
-                        child: new TextFormField(
-                          decoration: new InputDecoration(
-                            labelText: "Before Fasting",
-                            fillColor: Colors.white,
-                            border: new OutlineInputBorder(
-                              borderRadius: new BorderRadius.circular(25.0),
-                              borderSide: new BorderSide(),
+                    new Padding(padding: EdgeInsets.only(bottom: 20.0)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        new Flexible(
+                          child: new TextFormField(
+                            decoration: new InputDecoration(
+                              labelText: "Before Fasting",
+                              fillColor: Colors.white,
+                              border: new OutlineInputBorder(
+                                borderRadius: new BorderRadius.circular(25.0),
+                                borderSide: new BorderSide(),
+                              ),
+                            ),
+                            validator: (val) {
+                              if (val.length == 0) {
+                                return "Value can not be empty";
+                              } else {
+                                return null;
+                              }
+                            },
+                            keyboardType: TextInputType.datetime,
+                            style: new TextStyle(
+                              fontFamily: "Poppins",
                             ),
                           ),
-                          validator: (val) {
-                            if (val.length == 0) {
-                              return "Value can not be empty";
-                            } else {
-                              return null;
-                            }
-                          },
-                          keyboardType: TextInputType.datetime,
-                          style: new TextStyle(
-                            fontFamily: "Poppins",
-                          ),
                         ),
-                      ),
-                      new Padding(padding: EdgeInsets.only(left: 10.0)),
-                      new Flexible(
-                        child: new TextFormField(
-                          decoration: new InputDecoration(
-                            labelText: "After fasting",
-                            fillColor: Colors.white,
-                            border: new OutlineInputBorder(
-                              borderRadius: new BorderRadius.circular(25.0),
-                              borderSide: new BorderSide(),
+                        new Padding(padding: EdgeInsets.only(left: 10.0)),
+                        new Flexible(
+                          child: new TextFormField(
+                            decoration: new InputDecoration(
+                              labelText: "After fasting",
+                              fillColor: Colors.white,
+                              border: new OutlineInputBorder(
+                                borderRadius: new BorderRadius.circular(25.0),
+                                borderSide: new BorderSide(),
+                              ),
+                            ),
+                            validator: (val) {
+                              if (val.length == 0) {
+                                return "Value can not be empty";
+                              } else {
+                                return null;
+                              }
+                            },
+                            keyboardType: TextInputType.number,
+                            style: new TextStyle(
+                              fontFamily: "Poppins",
                             ),
                           ),
-                          validator: (val) {
-                            if (val.length == 0) {
-                              return "Value can not be empty";
-                            } else {
-                              return null;
-                            }
-                          },
-                          keyboardType: TextInputType.number,
-                          style: new TextStyle(
-                            fontFamily: "Poppins",
-                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  new Padding(padding: EdgeInsets.only(bottom: 20.0)),
-                  Card(
-                    child: Container(
-                      height: 200,
-                      width: MediaQuery.of(context).size.width,
-                      child: new charts.TimeSeriesChart(
-                        seriesList,
-                        animate: animate,
-                        defaultRenderer: new charts.LineRendererConfig(),
-                        customSeriesRenderers: [
-                          new charts.PointRendererConfig(
-                              customRendererId: 'customPoint')
-                        ],
-                        dateTimeFactory: const charts.LocalDateTimeFactory(),
-                      ),
+                      ],
                     ),
-                  )
-                ],
+                    new Padding(padding: EdgeInsets.only(bottom: 20.0)),
+                    Card(
+                      child: Container(
+                        height: 200,
+                        width: MediaQuery.of(context).size.width,
+                        child: new charts.TimeSeriesChart(
+                          seriesList,
+                          animate: animate,
+                          defaultRenderer: new charts.LineRendererConfig(),
+                          customSeriesRenderers: [
+                            new charts.PointRendererConfig(
+                                customRendererId: 'customPoint')
+                          ],
+                          dateTimeFactory: const charts.LocalDateTimeFactory(),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
+            ],
           ),
-          ],
         ),
       ),
     );

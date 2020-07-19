@@ -206,7 +206,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         new Text(
-                                          'Age',
+                                          'Date of Birth',
                                           style: TextStyle(
                                             fontSize: 15.0,
                                           ),

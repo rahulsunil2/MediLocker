@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_uploader/flutter_uploader.dart';
 import 'package:image_picker/image_picker.dart';
@@ -63,7 +62,9 @@ class _AddReportState extends State<AddReport> {
           method: UploadMethod.POST, // HTTP method  (POST or PUT or PATCH)
           headers: {"Content-Type": "multipart/form-data"},
           data: {
-            "description": "${Report.type} : ${Report.category}",
+            "type": "${Report.type}" ,
+            "category" : "${Report.category}",
+            "date" : DateFormat.yMMMd().format(_selectedDate),
             "user": CurrentUser.currentUser
           }, // any data you want to send in upload request
           showNotification:
@@ -150,10 +151,11 @@ class _AddReportState extends State<AddReport> {
       } else {
         setState(() {
           _selectedDate = pickedDate;
+          print(DateFormat.yMMMd().format(_selectedDate));
         });
       }
     });
-    print(_selectedDate);
+    
   }
 
   int _selectedCat = 0;
@@ -211,6 +213,7 @@ class _AddReportState extends State<AddReport> {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Radio(
                             value: 0,
@@ -234,17 +237,7 @@ class _AddReportState extends State<AddReport> {
                               });
                             }),
                         Text('Prescription'),
-                        Radio(
-                            value: 2,
-                            groupValue: _radioValue,
-                            onChanged: (value) {
-                              state(() {
-                                _radioValue = value;
-                                Report.type = data[value];
-                                print(Report.type);
-                              });
-                            }),
-                        Text('X-Ray/MRI'),
+                        
                       ],
                     ),
                     Text(

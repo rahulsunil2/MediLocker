@@ -28,7 +28,7 @@ class Options extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    ' GRAPH',
+                    ' DATA',
                     style: TextStyle(color: Colors.white, fontSize: 16.0),
                   ),
                 ),
