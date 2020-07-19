@@ -31,18 +31,33 @@ class UserCreate(APIView):
 @csrf_exempt
 def UserProfileCreate(request):
     if request.method == 'POST':
-        user = UserProfile(
-            user=User.objects.get(username=request.POST['user']),
-            phone=request.POST['phone'],
-            dob=request.POST['dob'],
-            address=request.POST['address'],
-            allergy=request.POST['allergy'],
-            gender=request.POST['gender'],
-            blood_grp=request.POST['blood_grp'],
-            height=request.POST['height'],
-            weight=request.POST['weight']
-        )
-        user.save()
+        user = User.objects.get(username=request.POST['user'])
+        num_users = User.objects.filter(user=user)
+        if len(num_users) == 0:
+            userProfile = UserProfile(
+                user=user,
+                phone=request.POST['phone'],
+                dob=request.POST['dob'],
+                address=request.POST['address'],
+                allergy=request.POST['allergy'],
+                gender=request.POST['gender'],
+                blood_grp=request.POST['blood_grp'],
+                height=request.POST['height'],
+                weight=request.POST['weight']
+            )
+            userProfile.save()
+        else:
+            num_users.update(
+                phone=request.POST['phone'],
+                dob=request.POST['dob'],
+                address=request.POST['address'],
+                allergy=request.POST['allergy'],
+                gender=request.POST['gender'],
+                blood_grp=request.POST['blood_grp'],
+                height=request.POST['height'],
+                weight=request.POST['weight']
+            )
+
         return HttpResponse('<h1>Accepted</h1>')
 
 
@@ -54,7 +69,10 @@ def MyFileView(request):
             file=request.FILES['file'],
             description=request.POST['description'],
             user=user,
-            extraction_status="NotDone"
+            extraction_status="NotDone",
+            type=request.POST['type'],
+            category=request.POST['category'],
+            record_date=request.POST['date']
         )
         med.save()
         data = OCRextract(str(med.file))
@@ -63,9 +81,8 @@ def MyFileView(request):
             original_file=med,
             extracted_data=data
         )
-        med.extraction_status="Done"
+        med.extraction_status = "Done"
         med.save()
         userData.save()
 
-        
         return HttpResponse('<h1>Accepted</h1>')
