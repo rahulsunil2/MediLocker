@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_report/Reports/files_categories.dart';
 import 'package:med_report/Reports/upload.dart';
+import 'package:med_report/Reports/graph.dart';
 
 class Options extends StatelessWidget {
   @override
