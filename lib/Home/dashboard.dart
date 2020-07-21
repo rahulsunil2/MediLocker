@@ -26,6 +26,7 @@ class _HomeState extends State<Home> {
         children: <Widget>[
           UserAccountsDrawerHeader(
             decoration: BoxDecoration(
+
               gradient: LinearGradient(
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
@@ -122,6 +123,7 @@ class _HomeState extends State<Home> {
     return Container(
       height: screenHeight / 3,
       decoration: BoxDecoration(
+        borderRadius:  BorderRadius.only(bottomRight:Radius.circular(75.0) ),
           gradient: LinearGradient(
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
@@ -197,21 +199,25 @@ class _HomeState extends State<Home> {
               shrinkWrap: true,
               crossAxisCount: 3,
               children: <Widget>[
-                Menu(title: "    Drug \nReminder", action: 1),
-                Menu(title: "Prescriptions", action: 2),
-                Menu(title: "Records", action: 3),
-                Menu(title: "     Doctor\nConsultation", action: 4),
-                Menu(title: " Smart\nDevices", action: 5),
-                Menu(title: "  Online \nShopping", action: 6),
+                Menu(title: "    Drug \nReminder", action: 1,color: Colors.grey[500]),
+                Menu(title: "Prescriptions", action: 2,color: Colors.grey[500]),
+                Menu(title: "Records", action: 3,color: Colors.blueAccent),
+                Menu(title: "     Doctor\nConsultation", action: 4,color: Colors.grey[500]),
+                Menu(title: " Smart\nDevices", action: 5,color: Colors.grey[500]),
+                Menu(title: "  Online \nShopping", action: 6,color: Colors.grey[500]),
               ]),
         ]));
   }
 }
 
+// ignore: must_be_immutable
 class Menu extends StatelessWidget {
-  Menu({this.title, this.action});
+  var color;
+
+  Menu({this.title, this.action,this.color});
   final String title;
   final int action;
+  //final Color color1;
 
   @override
   Widget build(BuildContext context) {
@@ -223,7 +229,7 @@ class Menu extends StatelessWidget {
           borderRadius: BorderRadius.circular(100),
         ),
         child: RaisedButton(
-          color: Colors.blueAccent,
+          color: color,
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
