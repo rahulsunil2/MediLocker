@@ -3,13 +3,13 @@ class CurrentUser {
   static String name = 'NIL';
   static String gender = 'NIL';
   static String user;
-  static String phone = 'None';
+  static String phone = '9999999999';
   static String dob = '1900/01/01';
   static String address = 'NIL';
   static String allergy = 'NIL';
   static String blood_grp = 'NIL';
-  static String height = 'NIL';
-  static String weight = 'NIL';
+  static String height = '150';
+  static String weight = '65';
 
   static Map<String, String> getProfile() {
     Map<String, String> data = {
