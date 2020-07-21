@@ -31,10 +31,11 @@ class UserCreate(APIView):
 @csrf_exempt
 def UserProfileCreate(request):
     if request.method == 'POST':
-        users = User.objects.filter(username=request.POST['user'])
-        if len(users) == 0:
+        user = User.objects.get(username=request.POST['user'])
+        userProfiles = UserProfile.objects.filter(user=user)
+        if len(userProfiles) == 0:
             userProfile = UserProfile(
-                user=users[0],
+                user=user,
                 phone=request.POST['phone'],
                 dob=request.POST['dob'],
                 address=request.POST['address'],
@@ -46,7 +47,7 @@ def UserProfileCreate(request):
             )
             userProfile.save()
         else:
-            users.update(
+            userProfiles.update(
                 phone=request.POST['phone'],
                 dob=request.POST['dob'],
                 address=request.POST['address'],
