@@ -300,81 +300,6 @@ class _AddReportState extends State<AddReport> {
         child: Column(
           children: <Widget>[showImage()],
         ),
-
-        // padding: const EdgeInsets.all(20.0),
-        // color: Colors.lightBlue[50],
-        // child: new SingleChildScrollView(
-        //   child: new ConstrainedBox(
-        //     constraints: new BoxConstraints(),
-        //     child: new Container(
-        //       child: new Center(
-        //         child: new Column(
-        //           children: [
-        //             new Padding(padding: EdgeInsets.only(top: 20.0)),
-        //             new Text(
-        //               'FORM',
-        //               style: new TextStyle(
-        //                   color: Colors.blue,
-        //                   fontSize: 50.0,
-        //                   fontFamily: 'Poppins'),
-        //             ),
-        //             new Padding(padding: EdgeInsets.only(top: 50.0)),
-        //             Container(
-        //               height: 55,
-        //               width: MediaQuery.of(context).size.width / 1.5,
-        //               decoration: BoxDecoration(
-        //                 border: Border.all(color: Colors.blue, width: 2),
-        //                 borderRadius: BorderRadius.circular(30.0),
-        //               ),
-        //               child: Row(
-        //                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        //                 children: [
-        //                   DropDownButtonBlg(),
-        //                 ],
-        //               ),
-        //             ),
-        //             new Padding(padding: EdgeInsets.only(top: 20.0)),
-        //             new TextFormField(
-        //               decoration: new InputDecoration(
-        //                 labelText: "Record Name",
-        //                 fillColor: Colors.white,
-        //                 border: new OutlineInputBorder(
-        //                   borderRadius: new BorderRadius.circular(25.0),
-        //                   borderSide: new BorderSide(),
-        //                 ),
-        //               ),
-        //               controller: recNameController,
-        //               validator: (val) {
-        //                 if (val.length == 0) {
-        //                   return "Name can not be empty";
-        //                 } else {
-        //                   return null;
-        //                 }
-        //               },
-        //               keyboardType: TextInputType.text,
-        //               style: new TextStyle(
-        //                 fontFamily: "Poppins",
-        //               ),
-        //             ),
-        //             new Padding(padding: EdgeInsets.only(top: 20.0)),
-        //             selectLoc(context),
-        //             new Padding(padding: EdgeInsets.only(top: 20.0)),
-        //             showImage(),
-        //             new Padding(padding: EdgeInsets.only(top: 20.0)),
-        //             uploadOp(context),
-        //             Row( mainAxisAlignment: MainAxisAlignment.end,
-        //               children: <Widget>[
-        //               FlatButton(
-        //                 child: Icon(Icons.refresh),
-        //                 onPressed: _clear,
-        //               ),
-        //             ]),
-        //           ],
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-        // ),
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.camera_alt), onPressed: () => addReport(context)),
@@ -434,23 +359,6 @@ class _AddReportState extends State<AddReport> {
     ).show();
   }
 
-  // Widget selectLoc(BuildContext context) {
-  //   return Container(
-  //     //margin: EdgeInsets.only(top: screenHeight / 1 + 10),
-  //     padding: EdgeInsets.only(left: 15, right: 15),
-  //     child: Align(
-  //         alignment: Alignment.center,
-  //         child: RaisedButton(
-  //           child: Text(
-  //             ' Select Report',
-  //             style: TextStyle(fontSize: 16.0, fontFamily: 'Monsteratt'),
-  //           ),
-  //           color: Colors.indigo,
-  //           onPressed: () => _onAlertButtonsPressed(context),
-  //         )),
-  //   );
-  // }
-
   Widget uploadOp(BuildContext context) {
     return Padding(
         padding: EdgeInsets.only(left: 50, right: 50, top: 10),
@@ -473,39 +381,3 @@ class _AddReportState extends State<AddReport> {
         ));
   }
 }
-
-// class DropDownButtonBlg extends StatefulWidget {
-//   DropDownButtonBlg({Key key}) : super(key: key);
-
-//   @override
-//   _DropDownButtonBlgState createState() => _DropDownButtonBlgState();
-// }
-
-// class _DropDownButtonBlgState extends State<DropDownButtonBlg> {
-//   String dropdownValue = 'Report';
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return DropdownButton<String>(
-//       //hint: Text("CLICK ME"),
-//       value: dropdownValue,
-//       icon: Icon(Icons.arrow_drop_down),
-//       iconSize: 30,
-//       elevation: 20,
-//       onChanged: (String newValue) {
-//         setState(() {
-//           dropdownValue = newValue;
-//           Report.type = dropdownValue;
-//         });
-//       },
-
-//       items: <String>['Report', 'Prescription', 'X-Ray/MRI']
-//           .map<DropdownMenuItem<String>>((String value) {
-//         return DropdownMenuItem<String>(
-//           value: value,
-//           child: Text(value, style: TextStyle(fontSize: 30, color: Colors.blue)),
-//         );
-//       }).toList(),
-//     );
-//   }
-// }
