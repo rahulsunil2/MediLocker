@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_uploader/flutter_uploader.dart';
 import 'package:image_picker/image_picker.dart';
@@ -53,6 +54,14 @@ class _AddReportState extends State<AddReport> {
     if (newFile != null) {
       final File newImage = await newFile.copy('$path/$picName');
       print('yes not null');
+      Map<String, String> data = {
+        "description": "Reports",
+        "type": "${Report.type}",
+        "category": "${Report.category}",
+        "date": DateFormat('yyyy-M-dd').format(_selectedDate),
+        "user": CurrentUser.currentUser
+      };
+      print(data);
       final taskId = await uploader.enqueue(
           url: Common.baseURL +
               "users/medicalrecord/", //required: url to upload to
@@ -61,12 +70,7 @@ class _AddReportState extends State<AddReport> {
           ], // required: list of files that you want to upload
           method: UploadMethod.POST, // HTTP method  (POST or PUT or PATCH)
           headers: {"Content-Type": "multipart/form-data"},
-          data: {
-            "type": "${Report.type}" ,
-            "category" : "${Report.category}",
-            "date" : DateFormat.yMMMd().format(_selectedDate),
-            "user": CurrentUser.currentUser
-          }, // any data you want to send in upload request
+          data: data, // any data you want to send in upload request
           showNotification:
               true, // send local notification (android only) for upload status
           tag: Report.category); // unique tag for upload task
@@ -155,7 +159,6 @@ class _AddReportState extends State<AddReport> {
         });
       }
     });
-    
   }
 
   int _selectedCat = 0;
@@ -237,7 +240,6 @@ class _AddReportState extends State<AddReport> {
                               });
                             }),
                         Text('Prescription'),
-                        
                       ],
                     ),
                     Text(
