@@ -23,18 +23,19 @@ class DateTimeChart extends StatelessWidget {
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(20.0),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-            Color.fromRGBO(116, 116, 191, 1.0),
-            Color.fromRGBO(52, 138, 199, 1.0)
-          ]),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Card(
+      body: SingleChildScrollView(
+              child: Container(
+          padding: const EdgeInsets.all(20.0),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+              Color.fromRGBO(116, 116, 191, 1.0),
+              Color.fromRGBO(52, 138, 199, 1.0)
+            ]),
+           ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Card(
               child: Container(
                 height: 550,
                 width: MediaQuery.of(context).size.width,
@@ -43,7 +44,7 @@ class DateTimeChart extends StatelessWidget {
                   children: [
                     new Padding(padding: EdgeInsets.only(top: 20.0)),
                     Text(
-                      "DIABETES",
+                "DIABETES",
                       style: new TextStyle(
                         fontFamily: "Poppins",
                         fontWeight: FontWeight.bold,
@@ -201,7 +202,7 @@ class DateTimeChart extends StatelessWidget {
             ),
           ],
         ),
-      ),
+      ),),
     );
   }
 
