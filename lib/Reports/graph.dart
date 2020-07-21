@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 class DateTimeChart extends StatelessWidget {
   final List<charts.Series> seriesList;
   final bool animate;
-   double screenHeight;
-    var finaldate;
+  double screenHeight;
+  var finaldate;
 
   DateTimeChart(this.seriesList, {this.animate});
 
@@ -23,19 +23,18 @@ class DateTimeChart extends StatelessWidget {
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: SingleChildScrollView(
-              child: Container(
-          padding: const EdgeInsets.all(20.0),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-              Color.fromRGBO(116, 116, 191, 1.0),
-              Color.fromRGBO(52, 138, 199, 1.0)
-            ]),
-           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Card(
+      body: Container(
+        padding: const EdgeInsets.all(20.0),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [
+            Color.fromRGBO(116, 116, 191, 1.0),
+            Color.fromRGBO(52, 138, 199, 1.0)
+          ]),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Card(
               child: Container(
                 height: 550,
                 width: MediaQuery.of(context).size.width,
@@ -44,30 +43,21 @@ class DateTimeChart extends StatelessWidget {
                   children: [
                     new Padding(padding: EdgeInsets.only(top: 20.0)),
                     Text(
-                "DIABETES",
-                style: new TextStyle(
-                          fontFamily: "Poppins",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
-                        ),
-              ),    
-                    Text(
-                "Glucose Level",
-                style: new TextStyle(
-                          fontFamily: "Poppins",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25,
-                        ),
-              ),
-              
-              new Padding(padding: EdgeInsets.only(bottom: 20.0)),
+                      "Diabetes",
+                      style: new TextStyle(
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                      ),
+                    ),
+                    new Padding(padding: EdgeInsets.only(bottom: 20.0)),
                     new Flexible(
                       child: new TextFormField(
                         decoration: new InputDecoration(
                           labelText: "Date",
                           fillColor: Colors.white,
                           border: new OutlineInputBorder(
-                            borderRadius: new BorderRadius.circular(25.0),
+                            borderRadius: new BorderRadius.circular(15.0),
                             borderSide: new BorderSide(),
                           ),
                         ),
@@ -81,6 +71,7 @@ class DateTimeChart extends StatelessWidget {
                         keyboardType: TextInputType.datetime,
                         style: new TextStyle(
                           fontFamily: "Poppins",
+                          fontSize: 10,
                         ),
                       ),
                     ),
@@ -94,7 +85,7 @@ class DateTimeChart extends StatelessWidget {
                               labelText: "Before Fasting",
                               fillColor: Colors.white,
                               border: new OutlineInputBorder(
-                                borderRadius: new BorderRadius.circular(25.0),
+                                borderRadius: new BorderRadius.circular(15.0),
                                 borderSide: new BorderSide(),
                               ),
                             ),
@@ -108,6 +99,7 @@ class DateTimeChart extends StatelessWidget {
                             keyboardType: TextInputType.datetime,
                             style: new TextStyle(
                               fontFamily: "Poppins",
+                               fontSize: 8,
                             ),
                           ),
                         ),
@@ -118,7 +110,7 @@ class DateTimeChart extends StatelessWidget {
                               labelText: "After fasting",
                               fillColor: Colors.white,
                               border: new OutlineInputBorder(
-                                borderRadius: new BorderRadius.circular(25.0),
+                                borderRadius: new BorderRadius.circular(15.0),
                                 borderSide: new BorderSide(),
                               ),
                             ),
@@ -132,34 +124,74 @@ class DateTimeChart extends StatelessWidget {
                             keyboardType: TextInputType.number,
                             style: new TextStyle(
                               fontFamily: "Poppins",
+                               fontSize: 8,
                             ),
                           ),
                         ),
                       ],
                     ),
-                    new Padding(padding: EdgeInsets.only(bottom: 20.0)),
+                    new Padding(padding: EdgeInsets.only(bottom:10.0)),
                     Card(
                       child: Container(
-                        height: 200,
-                        width: MediaQuery.of(context).size.width,
-                        child: new charts.TimeSeriesChart(
-                          seriesList,
-                          animate: animate,
-                          defaultRenderer: new charts.LineRendererConfig(),
-                          customSeriesRenderers: [
-                            new charts.PointRendererConfig(
-                                customRendererId: 'customPoint')
-                          ],
-                          dateTimeFactory: const charts.LocalDateTimeFactory(),
-                        ),
+                          height: 200,
+                          width: MediaQuery.of(context).size.width,
+                          child:
+                              new charts.TimeSeriesChart(
+                                seriesList,
+                                animate: animate,
+                                defaultRenderer:
+                                    new charts.LineRendererConfig(),
+                                customSeriesRenderers: [
+                                  new charts.PointRendererConfig(
+                                      customRendererId: 'customPoint')
+                                ],
+                                dateTimeFactory:
+                                    const charts.LocalDateTimeFactory(),
+                              ),
                       ),
-                    )
+                    ),
+                    new Padding(padding: EdgeInsets.only(bottom:10.0)),
+                    Row(
+                                children: [
+                                Container(
+                                  height: 10,
+                                  width: 10,
+                                  color: Colors.green,
+                                ),
+                                Text(
+                                  '  Normal Range (125)'
+                                ),
+                              ],
+                              ),
+                              Row(
+                                children: [
+                                Container(
+                                  height: 10,
+                                  width: 10,
+                                  color: Colors.blue,
+                                ),
+                                Text(
+                                  '  Before Fasting'
+                                ),
+                              ],
+                              ),
+                              Row(
+                                children: [
+                                Container(
+                                  height: 10,
+                                  width: 10,
+                                  color: Colors.red,
+                                ),
+                                Text(
+                                  '  After Fasting'
+                                ),
+                              ],
+                              ),
                   ],
                 ),
               ),
             ),
-            ],
-          ),
+          ],
         ),
       ),
     );
