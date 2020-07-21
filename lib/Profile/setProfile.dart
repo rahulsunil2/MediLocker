@@ -18,7 +18,7 @@ String _gender, _bloodGrp;
 
 class MySetProfile extends State<SetProfile> {
   double screenHeight;
-  DateTime _selectedDate = DateTime.now();
+  DateTime _selectedDate ;
 
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
@@ -78,31 +78,32 @@ class MySetProfile extends State<SetProfile> {
     screenHeight = MediaQuery.of(context).size.height;
     return StatefulBuilder(builder: (BuildContext context, StateSetter state) {
       return Scaffold(
+        
           backgroundColor: Colors.lightBlue[50],
           body: Container(
               padding: const EdgeInsets.all(20.0),
               color: Colors.lightBlue[50],
-              child: new SingleChildScrollView(
-                child: new ConstrainedBox(
-                  constraints: new BoxConstraints(),
-                  child: new Container(
-                    child: new Center(
-                        child: new Column(children: [
-                      new Padding(padding: EdgeInsets.only(top: 50.0)),
-                      new Text(
+              child: SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(),
+                  child: Container(
+                    child: Center(
+                        child: Column(children: [
+                      Padding(padding: EdgeInsets.only(top: 50.0)),
+                      Text(
                         'Profile',
-                        style: new TextStyle(
+                        style: TextStyle(
                             color: hexToColor("#1A348A"),
                             fontSize: 25.0,
                             fontFamily: 'Poppins'),
                       ),
-                      new Padding(padding: EdgeInsets.only(top: 20.0)),
-                      new CircleAvatar(
+                      Padding(padding: EdgeInsets.only(top: 20.0)),
+                      CircleAvatar(
                         backgroundImage: AssetImage('images/user.jpg'),
                         radius: 50,
                       ),
-                      new Padding(padding: EdgeInsets.only(top: 20.0)),
-                      new Row(
+                      Padding(padding: EdgeInsets.only(top: 20.0)),
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Flexible(
@@ -184,12 +185,21 @@ class MySetProfile extends State<SetProfile> {
                       Padding(padding: EdgeInsets.only(top: 20.0)),
                       Container(
                         height: 70,
+                        decoration: BoxDecoration(
+                            border: Border.all(width:0.5, color: Colors.black87),
+                            borderRadius: BorderRadius.circular(25.0),
+                            
+                          ),
                         child: Row(
                           children: <Widget>[
                             Expanded(
-                                child: Text(_selectedDate == null
-                                    ? 'No Date Chosen'
-                                    : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}')),
+                                child: Text(
+                                  _selectedDate == null
+                                    ? '  Date of Birth: '
+                                    : '  Date of Birth: ${DateFormat.yMd().format(_selectedDate)}',
+                                  style: TextStyle(fontFamily: "Poppins"),
+                                  )
+                              ),
                             FlatButton(
                               textColor: Theme.of(context).primaryColor,
                               child: Text(

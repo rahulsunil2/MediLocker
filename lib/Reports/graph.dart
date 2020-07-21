@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 class DateTimeChart extends StatelessWidget {
   final List<charts.Series> seriesList;
   final bool animate;
-   double screenHeight;
-    var finaldate;
+  double screenHeight;
+  var finaldate;
 
   DateTimeChart(this.seriesList, {this.animate});
 
@@ -45,13 +45,14 @@ class DateTimeChart extends StatelessWidget {
                     new Padding(padding: EdgeInsets.only(top: 20.0)),
                     Text(
                 "DIABETES",
-                style: new TextStyle(
-                          fontFamily: "Poppins",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
-                        ),
-              ),    
+                      style: new TextStyle(
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                      ),
+                    ),
                     Text(
+<<<<<<< HEAD
                 "Glucose Level",
                 style: new TextStyle(
                           fontFamily: "Poppins",
@@ -59,15 +60,29 @@ class DateTimeChart extends StatelessWidget {
                           fontSize: 25,
                         ),
               ),
-              
+              Container(
+                height: 150,
+                width: 100,
+                child: Image.asset('images/reference.jpg'),
+              ),    
               new Padding(padding: EdgeInsets.only(bottom: 20.0)),
+=======
+                      "Glucose Level",
+                      style: new TextStyle(
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    new Padding(padding: EdgeInsets.only(bottom: 20.0)),
+>>>>>>> 34100d4035cbd393de4eb3dbacc2b510c0f9c2e0
                     new Flexible(
                       child: new TextFormField(
                         decoration: new InputDecoration(
                           labelText: "Date",
                           fillColor: Colors.white,
                           border: new OutlineInputBorder(
-                            borderRadius: new BorderRadius.circular(25.0),
+                            borderRadius: new BorderRadius.circular(15.0),
                             borderSide: new BorderSide(),
                           ),
                         ),
@@ -81,6 +96,7 @@ class DateTimeChart extends StatelessWidget {
                         keyboardType: TextInputType.datetime,
                         style: new TextStyle(
                           fontFamily: "Poppins",
+                          fontSize: 10,
                         ),
                       ),
                     ),
@@ -94,7 +110,7 @@ class DateTimeChart extends StatelessWidget {
                               labelText: "Before Fasting",
                               fillColor: Colors.white,
                               border: new OutlineInputBorder(
-                                borderRadius: new BorderRadius.circular(25.0),
+                                borderRadius: new BorderRadius.circular(15.0),
                                 borderSide: new BorderSide(),
                               ),
                             ),
@@ -108,6 +124,7 @@ class DateTimeChart extends StatelessWidget {
                             keyboardType: TextInputType.datetime,
                             style: new TextStyle(
                               fontFamily: "Poppins",
+                               fontSize: 8,
                             ),
                           ),
                         ),
@@ -118,7 +135,7 @@ class DateTimeChart extends StatelessWidget {
                               labelText: "After fasting",
                               fillColor: Colors.white,
                               border: new OutlineInputBorder(
-                                borderRadius: new BorderRadius.circular(25.0),
+                                borderRadius: new BorderRadius.circular(15.0),
                                 borderSide: new BorderSide(),
                               ),
                             ),
@@ -132,36 +149,76 @@ class DateTimeChart extends StatelessWidget {
                             keyboardType: TextInputType.number,
                             style: new TextStyle(
                               fontFamily: "Poppins",
+                               fontSize: 8,
                             ),
                           ),
                         ),
                       ],
                     ),
-                    new Padding(padding: EdgeInsets.only(bottom: 20.0)),
+                    new Padding(padding: EdgeInsets.only(bottom:10.0)),
                     Card(
                       child: Container(
-                        height: 200,
-                        width: MediaQuery.of(context).size.width,
-                        child: new charts.TimeSeriesChart(
-                          seriesList,
-                          animate: animate,
-                          defaultRenderer: new charts.LineRendererConfig(),
-                          customSeriesRenderers: [
-                            new charts.PointRendererConfig(
-                                customRendererId: 'customPoint')
-                          ],
-                          dateTimeFactory: const charts.LocalDateTimeFactory(),
-                        ),
+                          height: 200,
+                          width: MediaQuery.of(context).size.width,
+                          child:
+                              new charts.TimeSeriesChart(
+                                seriesList,
+                                animate: animate,
+                                defaultRenderer:
+                                    new charts.LineRendererConfig(),
+                                customSeriesRenderers: [
+                                  new charts.PointRendererConfig(
+                                      customRendererId: 'customPoint')
+                                ],
+                                dateTimeFactory:
+                                    const charts.LocalDateTimeFactory(),
+                              ),
                       ),
-                    )
+                    ),
+                    new Padding(padding: EdgeInsets.only(bottom:10.0)),
+                    Row(
+                                children: [
+                                Container(
+                                  height: 10,
+                                  width: 10,
+                                  color: Colors.green,
+                                ),
+                                Text(
+                                  '  Normal Range ( 125 mg )'
+                                ),
+                              ],
+                              ),
+                              Row(
+                                children: [
+                                Container(
+                                  height: 10,
+                                  width: 10,
+                                  color: Colors.blue,
+                                ),
+                                Text(
+                                  '  Before Fasting'
+                                ),
+                              ],
+                              ),
+                              Row(
+                                children: [
+                                Container(
+                                  height: 10,
+                                  width: 10,
+                                  color: Colors.red,
+                                ),
+                                Text(
+                                  '  After Fasting'
+                                ),
+                              ],
+                              ),
                   ],
                 ),
               ),
             ),
-            ],
-          ),
+          ],
         ),
-      ),
+      ),),
     );
   }
 

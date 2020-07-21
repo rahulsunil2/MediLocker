@@ -300,6 +300,7 @@ class _AddReportState extends State<AddReport> {
         child: Column(
           children: <Widget>[showImage()],
         ),
+   
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.camera_alt), onPressed: () => addReport(context)),
@@ -359,6 +360,23 @@ class _AddReportState extends State<AddReport> {
     ).show();
   }
 
+  // Widget selectLoc(BuildContext context) {
+  //   return Container(
+  //     //margin: EdgeInsets.only(top: screenHeight / 1 + 10),
+  //     padding: EdgeInsets.only(left: 15, right: 15),
+  //     child: Align(
+  //         alignment: Alignment.center,
+  //         child: RaisedButton(
+  //           child: Text(
+  //             ' Select Report',
+  //             style: TextStyle(fontSize: 16.0, fontFamily: 'Monsteratt'),
+  //           ),
+  //           color: Colors.indigo,
+  //           onPressed: () => _onAlertButtonsPressed(context),
+  //         )),
+  //   );
+  // }
+
   Widget uploadOp(BuildContext context) {
     return Padding(
         padding: EdgeInsets.only(left: 50, right: 50, top: 10),
@@ -381,3 +399,39 @@ class _AddReportState extends State<AddReport> {
         ));
   }
 }
+
+// class DropDownButtonBlg extends StatefulWidget {
+//   DropDownButtonBlg({Key key}) : super(key: key);
+
+//   @override
+//   _DropDownButtonBlgState createState() => _DropDownButtonBlgState();
+// }
+
+// class _DropDownButtonBlgState extends State<DropDownButtonBlg> {
+//   String dropdownValue = 'Report';
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return DropdownButton<String>(
+//       //hint: Text("CLICK ME"),
+//       value: dropdownValue,
+//       icon: Icon(Icons.arrow_drop_down),
+//       iconSize: 30,
+//       elevation: 20,
+//       onChanged: (String newValue) {
+//         setState(() {
+//           dropdownValue = newValue;
+//           Report.type = dropdownValue;
+//         });
+//       },
+
+//       items: <String>['Report', 'Prescription', 'X-Ray/MRI']
+//           .map<DropdownMenuItem<String>>((String value) {
+//         return DropdownMenuItem<String>(
+//           value: value,
+//           child: Text(value, style: TextStyle(fontSize: 30, color: Colors.blue)),
+//         );
+//       }).toList(),
+//     );
+//   }
+// }
