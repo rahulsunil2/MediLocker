@@ -27,9 +27,6 @@ class UserProfile(models.Model):
     height = models.IntegerField(blank=True)
     weight = models.IntegerField(blank=True)
 
-    def __str__(self):
-        return self.user.first_name + "'s Profile"
-
 
 class UserMedicalData(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
