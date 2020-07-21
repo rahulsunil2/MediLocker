@@ -99,29 +99,6 @@ class MySetProfile extends State<SetProfile> {
                       new Padding(padding: EdgeInsets.only(top: 20.0)),
                       TextFormField(
                         decoration: new InputDecoration(
-                          labelText: "Full Name",
-                          fillColor: Colors.white,
-                          border: new OutlineInputBorder(
-                            borderRadius: new BorderRadius.circular(25.0),
-                            borderSide: new BorderSide(),
-                          ),
-                        ),
-                        controller: _nameController,
-                        validator: (val) {
-                          if (val.length == 0) {
-                            return "Name can not be empty";
-                          } else {
-                            return null;
-                          }
-                        },
-                        keyboardType: TextInputType.text,
-                        style: new TextStyle(
-                          fontFamily: "Poppins",
-                        ),
-                      ),
-                      Padding(padding: EdgeInsets.only(top: 20.0)),
-                      TextFormField(
-                        decoration: new InputDecoration(
                           labelText: "Contact Number",
                           fillColor: Colors.white,
                           border: new OutlineInputBorder(
@@ -318,18 +295,6 @@ class MySetProfile extends State<SetProfile> {
                             'weight': _weightController.text
                           };
                           _save(data);
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => Home()));
-                        },
-                      ),
-                      Padding(padding: EdgeInsets.only(top: 20.0)),
-                      RaisedButton(
-                        child: Text('Submit'),
-                        color: Colors.blue[100],
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            side: BorderSide(color: Colors.black)),
-                        onPressed: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) => Home()));
                         },
