@@ -43,11 +43,19 @@ class DateTimeChart extends StatelessWidget {
                   children: [
                     new Padding(padding: EdgeInsets.only(top: 20.0)),
                     Text(
-                      "Diabetes",
+                      "DIABETES",
                       style: new TextStyle(
                         fontFamily: "Poppins",
                         fontWeight: FontWeight.bold,
                         fontSize: 30,
+                      ),
+                    ),
+                    Text(
+                      "Glucose Level",
+                      style: new TextStyle(
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
                       ),
                     ),
                     new Padding(padding: EdgeInsets.only(bottom: 20.0)),
@@ -159,7 +167,7 @@ class DateTimeChart extends StatelessWidget {
                                   color: Colors.green,
                                 ),
                                 Text(
-                                  '  Normal Range (125)'
+                                  '  Normal Range ( 125 mg )'
                                 ),
                               ],
                               ),
