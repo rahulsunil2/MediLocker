@@ -9,7 +9,7 @@ from .serializers import MedicalImageSerializer
 from django.contrib.auth.models import User
 from .models import UserProfile, MedicalImageFile, UserMedicalData
 from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .detect import OCRextract
 
 # Create your views here.
@@ -89,3 +89,28 @@ def MyFileView(request):
         userData.save()
 
         return HttpResponse('<h1>Accepted</h1>')
+
+
+@csrf_exempt
+def UserProfileView(request):
+    if request.method == 'POST':
+        users = UserProfile.objects.filter(user=User.objects.get(username=request.POST['username']))
+        if len(users) == 0:
+            context = {
+                'data': 'Not Available'
+            }
+        else:
+            user = users[0]
+            context = {
+                'data': 'Available',
+                'phone': str(user.phone),
+                'dob': user.dob.strftime("%d %b, %Y"),
+                'address': user.address,
+                'allergy': user.allergy,
+                'gender': user.gender,
+                'blood_grp': user.blood_grp,
+                'height': str(user.height),
+                'weight': str(user.weight)
+            }
+
+        return JsonResponse(context)
