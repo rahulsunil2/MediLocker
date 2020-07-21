@@ -32,6 +32,9 @@ class UserCreate(APIView):
 def UserProfileCreate(request):
     if request.method == 'POST':
         user = User.objects.get(username=request.POST['user'])
+        user.first_name = request.POST['firstName']
+        user.last_name = request.POST['lastName']
+        user.save()
         userProfiles = UserProfile.objects.filter(user=user)
         if len(userProfiles) == 0:
             userProfile = UserProfile(
