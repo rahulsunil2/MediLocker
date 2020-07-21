@@ -19,7 +19,7 @@ class MedicalFetch {
         print(response.statusCode);
         throw new Exception("Error while fetching data");
       }
-      print('Response:${response.body}');
+      print('Response:${json.decode(response.body)['data']}');
       return (json.decode(response.body)['data'].toList());
     });
   }

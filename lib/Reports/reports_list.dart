@@ -14,7 +14,7 @@ class _FilesListState extends State<FilesList> {
   Future<List<dynamic>> data;
 
   @override
-  void initState() async {
+  void initState()  {
     super.initState();
     data = MedicalFetch.searchDjangoApi(widget.type);
     print('Data: $data');
@@ -37,9 +37,12 @@ class _FilesListState extends State<FilesList> {
             builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
               if (snapshot.hasData) {
                 // Data fetched successfully, display your data here
+                print(snapshot.data);
 
                 return ListView.builder(
+                  shrinkWrap: true,
                   itemBuilder: (ctx, index) {
+                    //DateTime date = DateTime.parse(snapshot.data[index]["record_date"]);
                     return Card(
                       margin:
                           EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
@@ -50,16 +53,19 @@ class _FilesListState extends State<FilesList> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: FittedBox(
-                                child: Text(DateFormat.yMMMd()
-                                    .format(snapshot.data[index].date)),
+                                child: Text(
+                                 DateFormat.yMMMd().format(DateTime.parse(snapshot.data[index]["record_date"]))
+                                ),
+                                ),
                               ),
-                            )),
-                        title: Text(snapshot.data[index].description,
-                            style: Theme.of(context).textTheme.headline1),
-                        // subtitle: Text(
-                        //   DateFormat.yMMMd().format(snapshot.data[index].date),
-                        //   style: TextStyle(color: Colors.grey),
-                        // ),
+                            ),
+                        title: Text(snapshot.data[index]["description"],
+                           // style: Theme.of(context).textTheme.headline1
+                          ),
+                        subtitle: Text(
+                          snapshot.data[index]["extracted_data"],
+                          style: TextStyle(color: Colors.grey),
+                        ),
                       ),
                     );
                   },

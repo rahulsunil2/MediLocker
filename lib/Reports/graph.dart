@@ -21,179 +21,187 @@ class DateTimeChart extends StatelessWidget {
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      
       body: SingleChildScrollView(
-        child: Container(
+              child: Container(
           padding: const EdgeInsets.all(20.0),
           decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
               Color.fromRGBO(116, 116, 191, 1.0),
               Color.fromRGBO(52, 138, 199, 1.0)
             ]),
-          ),
+           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Card(
-                child: Container(
-                  height: 550,
-                  width: MediaQuery.of(context).size.width,
-                  padding: const EdgeInsets.all(20.0),
-                  child: new Column(
-                    children: [
-                      new Padding(padding: EdgeInsets.only(top: 20.0)),
-                      Text(
-                        "DIABETES",
+              child: Container(
+                height: 550,
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.all(20.0),
+                child: new Column(
+                  children: [
+                    new Padding(padding: EdgeInsets.only(top: 20.0)),
+                    Text(
+                "DIABETES",
+                      style: new TextStyle(
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                      ),
+                    ),
+                    Text(
+                      "Glucose Level",
+                      style: new TextStyle(
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    new Padding(padding: EdgeInsets.only(bottom: 20.0)),
+                    new Flexible(
+                      child: new TextFormField(
+                        decoration: new InputDecoration(
+                          labelText: "Date",
+                          fillColor: Colors.white,
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(15.0),
+                            borderSide: new BorderSide(),
+                          ),
+                        ),
+                        validator: (val) {
+                          if (val.length == 0) {
+                            return "Date";
+                          } else {
+                            return null;
+                          }
+                        },
+                        keyboardType: TextInputType.datetime,
                         style: new TextStyle(
                           fontFamily: "Poppins",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
+                          fontSize: 10,
                         ),
                       ),
-                      Text(
-                        "Glucose Level",
-                        style: new TextStyle(
-                          fontFamily: "Poppins",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                      ),
-                      new Padding(padding: EdgeInsets.only(bottom: 20.0)),
-                      new Flexible(
-                        child: new TextFormField(
-                          decoration: new InputDecoration(
-                            labelText: "Date",
-                            fillColor: Colors.white,
-                            border: new OutlineInputBorder(
-                              borderRadius: new BorderRadius.circular(15.0),
-                              borderSide: new BorderSide(),
+                    ),
+                    new Padding(padding: EdgeInsets.only(bottom: 20.0)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        new Flexible(
+                          child: new TextFormField(
+                            decoration: new InputDecoration(
+                              labelText: "Before Fasting",
+                              fillColor: Colors.white,
+                              border: new OutlineInputBorder(
+                                borderRadius: new BorderRadius.circular(15.0),
+                                borderSide: new BorderSide(),
+                              ),
                             ),
-                          ),
-                          validator: (val) {
-                            if (val.length == 0) {
-                              return "Date";
-                            } else {
-                              return null;
-                            }
-                          },
-                          keyboardType: TextInputType.datetime,
-                          style: new TextStyle(
-                            fontFamily: "Poppins",
-                            fontSize: 10,
+                            validator: (val) {
+                              if (val.length == 0) {
+                                return "Value can not be empty";
+                              } else {
+                                return null;
+                              }
+                            },
+                            keyboardType: TextInputType.datetime,
+                            style: new TextStyle(
+                              fontFamily: "Poppins",
+                               fontSize: 8,
+                            ),
                           ),
                         ),
-                      ),
-                      new Padding(padding: EdgeInsets.only(bottom: 20.0)),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          new Flexible(
-                            child: new TextFormField(
-                              decoration: new InputDecoration(
-                                labelText: "Before Fasting",
-                                fillColor: Colors.white,
-                                border: new OutlineInputBorder(
-                                  borderRadius: new BorderRadius.circular(15.0),
-                                  borderSide: new BorderSide(),
-                                ),
-                              ),
-                              validator: (val) {
-                                if (val.length == 0) {
-                                  return "Value can not be empty";
-                                } else {
-                                  return null;
-                                }
-                              },
-                              keyboardType: TextInputType.datetime,
-                              style: new TextStyle(
-                                fontFamily: "Poppins",
-                                fontSize: 8,
+                        new Padding(padding: EdgeInsets.only(left: 10.0)),
+                        new Flexible(
+                          child: new TextFormField(
+                            decoration: new InputDecoration(
+                              labelText: "After fasting",
+                              fillColor: Colors.white,
+                              border: new OutlineInputBorder(
+                                borderRadius: new BorderRadius.circular(15.0),
+                                borderSide: new BorderSide(),
                               ),
                             ),
-                          ),
-                          new Padding(padding: EdgeInsets.only(left: 10.0)),
-                          new Flexible(
-                            child: new TextFormField(
-                              decoration: new InputDecoration(
-                                labelText: "After fasting",
-                                fillColor: Colors.white,
-                                border: new OutlineInputBorder(
-                                  borderRadius: new BorderRadius.circular(15.0),
-                                  borderSide: new BorderSide(),
-                                ),
-                              ),
-                              validator: (val) {
-                                if (val.length == 0) {
-                                  return "Value can not be empty";
-                                } else {
-                                  return null;
-                                }
-                              },
-                              keyboardType: TextInputType.number,
-                              style: new TextStyle(
-                                fontFamily: "Poppins",
-                                fontSize: 8,
-                              ),
+                            validator: (val) {
+                              if (val.length == 0) {
+                                return "Value can not be empty";
+                              } else {
+                                return null;
+                              }
+                            },
+                            keyboardType: TextInputType.number,
+                            style: new TextStyle(
+                              fontFamily: "Poppins",
+                               fontSize: 8,
                             ),
                           ),
-                        ],
-                      ),
-                      new Padding(padding: EdgeInsets.only(bottom: 10.0)),
-                      Card(
-                        child: Container(
+                        ),
+                      ],
+                    ),
+                    new Padding(padding: EdgeInsets.only(bottom:10.0)),
+                    Card(
+                      child: Container(
                           height: 200,
                           width: MediaQuery.of(context).size.width,
-                          child: new charts.TimeSeriesChart(
-                            seriesList,
-                            animate: animate,
-                            defaultRenderer: new charts.LineRendererConfig(),
-                            customSeriesRenderers: [
-                              new charts.PointRendererConfig(
-                                  customRendererId: 'customPoint')
-                            ],
-                            dateTimeFactory:
-                                const charts.LocalDateTimeFactory(),
-                          ),
-                        ),
+                          child:
+                              new charts.TimeSeriesChart(
+                                seriesList,
+                                animate: animate,
+                                defaultRenderer:
+                                    new charts.LineRendererConfig(),
+                                customSeriesRenderers: [
+                                  new charts.PointRendererConfig(
+                                      customRendererId: 'customPoint')
+                                ],
+                                dateTimeFactory:
+                                    const charts.LocalDateTimeFactory(),
+                              ),
                       ),
-                      new Padding(padding: EdgeInsets.only(bottom: 10.0)),
-                      Row(
-                        children: [
-                          Container(
-                            height: 10,
-                            width: 10,
-                            color: Colors.green,
-                          ),
-                          Text('  Normal Range ( 125 mg )'),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            height: 10,
-                            width: 10,
-                            color: Colors.blue,
-                          ),
-                          Text('  Before Fasting'),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            height: 10,
-                            width: 10,
-                            color: Colors.red,
-                          ),
-                          Text('  After Fasting'),
-                        ],
-                      ),
-                    ],
-                  ),
+                    ),
+                    new Padding(padding: EdgeInsets.only(bottom:10.0)),
+                    Row(
+                                children: [
+                                Container(
+                                  height: 10,
+                                  width: 10,
+                                  color: Colors.green,
+                                ),
+                                Text(
+                                  '  Normal Range ( 125 mg )'
+                                ),
+                              ],
+                              ),
+                              Row(
+                                children: [
+                                Container(
+                                  height: 10,
+                                  width: 10,
+                                  color: Colors.blue,
+                                ),
+                                Text(
+                                  '  Before Fasting'
+                                ),
+                              ],
+                              ),
+                              Row(
+                                children: [
+                                Container(
+                                  height: 10,
+                                  width: 10,
+                                  color: Colors.red,
+                                ),
+                                Text(
+                                  '  After Fasting'
+                                ),
+                              ],
+                              ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ),
+      ),),
     );
   }
 
