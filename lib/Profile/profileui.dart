@@ -142,7 +142,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
                                           new Text(
-                                            CurrentUser.currentUser,
+                                            CurrentUser.firstName +
+                                                ' ' +
+                                                CurrentUser.lastName,
                                             style: TextStyle(
                                                 fontSize: 20.0,
                                                 fontWeight: FontWeight.bold),

@@ -18,9 +18,10 @@ String _gender, _bloodGrp;
 
 class MySetProfile extends State<SetProfile> {
   double screenHeight;
-  DateTime _selectedDate;
+  DateTime _selectedDate = DateTime.now();
 
-  final _nameController = TextEditingController();
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
   final _contactController = TextEditingController();
   final _heightController = TextEditingController();
   final _weightController = TextEditingController();
@@ -46,6 +47,10 @@ class MySetProfile extends State<SetProfile> {
   }
 
   _save(Map<String, String> data) async {
+    CurrentUser.firstName =
+        data['firstName'].isEmpty ? CurrentUser.firstName : data['firstName'];
+    CurrentUser.lastName =
+        data['lastName'].isEmpty ? CurrentUser.lastName : data['lastName'];
     CurrentUser.phone =
         data['phone'].isEmpty ? CurrentUser.phone : data['phone'];
     CurrentUser.dob = data['dob'].isEmpty ? CurrentUser.dob : data['dob'];
@@ -97,6 +102,61 @@ class MySetProfile extends State<SetProfile> {
                         radius: 50,
                       ),
                       new Padding(padding: EdgeInsets.only(top: 20.0)),
+                      new Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Flexible(
+                            child: TextFormField(
+                              decoration: new InputDecoration(
+                                labelText: "First Name",
+                                fillColor: Colors.white,
+                                border: new OutlineInputBorder(
+                                  borderRadius: new BorderRadius.circular(25.0),
+                                  borderSide: new BorderSide(),
+                                ),
+                              ),
+                              controller: _firstNameController,
+                              validator: (val) {
+                                if (val.length == 0) {
+                                  return "First Name can not be empty";
+                                } else {
+                                  return null;
+                                }
+                              },
+                              keyboardType: TextInputType.text,
+                              style: new TextStyle(
+                                fontFamily: "Poppins",
+                              ),
+                            ),
+                          ),
+                          Padding(padding: EdgeInsets.only(left: 10.0)),
+                          Flexible(
+                            child: TextFormField(
+                              decoration: new InputDecoration(
+                                labelText: "Last Name",
+                                fillColor: Colors.white,
+                                border: new OutlineInputBorder(
+                                  borderRadius: new BorderRadius.circular(25.0),
+                                  borderSide: new BorderSide(),
+                                ),
+                              ),
+                              controller: _lastNameController,
+                              validator: (val) {
+                                if (val.length == 0) {
+                                  return "Last Name can not be empty";
+                                } else {
+                                  return null;
+                                }
+                              },
+                              keyboardType: TextInputType.text,
+                              style: new TextStyle(
+                                fontFamily: "Poppins",
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(padding: EdgeInsets.only(top: 20.0)),
                       TextFormField(
                         decoration: new InputDecoration(
                           labelText: "Contact Number",
@@ -284,6 +344,8 @@ class MySetProfile extends State<SetProfile> {
                             side: BorderSide(color: Colors.black)),
                         onPressed: () async {
                           Map<String, String> data = {
+                            'firstName': _firstNameController.text,
+                            'lastName': _lastNameController.text,
                             'phone': _contactController.text,
                             'dob':
                                 DateFormat('yyyy-M-dd').format(_selectedDate),

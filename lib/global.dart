@@ -1,6 +1,7 @@
 class CurrentUser {
   static String currentUser = 'mediLocker';
-  static String name = 'NIL';
+  static String firstName = 'NIL';
+  static String lastName = 'NIL';
   static String gender = 'NIL';
   static String user;
   static String phone = '9999999999';
@@ -13,6 +14,8 @@ class CurrentUser {
 
   static Map<String, String> getProfile() {
     Map<String, String> data = {
+      'firstName': firstName,
+      'lastName': lastName,
       'user': currentUser,
       'phone': phone,
       'dob': dob,
