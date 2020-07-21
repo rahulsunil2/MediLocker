@@ -55,7 +55,7 @@ class _AddReportState extends State<AddReport> {
       final File newImage = await newFile.copy('$path/$picName');
       print('yes not null');
       Map<String, String> data = {
-        "description": "Reports",
+        "description": "${Report.description}",
         "type": "${Report.type}",
         "category": "${Report.category}",
         "date": DateFormat('yyyy-M-dd').format(_selectedDate),
@@ -254,6 +254,12 @@ class _AddReportState extends State<AddReport> {
                             shrinkWrap: true,
                             padding: EdgeInsets.only(top: 0.0),
                             children: selectCategory(state))),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: "Record Description",
+                      ),
+                      controller: recNameController,
+                    ),
                     Container(
                       height: 70,
                       child: Row(
@@ -376,8 +382,11 @@ class _AddReportState extends State<AddReport> {
   }
 
   _onAlertButtonsPressed(context) {
+    Report.description = recNameController.text;
+    print("description ${Report.description}");
     if (Report.category == null ||
         Report.type == null ||
+        Report.description == null ||
         _selectedDate == null) {
       SnackBar(
           content: Text(
