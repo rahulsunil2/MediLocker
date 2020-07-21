@@ -12,7 +12,7 @@ class Category extends StatelessWidget {
             alignment: Alignment.center,
             child: Text("Categories ",
                 style: TextStyle(
-                  fontFamily: 'Poppins' ,
+                  fontFamily: 'Poppins',
                   fontSize: 30,
                   color: Colors.indigoAccent,
                   fontWeight: FontWeight.bold,
@@ -24,7 +24,7 @@ class Category extends StatelessWidget {
                 shrinkWrap: true,
                 crossAxisCount: 3,
                 children: <Widget>[
-                  Menu(title: " Diabetes ", action: 1),
+                  Menu(title: "Diabetes", action: 1),
                   Menu(title: "Thyroid", action: 2),
                   Menu(title: "X-Ray/ \nMRI", action: 3),
                   Menu(title: "   Heart  \n Disease", action: 4),
@@ -32,11 +32,10 @@ class Category extends StatelessWidget {
                   Menu(title: "Others ", action: 6),
                 ]),
           ),
-        ]
-      )
-    );
+        ]));
   }
 }
+
 class Menu extends StatelessWidget {
   Menu({this.title, this.action});
   final String title;
@@ -48,8 +47,7 @@ class Menu extends StatelessWidget {
         elevation: 6.0,
         margin: EdgeInsets.all(8.0),
         shape: RoundedRectangleBorder(
-          side: BorderSide(
-              color: Colors.blueAccent, width: 4),
+          side: BorderSide(color: Colors.blueAccent, width: 4),
           borderRadius: BorderRadius.circular(10),
         ),
         child: RaisedButton(
@@ -71,13 +69,9 @@ class Menu extends StatelessWidget {
                     )),
               ]),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => FilesList(title)
-            )
-          );
-        },
-      )
-    );
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => FilesList(title)));
+          },
+        ));
   }
 }
