@@ -59,7 +59,11 @@ class DateTimeChart extends StatelessWidget {
                           fontSize: 25,
                         ),
               ),
-              
+              Container(
+                height: 150,
+                width: 100,
+                child: Image.asset('images/reference.jpg'),
+              ),    
               new Padding(padding: EdgeInsets.only(bottom: 20.0)),
                     new Flexible(
                       child: new TextFormField(

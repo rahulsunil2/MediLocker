@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:med_report/Reports/medicalfetch.dart';
 
 class FilesList extends StatefulWidget {
   final String type;
@@ -13,10 +15,10 @@ class _FilesListState extends State<FilesList> {
   Future<List<dynamic>> data;
 
   @override
-  // void initState() {
-  //   super.initState();
-  //   data = MaterialFetch.searchDjangoApi(widget.item);
-  // }
+  void initState() async {
+    super.initState();
+    data=  MedicalFetch.searchDjangoApi(widget.type);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,56 +28,54 @@ class _FilesListState extends State<FilesList> {
         title: Text(widget.type), 
       ),
       body: SingleChildScrollView(
-       // child: items()
+       child: items()
       )     
     );
   }
 
-  // Widget items(){
-  //   return Container(
-  //     child: FutureBuilder(
-  //       future: data,
-  //       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-  //       if (snapshot.hasData) {
-  //         // Data fetched successfully, display your data here
-  //         return ListView.builder(
-  //       itemBuilder: (ctx, index) {
-  //         return Card(
-  //           margin: EdgeInsets.symmetric(
-  //             vertical: 8.0,
-  //             horizontal: 8.0
-  //           ),
-  //           elevation: 5.0,
-  //                     child: ListTile(
-  //             leading: CircleAvatar(
-  //               radius: 30, 
-  //               child: Padding(
-  //                 padding: const EdgeInsets.all(8.0),
-  //                 child: FittedBox(
-  //                   child: Text('date')
-  //                 ),
-  //               )
-  //             ),
-  //             title: Text(
-  //               transactions[index].title,
-  //               style: Theme.of(context).textTheme.headline1),
-  //             subtitle: Text(
-  //               DateFormat.yMMMd().format(transactions[index].date),
-  //               style: TextStyle(color: Colors.grey),
-  //             ),
-  //             trailing: IconButton(
-  //               icon: Icon(Icons.delete), 
-  //               color: Theme.of(context).errorColor,
-  //               onPressed: () => deleteTx(transactions[index].id)
-  //             ),
-  //           ),
-  //         );
+  Widget items(){
+    return Container(
+      child: FutureBuilder(
+        future: data,
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        if (snapshot.hasData) {
+          // Data fetched successfully, display your data here
+          
+          return ListView.builder(
+        itemBuilder: (ctx, index) {
+          return Card(
+            margin: EdgeInsets.symmetric(
+              vertical: 8.0,
+              horizontal: 8.0
+            ),
+            elevation: 5.0,
+            child: ListTile(
+              leading: CircleAvatar(
+                radius: 30, 
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: FittedBox(
+                    child: Text(DateFormat.yMMMd().format(snapshot.data[index].date)),
+                  ),
+                )
+              ),
+              title: Text(
+                snapshot.data[index].description,
+                style: Theme.of(context).textTheme.headline1),
+              // subtitle: Text(
+              //   DateFormat.yMMMd().format(snapshot.data[index].date),
+              //   style: TextStyle(color: Colors.grey),
+              // ),
+              
+            ),
+          );
                 
-  //        },
-  //        itemCount: transactions.length,
-  //       )
-  //       }
-  //     )
-  //   );
-  // }
+         },
+         itemCount: snapshot.data.length,
+        );
+        
+        }
+        })
+    );
+  }
 }

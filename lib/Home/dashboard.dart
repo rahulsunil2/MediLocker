@@ -61,10 +61,7 @@ class _HomeState extends State<Home> {
                 style: TextStyle(
                     fontFamily: 'Montserrat', fontWeight: FontWeight.bold)),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ProfilePage()),
-              );
+              
             },
           ),
           SizedBox(height: 30),
@@ -129,7 +126,7 @@ class _HomeState extends State<Home> {
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [Colors.blue[500], Colors.indigo[500]]),
-          borderRadius: BorderRadius.circular(30)),
+      ),
     );
   }
 
