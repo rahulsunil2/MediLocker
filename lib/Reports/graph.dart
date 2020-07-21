@@ -21,16 +21,16 @@ class DateTimeChart extends StatelessWidget {
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      
+      backgroundColor: Colors.blue[300],
       body: SingleChildScrollView(
               child: Container(
           padding: const EdgeInsets.all(20.0),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-              Color.fromRGBO(116, 116, 191, 1.0),
-              Color.fromRGBO(52, 138, 199, 1.0)
-            ]),
-           ),
+          // decoration: BoxDecoration(
+          //   gradient: LinearGradient(colors: [
+          //     Color.fromRGBO(116, 116, 191, 1.0),
+          //     Color.fromRGBO(52, 138, 199, 1.0)
+          //   ]),
+          //  ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
