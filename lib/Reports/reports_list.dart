@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:med_report/Reports/medicalfetch.dart';
@@ -14,10 +17,10 @@ class _FilesListState extends State<FilesList> {
   Future<List<dynamic>> data;
 
   @override
-  void initState()  {
+  void initState() {
     super.initState();
     data = MedicalFetch.searchDjangoApi(widget.type);
-    print('Data: $data');
+//    print('Data: $data');
   }
 
   @override
@@ -37,7 +40,8 @@ class _FilesListState extends State<FilesList> {
             builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
               if (snapshot.hasData) {
                 // Data fetched successfully, display your data here
-                print(snapshot.data);
+                var fetchedData = snapshot.data[0]["extracted_data"];
+                print(fetchedData);
 
                 return ListView.builder(
                   shrinkWrap: true,
@@ -47,24 +51,51 @@ class _FilesListState extends State<FilesList> {
                       margin:
                           EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
                       elevation: 5.0,
-                      child: ListTile(
-                        leading: CircleAvatar(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 8.0),
+                        child: ExpansionTile(
+                          leading: CircleAvatar(
                             radius: 30,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: FittedBox(
+                                child: Column(children: <Widget>[
+                                  Text(
+                                    DateFormat.MMMd().format(DateTime.parse(
+                                        snapshot.data[index]["record_date"])),
+                                    style: TextStyle(fontSize: 15.0),
+                                  ),
+                                  Text(
+                                    DateFormat.y().format(DateTime.parse(
+                                        snapshot.data[index]["record_date"])),
+                                    style: TextStyle(fontSize: 10.0),
+                                  )
+                                ]),
+                              ),
+                            ),
+                          ),
+                          title: Text(
+                            snapshot.data[index]["description"],
+                            // style: Theme.of(context).textTheme.headline1
+                          ),
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Align(
+                                alignment: Alignment.bottomRight,
                                 child: Text(
-                                 DateFormat.yMMMd().format(DateTime.parse(snapshot.data[index]["record_date"]))
-                                ),
+                                  jsonDecode(
+                                      snapshot.data[index]["extracted_data"]),
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    color: Colors.blue,
+                                    fontSize: 20.0,
+                                  ),
                                 ),
                               ),
                             ),
-                        title: Text(snapshot.data[index]["description"],
-                           // style: Theme.of(context).textTheme.headline1
-                          ),
-                        subtitle: Text(
-                          snapshot.data[index]["extracted_data"],
-                          style: TextStyle(color: Colors.grey),
+                          ],
                         ),
                       ),
                     );
