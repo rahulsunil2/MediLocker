@@ -6,6 +6,7 @@ import 'package:med_report/bloc_login/bloc/authentication_bloc.dart';
 import 'package:med_report/login/login_page.dart';
 import 'package:med_report/splash.dart';
 import 'package:med_report/Home/home.dart';
+import 'package:med_report/story.dart';
 import 'common/loading_indicator.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {
@@ -57,16 +58,14 @@ class App extends StatelessWidget {
         // ignore: missing_return
         builder: (context, state) {
           if (state is AuthenticationUnintialized) {
-            return SplashScreen();
+            return Story();
           }
           if (state is AuthenticationAuthenticated) {
             print('go to ur Home');
             return Home();
           }
           if (state is AuthenticationUnauthenticated) {
-            return Login(
-              userRepository: userRepository,
-            );
+            return Story();
           }
           if (state is AuthenticationLoading) {
             return LoadingIndicator();
