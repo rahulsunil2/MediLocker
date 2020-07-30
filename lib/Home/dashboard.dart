@@ -5,6 +5,7 @@ import 'package:med_report/Reports/report_main.dart';
 import 'package:med_report/bloc_login/bloc/authentication_bloc.dart';
 import 'package:med_report/global.dart';
 
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -26,7 +27,6 @@ class _HomeState extends State<Home> {
         children: <Widget>[
           UserAccountsDrawerHeader(
             decoration: BoxDecoration(
-
               gradient: LinearGradient(
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
@@ -61,9 +61,7 @@ class _HomeState extends State<Home> {
             title: Text('Notification',
                 style: TextStyle(
                     fontFamily: 'Montserrat', fontWeight: FontWeight.bold)),
-            onTap: () {
-              
-            },
+            onTap: () {},
           ),
           SizedBox(height: 30),
           ListTile(
@@ -121,20 +119,20 @@ class _HomeState extends State<Home> {
 
   Widget upperHalf(BuildContext context) {
     return Container(
-      height: screenHeight / 3,
+      height: screenHeight / 3 + 20,
       decoration: BoxDecoration(
-        borderRadius:  BorderRadius.only(bottomRight:Radius.circular(75.0) ),
-          gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [Colors.blue[500], Colors.indigo[500]]),
+        borderRadius: BorderRadius.only(bottomRight: Radius.circular(20.0),bottomLeft: Radius.circular(20.0)),
+        gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [Colors.blue[500], Colors.indigo[500]]),
       ),
     );
   }
 
   Widget general(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(top: screenHeight / 4 - 50),
+        margin: EdgeInsets.only(top: screenHeight / 4 - 80),
         padding: EdgeInsets.only(left: 20, right: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -145,14 +143,14 @@ class _HomeState extends State<Home> {
               'Hi',
               style: TextStyle(
                   fontWeight: FontWeight.normal,
-                  fontSize: 30,
+                  fontSize: 40,
                   color: Colors.white),
             ),
             Text(
               CurrentUser.currentUser,
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 40,
+                  fontSize: 50,
                   color: Colors.white),
             ),
             SizedBox(height: 20),
@@ -162,9 +160,13 @@ class _HomeState extends State<Home> {
 
   Widget milestone(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: (screenHeight / 4) + 110),
+      margin: EdgeInsets.only(top: (screenHeight / 4) + 45),
       padding: EdgeInsets.only(left: 10, right: 10),
       child: Card(
+        elevation: 10,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+        ),
         child: ListTile(
           trailing: Image.network(
               "https://image.flaticon.com/icons/png/512/163/163813.png"),
@@ -183,28 +185,52 @@ class _HomeState extends State<Home> {
 
   Widget options(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(top: screenHeight / 2 + 80, left: 10),
+        margin: EdgeInsets.only(top: screenHeight / 2 + 30, left: 10),
         padding: EdgeInsets.all(10.0),
         child: Column(children: <Widget>[
           Align(
             alignment: Alignment.centerLeft,
-            child: Text("What do you need ?",
+            child: Text("What are you looking for ?",
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 25,
                   color: Colors.indigo[500],
                   fontWeight: FontWeight.bold,
                 )),
           ),
           GridView.count(
               shrinkWrap: true,
-              crossAxisCount: 3,
+              crossAxisCount: 2,
               children: <Widget>[
-                Menu(title: "    Drug \nReminder", action: 1,color: Colors.grey[500]),
-                Menu(title: "Prescriptions", action: 2,color: Colors.grey[500]),
-                Menu(title: "Records", action: 3,color: Colors.blueAccent),
-                Menu(title: "     Doctor\nConsultation", action: 4,color: Colors.grey[500]),
-                Menu(title: " Smart\nDevices", action: 5,color: Colors.grey[500]),
-                Menu(title: "  Online \nShopping", action: 6,color: Colors.grey[500]),
+                Menu(
+                    title: "    Drug \nReminder",
+                    action: 1,
+                    color: Colors.grey[500],
+                    path: 'images/New message-pana.png'),
+                Menu(
+                    title: "Prescriptions",
+                    action: 2,
+                    color: Colors.grey[500],
+                    path: 'images/Accept terms-rafiki.png'),
+                Menu(
+                    title: "Records",
+                    action: 3,
+                    color: Colors.blueAccent,
+                    path: 'images/Upload-rafiki.png'),
+                Menu(
+                    title: "     Doctor\nConsultation",
+                    action: 4,
+                    color: Colors.grey[500],
+                    path: 'images/Online Doctor-pana.png'),
+                Menu(
+                    title: " Smart\nDevices",
+                    action: 5,
+                    color: Colors.grey[500],
+                    path: 'images/Jogging-rafiki.png'),
+                Menu(
+                    title: "  Online \nShopping",
+                    action: 6,
+                    color: Colors.grey[500],
+                    path: 'images/Credit Card Payment-pana.png'),
               ]),
         ]));
   }
@@ -214,47 +240,62 @@ class _HomeState extends State<Home> {
 class Menu extends StatelessWidget {
   var color;
 
-  Menu({this.title, this.action,this.color});
+  Menu({this.title, this.action, this.color, this.path});
   final String title;
   final int action;
+  final String path;
   //final Color color1;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return GestureDetector(
+      onTap: () {
+        if (action == 3) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Options()
+                  //AddReport()
+                  ));
+        }
+      },
+      child: Card(
         elevation: 7.0,
         margin: EdgeInsets.all(5.0),
         shape: RoundedRectangleBorder(
-          //side: BorderSide(color: Colors.blueAccent),
-          borderRadius: BorderRadius.circular(100),
+        side: BorderSide(color: Colors.blueAccent,width: 2),
+
+          borderRadius: BorderRadius.circular(10),
         ),
-        child: RaisedButton(
-          color: color,
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(height: 10.0),
-                Align(
+        child: Stack(
+            //crossAxisAlignment: CrossAxisAlignment.center,
+            //mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+               padding: const EdgeInsets.only(top: 5.0),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Image.asset(
+                    path,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              SizedBox(height: 10.0),
+              Padding(
+                padding: const EdgeInsets.only(top: 5.0),
+                child: Align(
                     alignment: Alignment.topCenter,
                     child: Text(
                       title,
                       style: TextStyle(
-                          fontSize: 12.5,
+                          fontSize: 20,
                           fontFamily: 'Monsteratt',
                           fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                          color: Colors.indigo),
                     )),
-              ]),
-          onPressed: () {
-            if (action == 3) {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Options()
-                      //AddReport()
-                      ));
-            }
-          },
-        ));
+              ),
+            ]),
+      ),
+    );
   }
 }
