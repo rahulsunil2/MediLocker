@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
     print('Home..');
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.lightBlue[50],
+      backgroundColor: Colors.white,
       drawer: Drawer(
           child: ListView(
         children: <Widget>[
@@ -101,11 +101,11 @@ class _HomeState extends State<Home> {
             options(context),
             Positioned(
               left: 10,
-              top: 60,
+              top: 40,
               child: IconButton(
                 icon: Icon(
                   Icons.menu,
-                  color: Colors.white,
+                  color: Colors.black,
                   size: 30.0,
                 ),
                 onPressed: () => scaffoldKey.currentState.openDrawer(),
@@ -125,14 +125,14 @@ class _HomeState extends State<Home> {
         gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
-            colors: [Colors.blue[500], Colors.indigo[500]]),
+            colors: [Colors.blueAccent, Colors.greenAccent]),
       ),
     );
   }
 
   Widget general(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(top: screenHeight / 4 - 80),
+        margin: EdgeInsets.only(top: screenHeight / 4 - 60),
         padding: EdgeInsets.only(left: 20, right: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -143,15 +143,15 @@ class _HomeState extends State<Home> {
               'Hi',
               style: TextStyle(
                   fontWeight: FontWeight.normal,
-                  fontSize: 40,
-                  color: Colors.white),
+                  fontSize: 35,
+                  color: Colors.black),
             ),
             Text(
               CurrentUser.currentUser,
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 50,
-                  color: Colors.white),
+                  fontSize: 40,
+                  color: Colors.black),
             ),
             SizedBox(height: 20),
           ],
@@ -178,7 +178,7 @@ class _HomeState extends State<Home> {
           subtitle: Text('You completed 10000 steps today'),
           isThreeLine: true,
         ),
-        color: Colors.blue[200],
+        color: Colors.lightBlueAccent,
       ),
     );
   }
@@ -193,7 +193,7 @@ class _HomeState extends State<Home> {
             child: Text("What are you looking for ?",
                 style: TextStyle(
                   fontSize: 25,
-                  color: Colors.indigo[500],
+                  color: Colors.black,
                   fontWeight: FontWeight.bold,
                 )),
           ),
@@ -204,32 +204,32 @@ class _HomeState extends State<Home> {
                 Menu(
                     title: "    Drug \nReminder",
                     action: 1,
-                    color: Colors.grey[500],
+                    color: Colors.yellow[300],
                     path: 'images/New message-pana.png'),
                 Menu(
                     title: "Prescriptions",
                     action: 2,
-                    color: Colors.grey[500],
+                    color: Colors.orange[300],
                     path: 'images/Accept terms-rafiki.png'),
                 Menu(
                     title: "Records",
                     action: 3,
-                    color: Colors.blueAccent,
+                    color: Colors.blue[300],
                     path: 'images/Upload-rafiki.png'),
                 Menu(
                     title: "     Doctor\nConsultation",
                     action: 4,
-                    color: Colors.grey[500],
+                    color: Colors.green[300],
                     path: 'images/Online Doctor-pana.png'),
                 Menu(
                     title: " Smart\nDevices",
                     action: 5,
-                    color: Colors.grey[500],
+                    color: Colors.white,
                     path: 'images/Jogging-rafiki.png'),
                 Menu(
                     title: "  Online \nShopping",
                     action: 6,
-                    color: Colors.grey[500],
+                    color: Colors.cyan[300],
                     path: 'images/Credit Card Payment-pana.png'),
               ]),
         ]));
@@ -258,43 +258,46 @@ class Menu extends StatelessWidget {
                   ));
         }
       },
-      child: Card(
-        elevation: 7.0,
-        margin: EdgeInsets.all(5.0),
-        shape: RoundedRectangleBorder(
-        side: BorderSide(color: Colors.blueAccent,width: 2),
+      child: Container(
+        child: Card(
+          elevation: 10.0,
+          margin: EdgeInsets.all(5.0),
+          color: color,
+          shape: RoundedRectangleBorder(
+          //side: BorderSide(color: Colors.black,width: 3),
 
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Stack(
-            //crossAxisAlignment: CrossAxisAlignment.center,
-            //mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-               padding: const EdgeInsets.only(top: 5.0),
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Image.asset(
-                    path,
-                    fit: BoxFit.cover,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Stack(
+              //crossAxisAlignment: CrossAxisAlignment.center,
+              //mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                 padding: const EdgeInsets.only(top: 5.0),
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Image.asset(
+                      path,
+                     // fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 10.0),
-              Padding(
-                padding: const EdgeInsets.only(top: 5.0),
-                child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Text(
-                      title,
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: 'Monsteratt',
-                          fontWeight: FontWeight.bold,
-                          color: Colors.indigo),
-                    )),
-              ),
-            ]),
+                SizedBox(height: 10.0),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5.0),
+                  child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Text(
+                        title,
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontFamily: 'Monsteratt',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      )),
+                ),
+              ]),
+        ),
       ),
     );
   }
