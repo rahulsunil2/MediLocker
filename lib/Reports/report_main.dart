@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:med_report/Reports/filesCatagories.dart';
 import 'package:med_report/Reports/files_categories.dart';
+import 'package:med_report/Reports/slider.dart';
 import 'package:med_report/Reports/upload.dart';
 import 'package:med_report/Reports/graph.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -10,7 +12,7 @@ class Options extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Colors.lightBlue[50],
+        backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.indigo,
           elevation: 10,
@@ -49,7 +51,9 @@ class Options extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            Category(),
+           // Categories(),
+            //Category(),
+            Sliding(),
             Swiper(),
             AddReport()
             //selectLoc(context),
