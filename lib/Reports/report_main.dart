@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:med_report/Reports/files_categories.dart';
-import 'package:med_report/Reports/upload.dart';
-import 'package:med_report/Reports/graph.dart';
+import 'package:med_report/Reports/AllRecords/files_categories.dart';
+import 'package:med_report/Reports/Add/upload.dart';
+import 'package:med_report/Reports/Graph/graph.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class Options extends StatelessWidget {
@@ -67,14 +67,9 @@ class Swiper extends StatefulWidget {
 }
 
 class _SwiperState extends State<Swiper> {
-  int _currentIndex=0;
+  int _currentIndex = 0;
 
-  List cardList=[
-    Item1(),
-    Item2(),
-    Item3(),
-    Item4()
-  ];
+  List cardList = [Item1(), Item2(), Item3(), Item4()];
 
   List<T> map<T>(List list, Function handler) {
     List<T> result = [];
@@ -88,44 +83,42 @@ class _SwiperState extends State<Swiper> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(
-          children: <Widget>[
-            CarouselSlider(
-               options: CarouselOptions(height: MediaQuery.of(context).size.height/1.3,
-              autoPlay: true,
-              autoPlayInterval: Duration(seconds: 3),
-              autoPlayAnimationDuration: Duration(milliseconds: 800),
-              autoPlayCurve: Curves.fastOutSlowIn,
-              aspectRatio: 2.0,),
-              items: cardList.map((card){
-                return Builder(
-                  builder:(BuildContext context){
-                    return Container(
-                      height: 400,
-                      width: MediaQuery.of(context).size.width,
-                      child: Card(
-                        color: Colors.blueAccent,
-                        child: card,
-                      ),
-                    );
-                  }
-                );
-              }).toList(),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: map<Widget>(cardList, (index, url) {
-                return Container(
-                  width: 10.0,
-                  height: 10.0,
-                  margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-                  decoration: BoxDecoration(
-                  ),
-                );
-              }),
-            ),
-          ],
-        )
-      );
+      children: <Widget>[
+        CarouselSlider(
+          options: CarouselOptions(
+            height: MediaQuery.of(context).size.height / 1.3,
+            autoPlay: true,
+            autoPlayInterval: Duration(seconds: 3),
+            autoPlayAnimationDuration: Duration(milliseconds: 800),
+            autoPlayCurve: Curves.fastOutSlowIn,
+            aspectRatio: 2.0,
+          ),
+          items: cardList.map((card) {
+            return Builder(builder: (BuildContext context) {
+              return Container(
+                height: 400,
+                width: MediaQuery.of(context).size.width,
+                child: Card(
+                  color: Colors.blueAccent,
+                  child: card,
+                ),
+              );
+            });
+          }).toList(),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: map<Widget>(cardList, (index, url) {
+            return Container(
+              width: 10.0,
+              height: 10.0,
+              margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+              decoration: BoxDecoration(),
+            );
+          }),
+        ),
+      ],
+    ));
   }
 }
 
@@ -161,6 +154,6 @@ class Item4 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   return DateTimeChart.withSampleData();
+    return DateTimeChart.withSampleData();
   }
 }

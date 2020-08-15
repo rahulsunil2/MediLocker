@@ -1,43 +1,36 @@
-import 'package:flutter/material.dart';
-
-
-class SliderModel{
-
+class SliderModel {
   String imageAssetPath;
   String title;
   String desc;
 
-  SliderModel({this.imageAssetPath,this.title,this.desc});
+  SliderModel({this.imageAssetPath, this.title, this.desc});
 
-  void setImageAssetPath(String getImageAssetPath){
+  void setImageAssetPath(String getImageAssetPath) {
     imageAssetPath = getImageAssetPath;
   }
 
-  void setTitle(String getTitle){
+  void setTitle(String getTitle) {
     title = getTitle;
   }
 
-  void setDesc(String getDesc){
+  void setDesc(String getDesc) {
     desc = getDesc;
   }
 
-  String getImageAssetPath(){
+  String getImageAssetPath() {
     return imageAssetPath;
   }
 
-  String getTitle(){
+  String getTitle() {
     return title;
   }
 
-  String getDesc(){
+  String getDesc() {
     return desc;
   }
-
 }
 
-
-List<SliderModel> getSlides(){
-
+List<SliderModel> getSlides() {
   List<SliderModel> slides = new List<SliderModel>();
   SliderModel sliderModel = new SliderModel();
 
@@ -50,7 +43,8 @@ List<SliderModel> getSlides(){
   sliderModel = new SliderModel();
 
   //2
-  sliderModel.setDesc("Remote delivery of Healthcare Services like consultations, over the telecommunications infrastructure.");
+  sliderModel.setDesc(
+      "Remote delivery of Healthcare Services like consultations, over the telecommunications infrastructure.");
   sliderModel.setTitle("Telemedicine..... ");
   sliderModel.setImageAssetPath("images/Online Doctor-bro.png");
   slides.add(sliderModel);
@@ -58,7 +52,8 @@ List<SliderModel> getSlides(){
   sliderModel = new SliderModel();
 
   //3
-  sliderModel.setDesc("We monitor and track Medical-related metrics and keep u alerted");
+  sliderModel.setDesc(
+      "We monitor and track Medical-related metrics and keep u alerted");
   sliderModel.setTitle("Health Tracker........");
   sliderModel.setImageAssetPath("images/Data-bro.png");
   slides.add(sliderModel);

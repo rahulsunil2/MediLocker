@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:med_report/Reports/reports_list.dart';
+import 'package:med_report/Reports/AllRecords/reports_list.dart';
 
 class Category extends StatelessWidget {
   @override

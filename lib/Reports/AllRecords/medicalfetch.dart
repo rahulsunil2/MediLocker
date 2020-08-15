@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../global.dart';
+import '../../global.dart';
 
 class MedicalFetch {
   static Future<List<dynamic>> searchDjangoApi(String query) async {

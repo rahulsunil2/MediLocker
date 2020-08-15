@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:med_report/Reports/medicalfetch.dart';
+import 'package:med_report/Reports/AllRecords/medicalfetch.dart';
 
 class FilesList extends StatefulWidget {
   final String type;

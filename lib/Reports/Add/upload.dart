@@ -208,84 +208,90 @@ class _AddReportState extends State<AddReport> {
             child: Card(
                 elevation: 10,
                 child: Container(
+                    padding: EdgeInsets.only(
+                      top: 10,
+                      left: 10,
+                      right: 10,
+                      bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+                    ),
                     child: Column(
-                  children: <Widget>[
-                    SizedBox(height: 10),
-                    Text(
-                      'Type',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Radio(
-                            value: 0,
-                            groupValue: _radioValue,
-                            onChanged: (value) {
-                              state(() {
-                                _radioValue = value;
-                                Report.type = data[value];
-                                print(Report.type);
-                              });
-                            }),
-                        Text('Report'),
-                        Radio(
-                            value: 1,
-                            groupValue: _radioValue,
-                            onChanged: (value) {
-                              state(() {
-                                _radioValue = value;
-                                Report.type = data[value];
-                                print(Report.type);
-                              });
-                            }),
-                        Text('Prescription'),
+                        SizedBox(height: 10),
+                        Text(
+                          'Type',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Radio(
+                                value: 0,
+                                groupValue: _radioValue,
+                                onChanged: (value) {
+                                  state(() {
+                                    _radioValue = value;
+                                    Report.type = data[value];
+                                    print(Report.type);
+                                  });
+                                }),
+                            Text('Report'),
+                            Radio(
+                                value: 1,
+                                groupValue: _radioValue,
+                                onChanged: (value) {
+                                  state(() {
+                                    _radioValue = value;
+                                    Report.type = data[value];
+                                    print(Report.type);
+                                  });
+                                }),
+                            Text('Prescription'),
+                          ],
+                        ),
+                        Text(
+                          'Category',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Flexible(
+                            child: GridView.count(
+                                crossAxisCount: 3,
+                                mainAxisSpacing: 1,
+                                crossAxisSpacing: 1,
+                                shrinkWrap: true,
+                                padding: EdgeInsets.only(top: 0.0),
+                                children: selectCategory(state))),
+                        TextField(
+                          decoration: InputDecoration(
+                            labelText: "Record Description",
+                          ),
+                          controller: recNameController,
+                        ),
+                        Container(
+                          height: 70,
+                          child: Row(
+                            children: <Widget>[
+                              Expanded(
+                                  child: Text(_selectedDate == null
+                                      ? 'No Date Chosen'
+                                      : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}')),
+                              FlatButton(
+                                textColor: Theme.of(context).primaryColor,
+                                child: Text(
+                                  'Choose Date',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                onPressed: () => _presentDatePicker(state),
+                              )
+                            ],
+                          ),
+                        ),
+                        RaisedButton(
+                            child: Text('Add '),
+                            color: Theme.of(context).primaryColor,
+                            textColor: Theme.of(context).textTheme.button.color,
+                            onPressed: () => _onAlertButtonsPressed(context))
                       ],
-                    ),
-                    Text(
-                      'Category',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Flexible(
-                        child: GridView.count(
-                            crossAxisCount: 3,
-                            mainAxisSpacing: 1,
-                            crossAxisSpacing: 1,
-                            shrinkWrap: true,
-                            padding: EdgeInsets.only(top: 0.0),
-                            children: selectCategory(state))),
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: "Record Description",
-                      ),
-                      controller: recNameController,
-                    ),
-                    Container(
-                      height: 70,
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(
-                              child: Text(_selectedDate == null
-                                  ? 'No Date Chosen'
-                                  : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}')),
-                          FlatButton(
-                            textColor: Theme.of(context).primaryColor,
-                            child: Text(
-                              'Choose Date',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            onPressed: () => _presentDatePicker(state),
-                          )
-                        ],
-                      ),
-                    ),
-                    RaisedButton(
-                        child: Text('Add '),
-                        color: Theme.of(context).primaryColor,
-                        textColor: Theme.of(context).textTheme.button.color,
-                        onPressed: () => _onAlertButtonsPressed(context))
-                  ],
-                ))),
+                    ))),
             behavior: HitTestBehavior.opaque,
           );
         });
