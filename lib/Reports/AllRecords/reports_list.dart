@@ -39,7 +39,6 @@ class _FilesListState extends State<FilesList> {
             future: data,
             builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
               if (snapshot.hasData) {
-                // Data fetched successfully, display your data here
                 var fetchedData = snapshot.data[0]["extracted_data"];
                 print(fetchedData);
 
@@ -77,7 +76,6 @@ class _FilesListState extends State<FilesList> {
                           ),
                           title: Text(
                             snapshot.data[index]["description"],
-                            // style: Theme.of(context).textTheme.headline1
                           ),
                           children: <Widget>[
                             Padding(
