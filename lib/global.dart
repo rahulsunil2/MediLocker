@@ -1,5 +1,5 @@
 class CurrentUser {
-  static String currentUser = 'MediCare';
+  static String currentUser = 'BitMedi';
   static String firstName = ' ';
   static String lastName = ' ';
   static String gender = ' ';

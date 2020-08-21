@@ -4,6 +4,8 @@ import 'package:med_report/Reports/Graph/graph.dart';
 import './slider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import 'AllRecords/files_categories.dart';
+
 class Options extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -50,8 +52,8 @@ class Options extends StatelessWidget {
         body: TabBarView(
           children: [
             // Categories(),
-            //Category(),
-            Sliding(),
+            Category(),
+            //Sliding(),
             Swiper(),
             AddReport()
             //selectLoc(context),

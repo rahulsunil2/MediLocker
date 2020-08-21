@@ -1,8 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:med_report/Reports/AllRecords/file_preview.dart';
 import 'package:med_report/Reports/AllRecords/medicalfetch.dart';
 
 class FilesList extends StatefulWidget {
@@ -20,7 +20,7 @@ class _FilesListState extends State<FilesList> {
   void initState() {
     super.initState();
     data = MedicalFetch.searchDjangoApi(widget.type);
-//    print('Data: $data');
+    print('Data: $data');
   }
 
   @override
@@ -45,7 +45,6 @@ class _FilesListState extends State<FilesList> {
                 return ListView.builder(
                   shrinkWrap: true,
                   itemBuilder: (ctx, index) {
-                    //DateTime date = DateTime.parse(snapshot.data[index]["record_date"]);
                     return Card(
                       margin:
                           EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
@@ -80,17 +79,40 @@ class _FilesListState extends State<FilesList> {
                           children: <Widget>[
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Align(
-                                alignment: Alignment.bottomRight,
-                                child: Text(
-                                  jsonDecode(
-                                      snapshot.data[index]["extracted_data"]),
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: Colors.blue,
-                                    fontSize: 20.0,
+                              child: Column(
+                                children: <Widget>[
+                                  Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: Text(
+                                      jsonDecode(snapshot.data[index]
+                                          ["extracted_data"]),
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                        fontSize: 14.0,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: FlatButton(
+                                      onPressed: () => Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => FileDetails(
+                                                  snapshot.data[index]
+                                                      ["file"]))),
+                                      child: Text(
+                                        'VIEW MORE',
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          color: Colors.blue,
+                                          fontSize: 16.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],

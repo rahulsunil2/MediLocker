@@ -19,7 +19,7 @@ class SimpleBlocDelegate extends BlocDelegate {
   @override
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
-    print (transition);
+    print(transition);
   }
 
   @override
@@ -32,17 +32,13 @@ void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
   final userRepository = UserRepository();
 
-  runApp(
-
-    BlocProvider<AuthenticationBloc>(
-      create: (context) {
-        return AuthenticationBloc(
-          userRepository: userRepository
-        )..add(AppStarted());
-      },
-      child: App(userRepository: userRepository),
-    )
-  );
+  runApp(BlocProvider<AuthenticationBloc>(
+    create: (context) {
+      return AuthenticationBloc(userRepository: userRepository)
+        ..add(AppStarted());
+    },
+    child: App(userRepository: userRepository),
+  ));
 }
 
 class App extends StatelessWidget {
@@ -65,7 +61,9 @@ class App extends StatelessWidget {
             return Home();
           }
           if (state is AuthenticationUnauthenticated) {
-            return Story();
+            return Login(
+              userRepository: userRepository,
+            );
           }
           if (state is AuthenticationLoading) {
             return LoadingIndicator();
