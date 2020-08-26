@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <title>Bit-Medi</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link rel="icon" href="{% static 'images/logo.png' %}" type="image/x-icon"> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <p>{{user}}</p>
+    <h3>Profile</h3>
+    <p>phone:{{user_profile.phone}}</p>
+    <p>dob:{{user_profile.dob}}</p>
+    <p>address:{{user_profile.address}}</p>
+    <p>allergy:{{user_profile.allergy}}</p>
+    <p>gender:{{user_profile.gender}}</p>
+    <p>blood_grp:{{user_profile.blood_grp}}</p>
+    <p>height:{{user_profile.height}}</p>
+    <p>weight:{{user_profile.weight}}</p>
+    <p>Medical Records</p>
+    {% for rec in med_rec %}
+        <h6>uploaded_time:{{rec.uploaded_time}}</h6>
+        <p>category:{{rec.original_file.category}}</p>
+        <p>description:{{rec.original_file.description}}</p>
+        <p>extraction_status:{{rec.original_file.extraction_status}}</p>
+
+        <p>extracted_data:{{rec.extracted_data}}</p>
+
+    {%endfor%}
+</body>
+</html>

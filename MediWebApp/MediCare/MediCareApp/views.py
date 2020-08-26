@@ -1,7 +1,8 @@
 from rest_framework.views import APIView
 from .serializers import UserSerializer
 from rest_framework.authtoken.models import Token
-
+from django.shortcuts import render,redirect
+from django.http import HttpResponse,HttpResponseRedirect
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.models import User
@@ -9,7 +10,15 @@ from .models import UserProfile, MedicalImageFile, UserMedicalData
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, JsonResponse, FileResponse
 from .detect import OCRextract
+import json
+from .forms import *
+from random import randint
 
+from django.contrib.sites.models import Site
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes, force_text
+from django.core.mail import EmailMessage
 # Create your views here.
 
 
@@ -123,6 +132,7 @@ def UserProfileView(request):
 @csrf_exempt
 def getMedicalRecord(request):
     if request.method == 'POST':
+        print(request.POST)
         user = User.objects.get(username=request.POST['user'])
         recordType = request.POST['type']
         category = request.POST['category']
@@ -134,10 +144,11 @@ def getMedicalRecord(request):
                 'file': str(record.file),
                 'description': record.description,
                 'record_date': record.record_date,
-                'extracted_data': extracted_data
+                'extracted_data': json.dumps(extracted_data)
             }
             records.append(tempJson)
 
+        print(records)
         return JsonResponse({'data': records})
 
 
@@ -147,3 +158,46 @@ def getMedicalImage(request):
         fileName = 'media/' + request.POST['filename']
         img = open(fileName, 'rb')
         return FileResponse(img)
+
+def name(request):
+    if 'name' in request.POST: #get time and redirect to next page
+        oid = searchbar(request.POST)
+        if oid.is_valid():
+            request.session['u_id'] = User.objects.get(username=oid.cleaned_data['searchbar']).id
+            # for sending mail
+            otp=randint(100000, 999999)
+            request.session['otp']=otp
+            body = render_to_string('ver_email.html', {
+            'otp':otp
+            })
+            print(body) 
+            subject = "Verify Hall booking"
+            to_mail = User.objects.get(username=oid.cleaned_data['searchbar']).email
+            mail = EmailMessage(subject,body,to=[to_mail])
+            mail.send()
+            return HttpResponseRedirect('/otp')
+    return render(request,'name.html',{'form':searchbar()})
+
+def otp(request):
+    if 'otp' in request.POST: #get time and redirect to next page
+        oid = otp_f(request.POST)
+        # print(int(oid.cleaned_data.get("otp_f") ))
+        if oid.is_valid() and int(oid.cleaned_data['otp_f'])==request.session['otp'] :
+            request.session['otp_i'] = int(oid.cleaned_data['otp_f'])
+            return HttpResponseRedirect('/dashboard')
+        elif oid.cleaned_data['otp_f']!=request.session['otp']:
+            return render(request,'otp.html',{'form':otp_f(),'message':True})
+    return render(request,'otp.html',{'form':otp_f(),'message':False})
+
+def dashboard(request):
+    if(request.session['otp_i']==request.session['otp']):
+        userr=User.objects.get(pk=int(request.session['u_id']))
+        user_profile=UserProfile.objects.get(user=userr)
+        med_rec=UserMedicalData.objects.filter(user=userr)
+        request.session['otp_i']=0
+        request.session['otp']=randint(100000, 999999)
+        return render(request,'dashboard.html',{'user':userr,'user_profile':user_profile,'med_rec':med_rec})
+    else:
+        return HttpResponseRedirect('/name')
+
+

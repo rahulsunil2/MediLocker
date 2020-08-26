@@ -1,0 +1,23 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <title>Bit-Medi</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link rel="icon" href="{% static 'images/logo.png' %}" type="image/x-icon"> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <form action="{% url 'name' %}" method='post'>
+        {% csrf_token%}
+        {{form}}
+        <input type="submit" name="name" value="search">
+    </form>
+</body>
+</html>
