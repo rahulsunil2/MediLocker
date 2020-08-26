@@ -7,4 +7,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('MediCareApp.urls')),
     path('api-token-auth/', rest_views.obtain_auth_token, name='api-token-auth'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
