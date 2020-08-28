@@ -84,8 +84,8 @@ class _FilesListState extends State<FilesList> {
                                   Align(
                                     alignment: Alignment.bottomRight,
                                     child: Text(
-                                      jsonDecode(snapshot.data[index]
-                                          ["extracted_data"]),
+                                      //jsonDecode(snapshot.data[index]["extracted_data"])
+                                      snapshot.data[index]["extracted_data"],
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         color: Colors.blue,
@@ -100,8 +100,9 @@ class _FilesListState extends State<FilesList> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) => FileDetails(
+                                                  snapshot.data[index]["file"],
                                                   snapshot.data[index]
-                                                      ["file"]))),
+                                                      ["extracted_data"]))),
                                       child: Text(
                                         'VIEW MORE',
                                         textAlign: TextAlign.left,
