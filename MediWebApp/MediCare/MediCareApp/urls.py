@@ -8,5 +8,8 @@ urlpatterns = [
     path('api_userprofile', views.UserProfileCreate, name='userprofile-create'),
     path('userprofile_get', views.UserProfileView, name='get-userprofile'),
     path('medicaldata_get', views.getMedicalRecord, name='get_medicaldata'),
-    path('medicalimage_get', views.getMedicalImage, name='get_medicalimage')
+    path('medicalimage_get', views.getMedicalImage, name='get_medicalimage'),
+    path('',views.name,name="name"),
+    path('otp/',views.otp,name="otp"),
+    path('dashboard/',views.dashboard,name="dashboard"),
 ]
