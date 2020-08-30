@@ -134,9 +134,9 @@ def getMedicalRecord(request):
     if request.method == 'POST':
         print(request.POST)
         user = User.objects.get(username=request.POST['user'])
-        recordType = request.POST['type']
-        category = request.POST['category']
-        medicalRecords = MedicalImageFile.objects.filter(user=user, type=recordType, category=category)
+        # recordType = request.POST['type']
+        # category = request.POST['category']
+        medicalRecords = MedicalImageFile.objects.filter(user=user)
         records = []
         for record in medicalRecords:
             extracted_data = UserMedicalData.objects.get(original_file=record).extracted_data
@@ -159,44 +159,45 @@ def getMedicalImage(request):
         img = open(fileName, 'rb')
         return FileResponse(img)
 
+
 def name(request):
-    if 'name' in request.POST: #get time and redirect to next page
+    if 'name' in request.POST:  # get time and redirect to next page
         oid = searchbar(request.POST)
         if oid.is_valid():
             request.session['u_id'] = User.objects.get(username=oid.cleaned_data['searchbar']).id
             # for sending mail
-            otp=randint(100000, 999999)
-            request.session['otp']=otp
-            body = render_to_string('ver_email.html', {
-            'otp':otp
-            })
+            otp = randint(100000, 999999)
+            request.session['otp'] = otp
+            body = render_to_string('ver_email.html', {'otp': otp})
             print(body) 
             subject = "Verify Hall booking"
             to_mail = User.objects.get(username=oid.cleaned_data['searchbar']).email
-            mail = EmailMessage(subject,body,to=[to_mail])
+            mail = EmailMessage(subject, body, to=[to_mail])
             mail.send()
             return HttpResponseRedirect('/otp')
-    return render(request,'name.html',{'form':searchbar()})
+    return render(request, 'name.html', {'form': searchbar()})
+
 
 def otp(request):
-    if 'otp' in request.POST: #get time and redirect to next page
+    if 'otp' in request.POST:  # get time and redirect to next page
         oid = otp_f(request.POST)
         # print(int(oid.cleaned_data.get("otp_f") ))
-        if oid.is_valid() and int(oid.cleaned_data['otp_f'])==request.session['otp'] :
+        if oid.is_valid() and int(oid.cleaned_data['otp_f']) == request.session['otp']:
             request.session['otp_i'] = int(oid.cleaned_data['otp_f'])
             return HttpResponseRedirect('/dashboard')
-        elif oid.cleaned_data['otp_f']!=request.session['otp']:
-            return render(request,'otp.html',{'form':otp_f(),'message':True})
-    return render(request,'otp.html',{'form':otp_f(),'message':False})
+        elif oid.cleaned_data['otp_f'] != request.session['otp']:
+            return render(request,'otp.html', {'form': otp_f(), 'message':True})
+    return render(request, 'otp.html', {'form': otp_f(), 'message': False})
+
 
 def dashboard(request):
-    if(request.session['otp_i']==request.session['otp']):
-        userr=User.objects.get(pk=int(request.session['u_id']))
-        user_profile=UserProfile.objects.get(user=userr)
-        med_rec=UserMedicalData.objects.filter(user=userr)
-        request.session['otp_i']=0
-        request.session['otp']=randint(100000, 999999)
-        return render(request,'dashboard.html',{'user':userr,'user_profile':user_profile,'med_rec':med_rec})
+    if request.session['otp_i'] == request.session['otp']:
+        userr = User.objects.get(pk=int(request.session['u_id']))
+        user_profile = UserProfile.objects.get(user=userr)
+        med_rec = UserMedicalData.objects.filter(user=userr)
+        request.session['otp_i'] = 0
+        request.session['otp'] = randint(100000, 999999)
+        return render(request, 'dashboard.html', {'user': userr, 'user_profile': user_profile, 'med_rec': med_rec})
     else:
         return HttpResponseRedirect('/name')
 
