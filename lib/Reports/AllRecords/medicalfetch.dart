@@ -5,10 +5,10 @@ import 'package:http/http.dart' as http;
 import '../../global.dart';
 
 class MedicalFetch {
-  static Future<List<dynamic>> searchDjangoApi(String query) async {
+  static Future<List<dynamic>> searchDjangoApi() async {
     Map<String, String> body = {
-      'category': query,
-      'type': 'Report',
+      // 'category': query,
+      // 'type': 'Report',
       'user': CurrentUser.currentUser
     };
     String url = Common.baseURL + 'users/medicaldata_get';

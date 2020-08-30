@@ -141,7 +141,7 @@ class _AddReportState extends State<AddReport> {
     );
   }
 
-  Map<int, String> data = {0: 'Report', 1: 'Prescription', 2: "X-Ray/MRI"};
+  // Map<int, String> data = {0: 'Report', 1: 'Prescription', 2: "X-Ray/MRI"};
 
   void _presentDatePicker(StateSetter setState) {
     showDatePicker(
@@ -217,37 +217,37 @@ class _AddReportState extends State<AddReport> {
                     child: Column(
                       children: <Widget>[
                         SizedBox(height: 10),
-                        Text(
-                          'Type',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Radio(
-                                value: 0,
-                                groupValue: _radioValue,
-                                onChanged: (value) {
-                                  state(() {
-                                    _radioValue = value;
-                                    Report.type = data[value];
-                                    print(Report.type);
-                                  });
-                                }),
-                            Text('Report'),
-                            Radio(
-                                value: 1,
-                                groupValue: _radioValue,
-                                onChanged: (value) {
-                                  state(() {
-                                    _radioValue = value;
-                                    Report.type = data[value];
-                                    print(Report.type);
-                                  });
-                                }),
-                            Text('Prescription'),
-                          ],
-                        ),
+                        // Text(
+                        //   'Type',
+                        //   style: TextStyle(fontWeight: FontWeight.bold),
+                        // ),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.center,
+                        //   children: <Widget>[
+                        //     Radio(
+                        //         value: 0,
+                        //         groupValue: _radioValue,
+                        //         onChanged: (value) {
+                        //           state(() {
+                        //             _radioValue = value;
+                        //             Report.type = data[value];
+                        //             print(Report.type);
+                        //           });
+                        //         }),
+                        //     Text('Report'),
+                        //     Radio(
+                        //         value: 1,
+                        //         groupValue: _radioValue,
+                        //         onChanged: (value) {
+                        //           state(() {
+                        //             _radioValue = value;
+                        //             Report.type = data[value];
+                        //             print(Report.type);
+                        //           });
+                        //         }),
+                        //     Text('Prescription'),
+                        //   ],
+                        // ),
                         Text(
                           'Category',
                           style: TextStyle(fontWeight: FontWeight.bold),

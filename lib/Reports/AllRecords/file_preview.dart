@@ -1,13 +1,17 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'dart:ui';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker_saver/image_picker_saver.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_share/flutter_share.dart';
+// import 'package:image_picker_saver/image_picker_saver.dart';
 import 'package:med_report/Reports/AllRecords/zoomFile.dart';
 import 'package:med_report/global.dart';
-import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 
 class FileDetails extends StatefulWidget {
   final String filename;
@@ -22,21 +26,27 @@ class _FileDetailsState extends State<FileDetails> {
   _FileDetailsState({this.file});
   var filePath;
 
-  void _onImagDownloadButtonPressed() async {
-    var response = await http.get(Common.baseURL + 'media/' + file);
-    filePath = await ImagePickerSaver.saveFile(fileData: response.bodyBytes);
-  }
+  // String BASE64_IMAGE;
+
+  // void _onImagDownloadButtonPressed() async {
+  //   var response = await http.get(Common.baseURL + 'media/' + file);
+  //   filePath = await ImagePickerSaver.saveFile(fileData: response.bodyBytes);
+  // }
 
   Future<void> _onImageShareButtonPressed() async {
-    try {
-      var request = await HttpClient()
-          .getUrl(Uri.parse(Common.baseURL + 'media/' + file));
-      var response = await request.close();
-      Uint8List bytes = await consolidateHttpClientResponseBytes(response);
-      await Share.file('HEALTH RECORD', 'record.jpg', bytes, 'image/jpg');
-    } catch (e) {
-      print('error: $e');
-    }
+    final String dir = (await getApplicationDocumentsDirectory()).path;
+    final String path = '$dir/download_demo.png';
+    final File f = File(path);
+    Dio dio = Dio();
+    await dio.download(
+      Common.baseURL + 'media/' + file,
+      '$dir/download_demo.png',
+    );
+    await FlutterShare.share(
+        title: 'MedicalRecord',
+        text: file,
+        linkUrl: path,
+        chooserTitle: 'Share via');
   }
 
   @override
@@ -48,7 +58,7 @@ class _FileDetailsState extends State<FileDetails> {
         ),
         body: SingleChildScrollView(
           child: Stack(children: [
-            // option(),
+            option(),
             img(),
             Padding(
               padding: EdgeInsets.only(top: 250, left: 80, right: 80),
@@ -59,7 +69,9 @@ class _FileDetailsState extends State<FileDetails> {
   }
 
   Widget img() {
+    print(widget.filename);
     String url = Common.baseURL + 'media/' + widget.filename;
+    print(url);
     return Stack(
       children: <Widget>[
         Container(
@@ -81,11 +93,15 @@ class _FileDetailsState extends State<FileDetails> {
 
   Widget option() {
     return Padding(
-      padding: EdgeInsets.only(left: 120),
+      padding: EdgeInsets.only(left: 150, top: 100),
       child: Row(
         children: [
           MaterialButton(
-            onPressed: () async => await _onImageShareButtonPressed(),
+            onPressed: () {
+              _onImageShareButtonPressed();
+            },
+            //     async =>
+            //     await _onImageShareButtonPressed(),
             color: Colors.blue,
             textColor: Colors.white,
             child: Icon(
@@ -97,7 +113,7 @@ class _FileDetailsState extends State<FileDetails> {
           ),
           MaterialButton(
             onPressed: () {
-              _onImagDownloadButtonPressed();
+              //_onImagDownloadButtonPressed();
             },
             color: Colors.blue,
             textColor: Colors.white,

@@ -69,8 +69,8 @@ class Menu extends StatelessWidget {
                     )),
               ]),
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => FilesList(title)));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => FilesList()));
           },
         ));
   }

@@ -6,8 +6,8 @@ import 'package:med_report/Reports/AllRecords/file_preview.dart';
 import 'package:med_report/Reports/AllRecords/medicalfetch.dart';
 
 class FilesList extends StatefulWidget {
-  final String type;
-  FilesList(this.type);
+  // final String type;
+  // FilesList(this.type);
 
   @override
   _FilesListState createState() => _FilesListState();
@@ -19,17 +19,18 @@ class _FilesListState extends State<FilesList> {
   @override
   void initState() {
     super.initState();
-    data = MedicalFetch.searchDjangoApi(widget.type);
+    // data = MedicalFetch.searchDjangoApi(widget.type);
+    data = MedicalFetch.searchDjangoApi();
     print('Data: $data');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.indigo,
-          title: Text(widget.type),
-        ),
+        // appBar: AppBar(
+        //   backgroundColor: Colors.indigo,
+        //   title: Text("Uploaded Records"),
+        // ),
         body: SingleChildScrollView(child: items()));
   }
 

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:med_report/Reports/Add/upload.dart';
+import 'package:med_report/Reports/AllRecords/reports_list.dart';
 import 'package:med_report/Reports/Graph/graph.dart';
-import './slider.dart';
+// import './slider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 import 'AllRecords/files_categories.dart';
@@ -10,7 +11,7 @@ class Options extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -27,15 +28,15 @@ class Options extends StatelessWidget {
                   ),
                 ),
               ),
-              Tab(
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    ' DATA',
-                    style: TextStyle(color: Colors.white, fontSize: 16.0),
-                  ),
-                ),
-              ),
+              // Tab(
+              //   child: Align(
+              //     alignment: Alignment.center,
+              //     child: Text(
+              //       ' DATA',
+              //       style: TextStyle(color: Colors.white, fontSize: 16.0),
+              //     ),
+              //   ),
+              // ),
               Tab(
                 child: Align(
                   alignment: Alignment.center,
@@ -51,13 +52,11 @@ class Options extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            // Categories(),
-            Category(),
+            FilesList(),
+            //Category(),
             //Sliding(),
-            Swiper(),
+            //Swiper(),
             AddReport()
-            //selectLoc(context),
-            //form(context),
           ],
         ),
       ),
