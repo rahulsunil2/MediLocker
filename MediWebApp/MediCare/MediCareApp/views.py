@@ -124,9 +124,9 @@ def UserProfileView(request):
 def getMedicalRecord(request):
     if request.method == 'POST':
         user = User.objects.get(username=request.POST['user'])
-        recordType = request.POST['type']
-        category = request.POST['category']
-        medicalRecords = MedicalImageFile.objects.filter(user=user, type=recordType, category=category)
+        # recordType = request.POST['type']
+        # category = request.POST['category']
+        medicalRecords = MedicalImageFile.objects.filter(user=user)
         records = []
         for record in medicalRecords:
             extracted_data = UserMedicalData.objects.get(original_file=record).extracted_data
