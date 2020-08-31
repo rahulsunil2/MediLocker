@@ -17,6 +17,8 @@ class Options extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.indigo,
           elevation: 10,
+
+
           bottom: TabBar(
             tabs: [
               Tab(
