@@ -75,16 +75,16 @@ class _FileDetailsState extends State<FileDetails> {
     return Stack(
       children: <Widget>[
         Container(
-          height: 200,
-          width: 150,
+          height: 450,
+          width: 600,
           alignment: Alignment.center,
-          margin: EdgeInsets.symmetric(horizontal: 10),
-          child: Image.network(url, fit: BoxFit.cover),
+          //margin: EdgeInsets.symmetric(horizontal: 20),
+          child: Image.network(url,),
         ),
         Align(
             alignment: Alignment.centerLeft,
             child: IconButton(
-                icon: Icon(Icons.zoom_in),
+                icon: Icon(Icons.zoom_in,size: 30,),
                 onPressed: () => Navigator.push(context,
                     MaterialPageRoute(builder: (context) => Zoom(url)))))
       ],
@@ -93,7 +93,7 @@ class _FileDetailsState extends State<FileDetails> {
 
   Widget option() {
     return Padding(
-      padding: EdgeInsets.only(left: 150, top: 100),
+      padding: EdgeInsets.only(left:115,right:115,top: 540),
       child: Row(
         children: [
           MaterialButton(
@@ -130,31 +130,56 @@ class _FileDetailsState extends State<FileDetails> {
   }
 
   Widget info() {
-    return Column(
-      children: [
-        Text(
-          'Your Health data',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 16.0,
-          ),
-        ),
-        Container(
-          color: Colors.lightBlue,
-          padding: EdgeInsets.only(top: 20),
-          height: 200,
-          width: 300,
-          child: Text(
-            widget.data,
+   // final doubleRegex = RegExp(r'\s+(\d+\.\d+)\s+', multiLine: true);
+    //final dat=doubleRegex.allMatches(widget.data).map((m) => m.group(0));
+
+    return Padding(
+      padding: const EdgeInsets.only(top:180.0),
+      child: Column(
+        children: [
+          Text(
+            'Your Health data',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.white,
-              fontSize: 14.0,
+              color: Colors.black,
+              fontSize: 16.0,
             ),
           ),
-        ),
-      ],
+
+          Container(
+            //color: Colors.redAccent,
+           // padding: EdgeInsets.only(top: 20),
+            height: 70,
+            width: 400,
+            decoration: BoxDecoration(
+               // border: double.parse(widget.data) > 99.0? Border.all(color: Colors.red,width: 4,):Border.all(color: Colors.red,width: 4,),
+              border:Border.all(color: Colors.red,width: 4,),
+               borderRadius: BorderRadius.circular(5),
+            ),
+            child: Row(
+              children: <Widget>[
+                Text(
+                  widget.data,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20.0,
+                  ),
+                ),
+                SizedBox(width: 3,),
+                Text(
+                  ' : High',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 20.0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
