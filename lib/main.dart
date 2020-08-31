@@ -57,8 +57,8 @@ class App extends StatelessWidget {
             return Story();
           }
           if (state is AuthenticationAuthenticated) {
-            print('go to ur Home');
-            return Home();
+           // print('go to ur Home'); Home()
+            return Story();
           }
           if (state is AuthenticationUnauthenticated) {
             return Login(
