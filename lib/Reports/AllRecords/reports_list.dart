@@ -27,10 +27,10 @@ class _FilesListState extends State<FilesList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(
-        //   backgroundColor: Colors.indigo,
-        //   title: Text("Uploaded Records"),
-        // ),
+         appBar: AppBar(
+          backgroundColor: Colors.indigo,
+          title: Text("Uploaded Records"),
+         ),
         body: SingleChildScrollView(child: items()));
   }
 
@@ -86,7 +86,7 @@ class _FilesListState extends State<FilesList> {
                                     alignment: Alignment.bottomRight,
                                     child: Text(
                                       //jsonDecode(snapshot.data[index]["extracted_data"])
-                                      snapshot.data[index]["extracted_data"],
+                                      snapshot.data[index]["extracted_data"] ,
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         color: Colors.blue,
