@@ -301,6 +301,9 @@ class _AddReportState extends State<AddReport> {
   String dropdownValue = 'Click Me';
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+        backgroundColor: Colors.indigo,
+        elevation: 10,),
       body: Container(
         child: Column(
           children: <Widget>[showImage()],
