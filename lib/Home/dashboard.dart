@@ -1,28 +1,75 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:med_report/Profile/profileui.dart';
+import 'package:med_report/Reports/AllRecords/reports_list.dart';
 import 'package:med_report/Reports/report_main.dart';
 import 'package:med_report/bloc_login/bloc/authentication_bloc.dart';
 import 'package:med_report/global.dart';
+import 'package:unicorndial/unicorndial.dart';
 
+import '../upload.dart';
 
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends  State<Home> with SingleTickerProviderStateMixin  {
   double screenHeight;
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    var childButtons = List<UnicornButton>();
+
+    childButtons.add(UnicornButton(
+        //hasLabel: true,
+        labelText: "",
+        currentButton: FloatingActionButton(
+         heroTag: "Profile",
+          backgroundColor: Colors.redAccent,
+          mini: true,
+          child: Icon(Icons.person),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfilePage()),
+            );
+          },
+        )));
+
+    childButtons.add(UnicornButton(
+        currentButton: FloatingActionButton(
+            heroTag: "Add",
+            backgroundColor: Colors.greenAccent,
+            mini: true,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AddReport()),
+              );
+            },
+            child: Icon(Icons.add))));
+
+    childButtons.add(UnicornButton(
+        currentButton: FloatingActionButton(
+            heroTag: "List",
+            backgroundColor: Colors.blueAccent,
+            mini: true,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FilesList()),
+              );
+            },
+            child: Icon(Icons.list))));
     screenHeight = MediaQuery.of(context).size.height;
     print('Home..');
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Colors.white,
-      drawer: Drawer(
+     /* drawer: Drawer(
           child: ListView(
         children: <Widget>[
           UserAccountsDrawerHeader(
@@ -91,15 +138,36 @@ class _HomeState extends State<Home> {
           ),
           SizedBox(height: 30),
         ],
-      )),
+      )),*/
       body: SingleChildScrollView(
         child: Stack(
           children: <Widget>[
             upperHalf(context),
             general(context),
             milestone(context),
-            options(context),
+            milestone1(context),
+            milestone2(context),
+
             Positioned(
+              left: 10,
+              top: 40,
+              child: IconButton(
+                icon: Icon(
+                  Icons.exit_to_app,
+                  color: Colors.black,
+                  size: 30.0,
+                ),
+                onPressed: () {
+                  BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
+                },
+              ),
+            ),
+
+
+
+
+            //options(context),
+          /*  Positioned(
               left: 10,
               top: 40,
               child: IconButton(
@@ -110,10 +178,17 @@ class _HomeState extends State<Home> {
                 ),
                 onPressed: () => scaffoldKey.currentState.openDrawer(),
               ),
-            ),
+            ), */
           ],
         ),
       ),
+        floatingActionButton: UnicornDialer(
+            backgroundColor: Color.fromRGBO(255, 255, 255, 0.6),
+            parentButtonBackground: Colors.redAccent,
+            orientation: UnicornOrientation.VERTICAL,
+            parentButton: Icon(Icons.add),
+            childButtons: childButtons),
+
     );
   }
 
@@ -129,6 +204,8 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
+
 
   Widget general(BuildContext context) {
     return Container(
@@ -176,6 +253,54 @@ class _HomeState extends State<Home> {
           ),
           contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
           subtitle: Text('You completed 10000 steps today'),
+          isThreeLine: true,
+        ),
+        color: Colors.lightBlueAccent,
+      ),
+    );
+  }
+  Widget milestone1(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: (screenHeight / 2) ),
+      padding: EdgeInsets.only(left: 10, right: 10),
+      child: Card(
+        elevation: 10,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+        ),
+        child: ListTile(
+          trailing: Image.network(
+              "https://image.flaticon.com/icons/png/512/163/163813.png"),
+          title: Text(
+            'Fun Fact',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+          subtitle: Text('People With Increased Risk of Alzheimers Have Deficits in Navigating'),
+          isThreeLine: true,
+        ),
+        color: Colors.lightBlueAccent,
+      ),
+    );
+  }
+  Widget milestone2(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top:500),
+      padding: EdgeInsets.only(left: 10, right: 10),
+      child: Card(
+        elevation: 10,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+        ),
+        child: ListTile(
+          trailing: Image.network(
+              "https://image.flaticon.com/icons/png/512/163/163813.png"),
+          title: Text(
+            'Obesity',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+          subtitle: Text('Transplanted Brown-Fat-Like Cells Hold Promise for Obesity and Diabetes'),
           isThreeLine: true,
         ),
         color: Colors.lightBlueAccent,
